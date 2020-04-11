@@ -19,11 +19,12 @@ public class LightPanel extends JPanel {
 
     public LightPanel (){
         //this.controller=controller;
-        Font font = new Font("Ink Free", Font.BOLD, 15);
-        GridLayout layout = new GridLayout(1, 0, 90, 10);
+        GridLayout layoutMain = new GridLayout(0, 3, 2, 2);
+        Font font = new Font("Ink Free", Font.BOLD, 20);
+        GridLayout layout = new GridLayout(1, 0, 40, 10);
         JPanel pnlButtons = new JPanel(layout);
         pnlButtons.setBorder(BorderFactory.createTitledBorder(""));
-        Dimension dim = new Dimension(90, 20);
+        Dimension dim = new Dimension(150, 35);
         lamp1_On = new JButton("ON");
         lamp1_On.setPreferredSize(dim);
         lamp1_On.setFont(font);
@@ -45,16 +46,26 @@ public class LightPanel extends JPanel {
         lamp1_off.addActionListener(listener);
     }
 
+    public void setLamp1_On(){
+        lamp1_On.setEnabled(true);
+        lamp1_off.setEnabled(false);
+    }
+
+    public void setLamp1_off(){
+        lamp1_On.setEnabled(false);
+        lamp1_off.setEnabled(true);
+    }
+
     class ButtonActionListeners implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == lamp1_On) {
-                //controller.buttonPressed(ButtonType.lamp1_On);
+                controller.buttonPressed(ButtonType.lamp1_On);
                 lamp1_On.setEnabled(false);
                 lamp1_off.setEnabled(true);
             }
             else if (e.getSource() == lamp1_off) {
-                //controller.buttonPressed(ButtonType.lamp1_off);
+                controller.buttonPressed(ButtonType.lamp1_off);
                 lamp1_On.setEnabled(true);
                 lamp1_off.setEnabled(false);
             }
