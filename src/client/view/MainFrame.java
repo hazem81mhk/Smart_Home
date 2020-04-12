@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
         final int offsetX = width / 5;
         final int offsetY = height / 5;
         setSize(width, height);
-        setTitle("<<<< Smart Home >>>>");
+        setTitle("                  <<<< Smart Home >>>>");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(offsetX, offsetY);
         mainPanel = new MainPanel();

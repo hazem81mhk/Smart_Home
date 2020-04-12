@@ -7,5 +7,6 @@ package client.view;
 
 public enum ButtonType {
     lamp1_On,
-    lamp1_off
+    lamp1_off,
+    stratTimer
 }

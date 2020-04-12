@@ -25,10 +25,13 @@ public class Controller {
     public void buttonPressed(ButtonType button) {
         switch (button){
             case lamp1_On:
-
+                System.out.println("Lamp1: ON");
                 break;
             case lamp1_off:
-
+                System.out.println("Lamp1: OFF");
+                break;
+            case stratTimer:
+                System.out.println("Start Timer");
                 break;
         }
     }
