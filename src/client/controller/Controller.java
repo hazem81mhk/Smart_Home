@@ -2,7 +2,6 @@ package client.controller;
 
 import client.model.Client;
 import client.view.ButtonType;
-import server.model.ClientHandler;
 import client.view.MainFrame;
 
 import java.io.IOException;
