@@ -67,7 +67,7 @@ public class LightPanel extends JPanel {
         GridLayout layout = new GridLayout(2, 1, 5, 5);
         JPanel pnlMain = new JPanel(layout);
         //pnlMain.setBackground(Color.LIGHT_GRAY);
-        pnlMain.setBorder(BorderFactory.createTitledBorder(null,"Time table",
+        pnlMain.setBorder(BorderFactory.createTitledBorder(null,"Lamp time table",
                 TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
                 new Font("Ink free",Font.BOLD,20),Color.BLACK));
         Border border = this.getBorder();
@@ -81,7 +81,7 @@ public class LightPanel extends JPanel {
         JLabel timeTo =new JLabel("  To:");
         timeTo.setPreferredSize(dim);
 
-        startTimer =new JButton("Start timer");
+        startTimer =new JButton("Start the lamp");
         startTimer.setPreferredSize(new Dimension(150,35));
 
         timePanel1=new JPanel();
@@ -104,6 +104,8 @@ public class LightPanel extends JPanel {
         add(pnlMain, BorderLayout.SOUTH);
     }
 
+    //Har kollat och hämtat en del från:
+    //https://stackoverflow.com/questions/30111020/show-the-time-in-a-combobox
     public void timetablePanelFrom(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
