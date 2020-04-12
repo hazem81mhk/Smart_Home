@@ -28,7 +28,7 @@ public class Controller {
                 System.out.println("Lamp1: OFF");
                 break;
             case stratTimer:
-                System.out.println("Start the lamp");
+                System.out.println();
                 break;
         }
     }

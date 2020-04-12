@@ -27,6 +27,8 @@ public class LightPanel extends JPanel {
     private JPanel timePanel1;
     private JPanel timePanel2;
     private JButton lamp1_On,lamp1_off, startTimer;
+    private JComboBox <Date> CbTimeFrom;
+    private JComboBox <Date> CbtimeTo;
 
 
     public LightPanel (Controller controller){
@@ -104,8 +106,6 @@ public class LightPanel extends JPanel {
         add(pnlMain, BorderLayout.SOUTH);
     }
 
-    //Har kollat och hämtat en del från:
-    //https://stackoverflow.com/questions/30111020/show-the-time-in-a-combobox
     public void timetablePanelFrom(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -118,9 +118,9 @@ public class LightPanel extends JPanel {
             model.addElement(calendar.getTime());
             calendar.add(Calendar.MINUTE, 15);
         } while (calendar.getTime().before(end.getTime()));
-        JComboBox<Date> cb = new JComboBox<>(model);
-        cb.setRenderer(new DateFormattedListCellRenderer(new SimpleDateFormat("HH:mm")));
-        timePanel1.add(cb);
+        CbTimeFrom = new JComboBox<>(model);
+        CbTimeFrom.setRenderer(new DateFormattedListCellRenderer(new SimpleDateFormat("HH:mm")));
+        timePanel1.add(CbTimeFrom);
     }
 
     public void timetablePanelTo(){
@@ -135,9 +135,9 @@ public class LightPanel extends JPanel {
             model.addElement(calendar.getTime());
             calendar.add(Calendar.MINUTE, 15);
         } while (calendar.getTime().before(end.getTime()));
-        JComboBox<Date> cb = new JComboBox<>(model);
-        cb.setRenderer(new DateFormattedListCellRenderer(new SimpleDateFormat("HH:mm")));
-        timePanel2.add(cb);
+        CbtimeTo = new JComboBox<>(model);
+        CbtimeTo.setRenderer(new DateFormattedListCellRenderer(new SimpleDateFormat("HH:mm")));
+        timePanel2.add(CbtimeTo);
     }
 
     public class DateFormattedListCellRenderer extends DefaultListCellRenderer {
@@ -185,7 +185,8 @@ public class LightPanel extends JPanel {
                 lamp1_off.setEnabled(false);
             }
             else if (e.getSource() == startTimer) {
-                controller.buttonPressed(ButtonType.lamp1_off);
+                System.out.println("Start the lamp \nFrom: "+CbTimeFrom.getSelectedItem()+
+                                                  "\nTo:   "+CbtimeTo.getSelectedItem());
             }
         }
     }
