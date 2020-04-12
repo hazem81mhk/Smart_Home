@@ -16,8 +16,8 @@ public class MainFrame extends JFrame {
     private Controller controller;
     private MainPanel mainPanel;
 
-    public MainFrame(){
-        this.controller=controller;
+    public MainFrame(Controller controller){
+        this.controller= controller;
         setupFrame();
     }
 
@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
         setTitle("                  <<<< Smart Home >>>>");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(offsetX, offsetY);
-        mainPanel = new MainPanel();
+        mainPanel = new MainPanel(controller);
         setContentPane(mainPanel);
         pack();
         setVisible(true);

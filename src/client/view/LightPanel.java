@@ -29,8 +29,8 @@ public class LightPanel extends JPanel {
     private JButton lamp1_On,lamp1_off, startTimer;
 
 
-    public LightPanel (){
-        //this.controller=controller;
+    public LightPanel (Controller controller){
+        this.controller=controller;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(width, height));
         lampPanel();

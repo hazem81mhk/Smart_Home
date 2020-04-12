@@ -4,8 +4,6 @@ import client.model.Client;
 import client.view.ButtonType;
 import client.view.MainFrame;
 
-import java.io.IOException;
-
 /**
  * 11/04/2020
  *
@@ -16,8 +14,8 @@ public class Controller {
     private MainFrame gui;
     private Client client;
 
-    public Controller() throws IOException {
-        gui =new MainFrame();
+    public Controller() {
+        gui =new MainFrame(this);
         client=new Client();
     }
 
@@ -30,7 +28,7 @@ public class Controller {
                 System.out.println("Lamp1: OFF");
                 break;
             case stratTimer:
-                System.out.println("Start Timer");
+                System.out.println("Start the lamp");
                 break;
         }
     }

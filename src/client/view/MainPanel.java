@@ -19,8 +19,8 @@ public class MainPanel extends JPanel {
     private LightPanel lightPanel;
     private BorderLayout layout;
 
-    public MainPanel(){
-        //this.controller=contoller;
+    public MainPanel(Controller controller){
+        this.controller=controller;
         setupPanel();
     }
 
@@ -30,7 +30,7 @@ public class MainPanel extends JPanel {
         Border border = this.getBorder();
         Border margin = BorderFactory.createEmptyBorder(12, 12, 12, 12);
         setBorder(new CompoundBorder(border, margin));
-        lightPanel = new LightPanel();
+        lightPanel = new LightPanel(controller);
 
         add(lightPanel, BorderLayout.NORTH);
         //add(curtainPanel, BorderLayout.CENTER);
