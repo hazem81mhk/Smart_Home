@@ -39,7 +39,7 @@ public class ClientHandler extends Thread {
         inPut = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         outPut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
        
-        	System.out.print(inPut.read());
+        	System.out.println(inPut.readLine());
         
         
         System.out.println(3);
