@@ -27,19 +27,21 @@ public class ClientHandler extends Thread {
             System.out.println(x);
            
             	Object o=ois.readObject();
-                System.out.println(o.getClass());
+                System.out.println((String)o);
             
-
-
-            System.out.println("1");
             //System.out.println("this class is:" + str.getClass());
             //ous = new ObjectOutputStream(socket.getOutputStream());
         }catch (IOException | ClassNotFoundException e){
             System.out.println("Erorr");
         }
         System.out.println(2);
+        
         inPut = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         outPut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+       
+        	System.out.print(inPut.read());
+        
+        
         System.out.println(3);
 
         String str= String.format("Client is connected. Client IP address is: %s. Client port is: %s."
