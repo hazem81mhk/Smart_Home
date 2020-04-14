@@ -14,13 +14,37 @@ public class ClientHandler extends Thread {
     private Socket socket;
     private BufferedReader inPut;
     private BufferedWriter outPut;
+    private ObjectInputStream ois;
+    private ObjectOutputStream ous;
 
     public ClientHandler(Socket socket) throws IOException {
         this.socket = socket;
+        try {
+            ois = new ObjectInputStream(socket.getInputStream());
+            System.out.println("We got an object");
+            //Object str = ois.readObject();
+            int x=0;
+            while(x!=5)
+            {
+                Object o=ois.readObject();
+                System.out.println(ois.getClass());
+                x++;
+            }
+
+
+            System.out.println("1");
+            //System.out.println("this class is:" + str.getClass());
+            //ous = new ObjectOutputStream(socket.getOutputStream());
+        }catch (IOException | ClassNotFoundException e){
+            System.out.println("Erorr");
+        }
+        System.out.println(2);
         inPut = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         outPut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        System.out.println(3);
+
         String str= String.format("Client is connected. Client IP address is: %s. Client port is: %s."
-                                    ,socket.getInetAddress() ,socket.getPort());
+                ,socket.getInetAddress() ,socket.getPort());
         System.out.println(str);
         new writeMessage().start();
         new sendMessage().start();
@@ -31,8 +55,14 @@ public class ClientHandler extends Thread {
         public void run() {
             while (true) {
                 try {
+                    // if(ois.readObject()==null) {
                     String inputMessage = inPut.readLine();
-                    System.out.println("Received message: " + inputMessage);
+                    //System.out.println("Received message: " + inputMessage);
+                    // }
+                    //else
+                    //{
+                    //   Object object=ois.read();
+                    //}
                 } catch (Exception e) {
                     try {
                         socket.close();
@@ -52,11 +82,11 @@ public class ClientHandler extends Thread {
                     //outPutMessage = JOptionPane.showInputDialog(null, "Enter your text");
                     //if (outPutMessage != null) {
                     for (int i = 0; i <outPutMessage.length ; i++) {
+                        sleep(6000);
                         outPut.write(outPutMessage[i]);
                         outPut.newLine();
                         outPut.flush();
-                        System.out.println("Send message: " + outPutMessage[i]);
-                        sleep(9000);
+                        //System.out.println("Send message: " + outPutMessage[i]);
                         //}
                     }
                 }
