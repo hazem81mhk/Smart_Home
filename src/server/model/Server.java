@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import client.model.ClientHandler1;
+
 /**
  * 04/04/2020
  *
@@ -15,8 +17,8 @@ import java.net.Socket;
  * And sends a string message to Arduino.
  */
 
-public class Server implements Runnable {
-    private Thread server = new Thread(this);
+public class Server extends Thread {
+   
     private ServerSocket serverSocket;
 
     /**
@@ -28,7 +30,7 @@ public class Server implements Runnable {
 
     public Server(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        server.start();
+        start();
     }
 
     public void run() {
@@ -36,8 +38,9 @@ public class Server implements Runnable {
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
-                new ClientHandler(socket).start();
-            } catch (IOException ignored) {
+                ClientHandler c=new ClientHandler(socket);
+            } catch (IOException e) {
+            	System.out.println(e);
             }
         }
     }

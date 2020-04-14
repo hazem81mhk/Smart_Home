@@ -19,14 +19,14 @@ public class Client {
             Socket clientSocket = new Socket(host, 9000);  //Create and connect Socket to the host on port 2000
 
             ObjectOutputStream bw = new ObjectOutputStream(clientSocket.getOutputStream()); // for outputs
-            ObjectInputStream br = new ObjectInputStream(clientSocket.getInputStream()); // for inputs
+            //ObjectInputStream br = new ObjectInputStream(clientSocket.getInputStream()); // for inputs
 
             String answer;
             String request = "HelloWorld";
             Object o=request;
             OurObject object=new OurObject("Haszem");
-            bw.writeObject(object); //Write to server
-            bw.flush();
+            bw.writeObject(o); //Write to server
+            
             System.out.println("Waiting");
             //answer = br.(); //Wait for answer
 
@@ -34,8 +34,7 @@ public class Client {
             //System.out.println("Echo = " + answer);
 
             //Shut eveything down
-            bw.close();
-            br.close();
+            bw.flush();
             clientSocket.close();
         } catch (Exception e) {
             System.out.println(e);

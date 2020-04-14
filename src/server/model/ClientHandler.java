@@ -20,16 +20,15 @@ public class ClientHandler extends Thread {
     public ClientHandler(Socket socket) throws IOException {
         this.socket = socket;
         try {
-            ois = new ObjectInputStream(socket.getInputStream());
+        	ois = new ObjectInputStream((socket.getInputStream()));
             System.out.println("We got an object");
             //Object str = ois.readObject();
             int x=0;
-            while(x!=5)
-            {
-                Object o=ois.readObject();
-                System.out.println(ois.getClass());
-                x++;
-            }
+            System.out.println(x);
+           
+            	Object o=ois.readObject();
+                System.out.println(o.getClass());
+            
 
 
             System.out.println("1");
