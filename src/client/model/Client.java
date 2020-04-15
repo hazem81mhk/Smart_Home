@@ -16,7 +16,7 @@ public class Client {
 
         try {
             InetAddress host = InetAddress.getLocalHost(); //public ip of router
-            Socket clientSocket = new Socket(host, 9000);  //Create and connect Socket to the host on port 2000
+            Socket clientSocket = new Socket(host, 8000);  //Create and connect Socket to the host on port 2000
 
             ObjectOutputStream bw = new ObjectOutputStream(clientSocket.getOutputStream()); // for outputs
             //ObjectInputStream br = new ObjectInputStream(clientSocket.getInputStream()); // for inputs

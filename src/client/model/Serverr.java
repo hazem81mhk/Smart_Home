@@ -1,10 +1,10 @@
-package server.model;
+package client.model;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import client.model.ClientHandler1;
+import server.model.Server;
 
 
 public class Serverr extends Thread {
@@ -37,7 +37,7 @@ public class Serverr extends Thread {
 
 
     public static void main(String[] args) throws IOException {
-        new Server(9000);
+        new Serverr(8000);
     }
 }
 

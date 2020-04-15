@@ -29,7 +29,7 @@ public class Client2 {
             String request = "HelloWorld";
             Object o=request;
             OurObject object=new OurObject("Haszem");
-            bw.write(request);;;; //Write to server
+            bw.write(request); //Write to server
             
             System.out.println("Waiting");
             //answer = br.(); //Wait for answer

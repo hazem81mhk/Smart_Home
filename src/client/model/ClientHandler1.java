@@ -8,7 +8,7 @@ public class ClientHandler1 {
 	private Socket socket;
 
 	public ClientHandler1(Socket socket) throws ClassNotFoundException, IOException
-	{
+	{	System.out.println("ClientHandler2 IS HERE");
 		this.socket=socket;
 		run();
 	}
@@ -18,8 +18,14 @@ public class ClientHandler1 {
 		ObjectInputStream ois=new ObjectInputStream(socket.getInputStream());
 		
 			Object o=ois.readObject();
-			System.out.println(o.getClass());
-		
+			System.out.println("This is server2: we got a msg");
+			
+				Command c=(Command)o;
+				System.out.println("WE ACTUALLY GOT A NEW COMMAND:"+c.getCommand());
+				
+				
+			
+			
 		
 
 
