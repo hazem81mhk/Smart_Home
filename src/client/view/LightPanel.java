@@ -26,13 +26,13 @@ public class LightPanel extends JPanel {
     private int height = 200;
     private JPanel timePanel1;
     private JPanel timePanel2;
-    private JButton lamp1_On,lamp1_off, startTimer;
-    private JComboBox <Date> CbTimeFrom;
-    private JComboBox <Date> CbtimeTo;
+    private JButton lamp1_On, lamp1_off, startTimer;
+    private JComboBox<Date> CbTimeFrom;
+    private JComboBox<Date> CbtimeTo;
 
 
-    public LightPanel (Controller controller){
-        this.controller=controller;
+    public LightPanel(Controller controller) {
+        this.controller = controller;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(width, height));
         lampPanel();
@@ -40,16 +40,16 @@ public class LightPanel extends JPanel {
         addListeners();
     }
 
-    public void lampPanel(){
+    public void lampPanel() {
         Font font = new Font("Ink Free", Font.BOLD, 20);
         GridLayout layout = new GridLayout(1, 0, 20, 20);
         JPanel pnlButtons = new JPanel(layout);
         //pnlButtons.setBackground(Color.LIGHT_GRAY);
-        pnlButtons.setBorder(BorderFactory.createTitledBorder(null,"Lamp 1:",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Ink free",Font.BOLD,20),Color.BLACK));
+        pnlButtons.setBorder(BorderFactory.createTitledBorder(null, "Lamp 1:",
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                new Font("Ink free", Font.BOLD, 20), Color.BLACK));
         Dimension dim = new Dimension(150, 35);
-        pnlButtons.setPreferredSize(new Dimension(width, height/3));
+        pnlButtons.setPreferredSize(new Dimension(width, height / 3));
         lamp1_On = new JButton("ON");
         lamp1_On.setPreferredSize(dim);
         lamp1_On.setFont(font);
@@ -65,48 +65,48 @@ public class LightPanel extends JPanel {
         add(pnlButtons, BorderLayout.NORTH);
     }
 
-    public void timetable(){
+    public void timetable() {
         GridLayout layout = new GridLayout(2, 1, 5, 5);
         JPanel pnlMain = new JPanel(layout);
         //pnlMain.setBackground(Color.LIGHT_GRAY);
-        pnlMain.setBorder(BorderFactory.createTitledBorder(null,"Lamp time table",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Ink free",Font.BOLD,20),Color.BLACK));
+        pnlMain.setBorder(BorderFactory.createTitledBorder(null, "Lamp time table",
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                new Font("Ink free", Font.BOLD, 20), Color.BLACK));
         Border border = this.getBorder();
         Border margin = BorderFactory.createEmptyBorder(0, 0, 6, 0);
         setBorder(new CompoundBorder(border, margin));
         //pnlMain.setPreferredSize(new Dimension(width, height));
 
         Dimension dim = new Dimension(50, 35);
-        JLabel timeFrom=new JLabel("  From:");
+        JLabel timeFrom = new JLabel("  From:");
         timeFrom.setPreferredSize(dim);
-        JLabel timeTo =new JLabel("  To:");
+        JLabel timeTo = new JLabel("  To:");
         timeTo.setPreferredSize(dim);
 
-        startTimer =new JButton("Start the lamp");
-        startTimer.setPreferredSize(new Dimension(150,35));
+        startTimer = new JButton("Start the lamp");
+        startTimer.setPreferredSize(new Dimension(150, 35));
 
-        timePanel1=new JPanel();
-        timePanel2=new JPanel();
+        timePanel1 = new JPanel();
+        timePanel2 = new JPanel();
         timetablePanelFrom();
         timetablePanelTo();
 
-        JPanel north=new JPanel();
+        JPanel north = new JPanel();
         north.add(timeFrom);
         north.add(timePanel1);
         north.add(timeTo);
         north.add(timePanel2);
 
-        JPanel south=new JPanel();
+        JPanel south = new JPanel();
         south.add(startTimer);
 
-        pnlMain.add(north,BorderLayout.NORTH);
-        pnlMain.add(south,BorderLayout.SOUTH);
+        pnlMain.add(north, BorderLayout.NORTH);
+        pnlMain.add(south, BorderLayout.SOUTH);
 
         add(pnlMain, BorderLayout.SOUTH);
     }
 
-    public void timetablePanelFrom(){
+    public void timetablePanelFrom() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
@@ -123,7 +123,7 @@ public class LightPanel extends JPanel {
         timePanel1.add(CbTimeFrom);
     }
 
-    public void timetablePanelTo(){
+    public void timetablePanelTo() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
@@ -142,9 +142,11 @@ public class LightPanel extends JPanel {
 
     public class DateFormattedListCellRenderer extends DefaultListCellRenderer {
         private DateFormat format;
+
         public DateFormattedListCellRenderer(DateFormat format) {
             this.format = format;
         }
+
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             if (value instanceof Date) {
@@ -161,12 +163,12 @@ public class LightPanel extends JPanel {
         startTimer.addActionListener(listener);
     }
 
-    public void setLamp1_On(){
+    public void setLamp1_On() {
         lamp1_On.setEnabled(true);
         lamp1_off.setEnabled(false);
     }
 
-    public void setLamp1_off(){
+    public void setLamp1_off() {
         lamp1_On.setEnabled(false);
         lamp1_off.setEnabled(true);
     }
@@ -178,15 +180,13 @@ public class LightPanel extends JPanel {
                 controller.buttonPressed(ButtonType.lamp1_On);
                 lamp1_On.setEnabled(false);
                 lamp1_off.setEnabled(true);
-            }
-            else if (e.getSource() == lamp1_off) {
+            } else if (e.getSource() == lamp1_off) {
                 controller.buttonPressed(ButtonType.lamp1_off);
                 lamp1_On.setEnabled(true);
                 lamp1_off.setEnabled(false);
-            }
-            else if (e.getSource() == startTimer) {
-                System.out.println("Start the lamp \nFrom: "+CbTimeFrom.getSelectedItem()+
-                                                  "\nTo:   "+CbtimeTo.getSelectedItem());
+            } else if (e.getSource() == startTimer) {
+                System.out.println("Start the lamp \nFrom: " + CbTimeFrom.getSelectedItem() +
+                        "\nTo:   " + CbtimeTo.getSelectedItem());
             }
         }
     }

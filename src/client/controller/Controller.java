@@ -3,6 +3,11 @@ package client.controller;
 import client.model.Client;
 import client.view.ButtonType;
 import client.view.MainFrame;
+import server.modelServer.User;
+
+import javax.swing.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * 11/04/2020
@@ -14,18 +19,22 @@ public class Controller {
     private MainFrame gui;
     private Client client;
 
-    public Controller() {
-        gui =new MainFrame(this);
-        client=new Client();
+    public Controller() throws UnknownHostException {
+        client = new Client(InetAddress.getLocalHost(), 8000);
+        String userName = JOptionPane.showInputDialog("Please Enter Your User Name", null);
+        User user = new User(userName);
+        client.sendUser(user);
+        gui = new MainFrame(this);
+
     }
 
     public void buttonPressed(ButtonType button) {
-        switch (button){
+        switch (button) {
             case lamp1_On:
-                System.out.println("Lamp1: ON");
+                client.sendRequest("on");
                 break;
             case lamp1_off:
-                System.out.println("Lamp1: OFF");
+                client.sendRequest("off");
                 break;
             case stratTimer:
                 System.out.println();

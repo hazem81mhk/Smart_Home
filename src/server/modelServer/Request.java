@@ -1,10 +1,10 @@
-package server.model;
+package server.modelServer;
 
 import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Message implements Serializable {
+public class Request implements Serializable {
     private User sender;
     private ArrayList<User> reciverList;
     private String textMessage;
@@ -12,14 +12,8 @@ public class Message implements Serializable {
     private String sendTime;
     private String reciveTime;
 
-    public Message(ArrayList<User> reciverList, User sender, String textMessage,
-                   ImageIcon imageMessage, String sendTime, String reciveTime) {
-        this.sender = sender;
-        this.reciverList = reciverList;
+    public Request(String textMessage) {
         this.textMessage = textMessage;
-        this.imageMessage = imageMessage;
-        this.sendTime = sendTime;
-        this.reciveTime = reciveTime;
     }
 
     public User getSender() {

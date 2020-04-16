@@ -10,14 +10,14 @@ import client.controller.Controller;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
-    private int width=300;
-    private int height=700;
+    private int width = 300;
+    private int height = 700;
 
     private Controller controller;
     private MainPanel mainPanel;
 
-    public MainFrame(Controller controller){
-        this.controller= controller;
+    public MainFrame(Controller controller) {
+        this.controller = controller;
         setupFrame();
     }
 

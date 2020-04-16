@@ -1,4 +1,4 @@
-package server.model;
+package server.modelServer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

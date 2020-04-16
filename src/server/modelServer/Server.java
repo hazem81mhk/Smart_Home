@@ -1,4 +1,4 @@
-package server.model;
+package server.modelServer;
 
 import server.controller.Controller;
 
@@ -17,8 +17,6 @@ public class Server extends Thread {
     private ArrayList<MessageController> messageControllerList = new ArrayList<MessageController>();
     private ArrayList<String> userList = new ArrayList<String>();
     private ArrayList<String> onlineUser = new ArrayList<>();
-    private Queue<Message> unsendMessage = new LinkedList();
-    private HashMap<String, Queue> unsendMessageList = new HashMap<String, Queue>();
 
     public Server(int port, Controller controller) throws IOException {
         this.controller = controller;
@@ -86,33 +84,6 @@ public class Server extends Thread {
         return userList;
     }
 
-
-    public void addOflinObject(String name, Queue line) {
-        unsendMessageList.put(name, line);
-    }
-
-    public void addToQueue(String user, Message msg) {
-        if (unsendMessageList.get(user) == null) {
-            addOflinObject(user, unsendMessage);
-            unsendMessageList.get(user).add(msg);
-            //System.out.println("Have saved " + unsendMessageList.get(user).size() + " Offline Msgs");
-        } else {
-            unsendMessageList.get(user).add(msg);
-            //System.out.println("Have saved " + unsendMessageList.get(user).size() + " Offline Msgs");
-        }
-    }
-
-    public boolean hasOfLinMessage(String user) {
-        Queue ourQueue = unsendMessageList.get(user);
-        if (ourQueue == null || ourQueue.isEmpty()) {
-            return false;
-        } else
-            return true;
-    }
-
-    public Queue getoflinQueu(String user) {
-        return unsendMessageList.get(user);
-    }
 
     public TrafficRegister getTrafficRegister() {
         return trafficRegister;

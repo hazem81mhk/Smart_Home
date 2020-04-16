@@ -1,45 +1,83 @@
 package client.model;
 
-import server.OurObject;
+import server.modelServer.Request;
+import server.modelServer.User;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
 /**
- * 11/04/2020
+ * 16/04/2020
  *
- * @Mohammed Hazem Kudaimi
+ * @Mohammed Amayri
  */
 
-public class Client {
-    public static void main(String[] argv) {
+public class Client extends Thread {
+    private int port;
+    private InetAddress ip;
+    private Socket socket;
+    private ObjectInputStream ois;
+    private ObjectOutputStream ous;
+
+    public Client(InetAddress ip, int port) {
+        this.ip = ip;
+        this.port = port;
+        start();
+    }
+
+    @Override
+    public void run() {
+        Socket clientSocket = null;
+        try {
+            clientSocket = new Socket(ip, port);
+            ous = new ObjectOutputStream(clientSocket.getOutputStream());
+            ois = new ObjectInputStream(clientSocket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("We have a problem connecting to the server");
+        }
 
         try {
-            InetAddress host = InetAddress.getLocalHost(); //public ip of router
-            Socket clientSocket = new Socket(host, 8000);  //Create and connect Socket to the host on port 2000
-
-            ObjectOutputStream bw = new ObjectOutputStream(clientSocket.getOutputStream()); // for outputs
-            //ObjectInputStream br = new ObjectInputStream(clientSocket.getInputStream()); // for inputs
-
-            String answer;
-            String request = "HelloWorld";
-            Object o=request;
-            OurObject object=new OurObject("Haszem");
-            bw.writeObject(o); //Write to server
-            
-            System.out.println("Waiting");
-            //answer = br.(); //Wait for answer
-
-            //System.out.println("Host = " + host);
-            //System.out.println("Echo = " + answer);
-
-            //Shut eveything down
-            bw.flush();
-            clientSocket.close();
+            while (true) {
+                Object object = ois.readObject();
+                if (object != null) {
+                    sort(object);
+                }
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+
+    private void sort(Object object) {
+
+        if (object instanceof Request) {
+            Request request = (Request) object;
+            System.out.println(request.getTextMessage());
+        }
+    }
+
+    public void sendRequest(String request) {
+        Request req = new Request(request);
+        try {
+            ous.writeObject(req);
+            ous.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendUser(User user) {
+        try {
+            ous.writeObject(user);
+            ous.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 

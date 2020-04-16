@@ -1,7 +1,7 @@
 package server.view;
 
 import server.controller.Controller;
-import server.model.ButtonType;
+import server.modelServer.ButtonType;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -27,7 +27,7 @@ public class ServerGUI extends JFrame {
 
     public void ServerGUIa() {
         //JFrame setup
-        //Main Frame (Server)
+        //MainProgramServer Frame (Server)
         JFrame mainFrame = new JFrame();
         mainFrame.setSize(800, 400);
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -93,7 +93,7 @@ public class ServerGUI extends JFrame {
         JLabel spacing3 = new JLabel("");//used for filling in layout
 
         //Set up Panels
-        //north in Main Frame (server)
+        //north in MainProgramServer Frame (server)
         JPanel north = new JPanel();
         north.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0));
         north.add(portLabel);
@@ -101,7 +101,7 @@ public class ServerGUI extends JFrame {
         north.add(startStop);
         north.add(searchLog);
 
-        //south in Main Frame (server)
+        //south in MainProgramServer Frame (server)
         JPanel south = new JPanel();
         south.setLayout(new GridLayout(1, 2));
         south.add(chatScroll);
@@ -131,7 +131,7 @@ public class ServerGUI extends JFrame {
         northFL.add(searchGO);//Search log between dates
 
         //set up layout of the frames
-        //Main Frame (server)
+        //MainProgramServer Frame (server)
         mainFrame.setLayout(new BorderLayout());
         mainFrame.add(north, BorderLayout.NORTH);//port and startStop server
         mainFrame.add(south, BorderLayout.CENTER);//chat & event textAreas

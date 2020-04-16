@@ -7,7 +7,6 @@ import java.awt.*;
 
 import client.controller.Controller;
 
-
 /**
  * 11/04/2020
  *
@@ -19,8 +18,8 @@ public class MainPanel extends JPanel {
     private LightPanel lightPanel;
     private BorderLayout layout;
 
-    public MainPanel(Controller controller){
-        this.controller=controller;
+    public MainPanel(Controller controller) {
+        this.controller = controller;
         setupPanel();
     }
 

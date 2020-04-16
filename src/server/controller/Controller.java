@@ -1,8 +1,9 @@
 package server.controller;
 
-import server.model.Server;
+import server.modelArduinoServer.ArduinoServer;
+import server.modelServer.Server;
 import server.view.ServerGUI;
-import server.model.ButtonType;
+import server.modelServer.ButtonType;
 
 import javax.swing.*;
 import java.io.*;
@@ -55,12 +56,13 @@ public class Controller {
         String time = sdf.format(new Date());
         server = new Server(Integer.parseInt(serverGUI.getPort()), this);
         server.start();
-        String logStr = time + "   ArduinoServer Connected, Port: "+serverGUI.getPort();
+        String logStr = time + "   Server Connected, Port: " + serverGUI.getPort();
         serverGUI.appendEvent(logStr);
         System.out.println(logStr);
         out.println(logStr);
         out.flush();
         serverGUI.setConDis(true);//True if server is running
+        new ArduinoServer(9000);
     }
 
     //Stop server if server is running when you close serverGUI
@@ -70,7 +72,7 @@ public class Controller {
             try {
                 server.closeSocket();
                 serverGUI.setConDis(false);
-                String logStr=time+"   ArduinoServer Disconnected";
+                String logStr = time + "   Server Disconnected";
                 serverGUI.appendEvent(logStr);
                 System.out.println(logStr);
                 out.println(logStr);

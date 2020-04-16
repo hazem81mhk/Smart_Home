@@ -1,4 +1,4 @@
-package arduinoServer.model;
+package server.modelArduinoServer;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -16,8 +16,9 @@ import java.net.Socket;
  */
 
 public class ArduinoServer extends Thread {
-   
+
     private ServerSocket serverSocket;
+    private Arduino arduino;
 
     /**
      * The constructor take the port number shares the values to the class's instance variables,
@@ -32,21 +33,23 @@ public class ArduinoServer extends Thread {
     }
 
     public void run() {
-        System.out.println("ArduinoServer.ArduinoServer running. Port number is " + serverSocket.getLocalPort()+".");
+        System.out.println("ArduinoServer.ArduinoServer running. Port number is " + serverSocket.getLocalPort() + ".");
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
-                ArduinoHandler arduinoHandler =new ArduinoHandler(socket);
+                ArduinoHandler arduinoHandler = new ArduinoHandler(socket, this);
             } catch (IOException e) {
-            	System.out.println(e);
+                System.out.println(e);
             }
         }
     }
 
+    public void setArduino(Arduino arduino) {
+        this.arduino = arduino;
+    }
 
-
-    public static void main(String[] args) throws IOException {
-        new ArduinoServer(9000);
+    public Arduino getArduino() {
+        return arduino;
     }
 }
 
