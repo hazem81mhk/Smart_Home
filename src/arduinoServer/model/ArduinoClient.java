@@ -1,8 +1,9 @@
-package client.model;
+package arduinoServer.model;
 
 import server.OurObject;
 
-import java.io.ObjectOutputStream;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -12,21 +13,22 @@ import java.net.Socket;
  * @Mohammed Hazem Kudaimi
  */
 
-public class Client {
+public class ArduinoClient {
     public static void main(String[] argv) {
 
         try {
             InetAddress host = InetAddress.getLocalHost(); //public ip of router
-            Socket clientSocket = new Socket(host, 8000);  //Create and connect Socket to the host on port 2000
+            Socket clientSocket = new Socket(host, 9000);  //Create and connect Socket to the host on port 2000
 
-            ObjectOutputStream bw = new ObjectOutputStream(clientSocket.getOutputStream()); // for outputs
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())); // for outputs
             //ObjectInputStream br = new ObjectInputStream(clientSocket.getInputStream()); // for inputs
+           // OutputStreamWriter ows=new OutputStreamWriter(clientSocket.getOutputStream());
 
             String answer;
             String request = "HelloWorld";
             Object o=request;
             OurObject object=new OurObject("Haszem");
-            bw.writeObject(o); //Write to server
+            bw.write(request); //Write to server
             
             System.out.println("Waiting");
             //answer = br.(); //Wait for answer
