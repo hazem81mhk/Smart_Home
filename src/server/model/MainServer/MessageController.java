@@ -21,7 +21,7 @@ public class MessageController extends Thread {
     private CommandHandler cmdHandler;
     private User user;
     private SimpleDateFormat simpleDateFormat;
-
+    
     private ArrayList<User> allUsersList;
     private ArrayList<String> onlineUser;
     private HashMap<String, ObjectOutputStream> userSocket = new HashMap<String, ObjectOutputStream>();

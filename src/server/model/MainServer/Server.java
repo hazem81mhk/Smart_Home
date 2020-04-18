@@ -8,6 +8,7 @@ import server.model.MainServer.User;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +25,10 @@ public class Server extends Thread {
     private Date onTimer;
     private Date offTimer;
     private int minutesCounted=0;
+    private HashMap<String,Integer> ourMap=new HashMap<String,Integer>();
+	
+	private ArrayList <Integer>indexArr=new ArrayList<Integer>();
+	private ArrayList <String>indexStr=new ArrayList<String>();
    
 
 	public void setOnTimer(Date onTimer) {
@@ -33,11 +38,13 @@ public class Server extends Thread {
 	public void setOffTimer(Date offTimer) {
 		this.offTimer = offTimer;
 		countTimeOfConsumption(onTimer,offTimer);
+		saveTimeToFile();
 		System.out.println("The lampa was on for "+minutesCounted);
+		
 	}
 	public void countTimeOfConsumption(Date on,Date off)
 	{
-		minutesCounted+=(int)getDateDiff(on, off, TimeUnit.MINUTES);
+		minutesCounted=(int)getDateDiff(on, off, TimeUnit.MINUTES);
 	}
 	public int countConsumptionCost(int kiloWatsPerHour,int costOfOneKilo)
 	{
@@ -134,6 +141,94 @@ public class Server extends Thread {
 	    long diffInMillies = date2.getTime() - date.getTime();
 	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
+    public void saveTimeToFile() // When closing? or when turning the lamp off?
+    {	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String dateToSave=sdf.format(Calendar.getInstance().getTime());
+    	try{FileWriter fw = new FileWriter("filename.txt", true);
+    			BufferedWriter bw = new BufferedWriter(fw);
+    			PrintWriter out = new PrintWriter(bw);
+    		out.println(dateToSave+":"+minutesCounted);}
+    	catch(IOException e)
+    	{
+    		e.printStackTrace();
+    	}
+    }
+    
+    public void printStatics()
+    {	readAndSort("filename.txt");
+    	System.out.println(Arrays.asList(ourMap)); // method 1
+    	
+    }
+    
+    
+    
+    
+    
+    void readAndSort(String filename)
+	{ int index=-1;
+		try {
+		FileReader fr = new FileReader(filename);
+		BufferedReader br=new BufferedReader(fr);
+		String line=br.readLine();
+		String subString=line.substring(0,10);
+
+		String subString1=null;
+		while(line!=null)
+		{
+			if(subString.equals(subString1))
+			{int number=Integer.parseInt(line.substring(11,line.length()));
+			{	
+				int toAddTo=indexArr.get(index)+number;
+				//System.out.println("Arr index"+index+"we found the value "+indexArr.get(index)+" and added "+number+" we got ");
+				indexArr.add(index, toAddTo);
+				//System.out.println(indexArr.get(index));
+			}
+			}
+			else
+			{
+				index++;
+
+				//System.out.println("We are increasing the index now ");
+				subString1=subString;
+				int number=Integer.parseInt(line.substring(11,line.length()));
+				//System.out.println(number);
+
+				indexArr.add(0);
+				indexArr.add(index, number);
+				indexStr.add("");
+				indexStr.add(index, subString);
+				//System.out.println("att index"+index+"we added"+number);
+
+			}
+			line=br.readLine();
+			if(br.equals(null))
+			{
+				break;
+			}
+			else
+			{
+				try {
+					subString=line.substring(0,10);
+				}
+				catch(NullPointerException e)
+				{
+
+				}
+			}
+		}
+		}
+		catch(IOException e)
+		{
+			System.out.println("Hello,sorry to bother you but there is an error");
+		}
+		for(int x=0;x<=index;x++)
+		{
+			ourMap.put(indexStr.get(x),indexArr.get(x));
+		}
+
+	}
 }
+
+    
 
 
