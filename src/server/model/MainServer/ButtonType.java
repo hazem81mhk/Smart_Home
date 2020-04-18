@@ -1,4 +1,4 @@
-package server.modelServer;
+package server.model.MainServer;
 
 public enum ButtonType {
     startStop,

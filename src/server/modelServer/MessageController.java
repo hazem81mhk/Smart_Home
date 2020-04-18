@@ -1,7 +1,10 @@
 package server.modelServer;
 
-import server.modelArduinoServer.Statee;
-
+import server.model.ArduinoServer.Statee;
+import server.model.MainServer.CommandHandler;
+import server.model.MainServer.Request;
+import server.model.MainServer.TrafficRegister;
+import server.model.MainServer.User;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -11,6 +14,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+
 
 public class MessageController extends Thread {
     private final Server server;

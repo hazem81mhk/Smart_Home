@@ -1,4 +1,4 @@
-package server.modelArduinoServer;
+package server.model.ArduinoServer;
 
 import java.io.Serializable;
 

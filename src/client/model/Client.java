@@ -1,7 +1,7 @@
 package client.model;
 
-import server.modelServer.Request;
-import server.modelServer.User;
+import server.model.MainServer.Request;
+import server.model.MainServer.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

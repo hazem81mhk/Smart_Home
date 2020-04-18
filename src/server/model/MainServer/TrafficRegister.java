@@ -1,4 +1,4 @@
-package server.modelServer;
+package server.model.MainServer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,8 +7,8 @@ public class TrafficRegister {
     private SimpleDateFormat simpleDateFormat;
     private Server server;
 
-    public TrafficRegister(Server server) {
-        this.server = server;
+    public TrafficRegister(Server server2) {
+        this.server = server2;
         simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     }
 

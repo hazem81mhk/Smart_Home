@@ -1,4 +1,4 @@
-package server.modelServer;
+package server.model.MainServer;
 
 import javax.swing.*;
 import java.io.Serializable;
