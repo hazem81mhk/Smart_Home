@@ -67,6 +67,12 @@ public class MessageController extends Thread {
 
     private void stateHandler(Statee state) {
         String stateTxt = state.getState();
+        if(stateTxt.toLowerCase().contains("on"))
+            server.setOnTimer(Calendar.getInstance().getTime());
+            if(stateTxt.toLowerCase().contains("off"))
+            {
+            	server.setOffTimer(Calendar.getInstance().getTime());
+            }
         Request requestToClient = new Request("State update:" + stateTxt);
         try {
             onlineBroadcast(requestToClient);
@@ -110,12 +116,7 @@ public class MessageController extends Thread {
         bw.flush();
         arduinoSocket.close();
         
-        if(request.toLowerCase().contains("on"))
-        server.setOnTimer(Calendar.getInstance().getTime());
-        if(request.toLowerCase().contains("off"))
-        {
-        	server.setOffTimer(Calendar.getInstance().getTime());
-        }
+      
         
 
     }
