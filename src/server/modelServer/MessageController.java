@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -106,6 +107,14 @@ public class MessageController extends Thread {
         bw.newLine();
         bw.flush();
         arduinoSocket.close();
+        
+        if(request.toLowerCase().contains("on"))
+        server.setOnTimer(Calendar.getInstance().getTime());
+        if(request.toLowerCase().contains("off"))
+        {
+        	server.setOffTimer(Calendar.getInstance().getTime());
+        }
+        
 
     }
 
