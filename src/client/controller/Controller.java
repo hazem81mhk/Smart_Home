@@ -3,7 +3,7 @@ package client.controller;
 import client.model.Client;
 import client.view.ButtonType;
 import client.view.MainFrame;
-import server.modelServer.User;
+import server.model.MainServer.User;
 
 import javax.swing.*;
 import java.net.InetAddress;

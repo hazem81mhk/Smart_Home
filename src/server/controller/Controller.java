@@ -1,9 +1,9 @@
 package server.controller;
 
-import server.modelArduinoServer.ArduinoServer;
-import server.modelServer.Server;
+import server.model.ArduinoServer.ArduinoServer;
+import server.model.MainServer.Server;
 import server.view.ServerGUI;
-import server.modelServer.ButtonType;
+import server.model.MainServer.ButtonType;
 
 import javax.swing.*;
 import java.io.*;

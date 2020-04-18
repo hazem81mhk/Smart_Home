@@ -1,6 +1,6 @@
-package server.modelServer;
+package server.model.MainServer;
 
-import server.modelArduinoServer.Statee;
+import server.model.ArduinoServer.Statee;
 
 import java.io.*;
 import java.net.InetAddress;

@@ -1,7 +1,7 @@
 package server.view;
 
 import server.controller.Controller;
-import server.modelServer.ButtonType;
+import server.model.MainServer.ButtonType;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -62,7 +62,7 @@ public class ServerGUI extends JFrame {
         JScrollPane logScroll = new JScrollPane(log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //ButtonType
-        String conDis = "Start ArduinoServer";
+        String conDis = "Start Server";
         startStop = new JButton(conDis);
         searchLog = new JButton("Search log");
         searchGO = new JButton("Search");
