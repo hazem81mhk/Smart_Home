@@ -1,7 +1,8 @@
 package server.model.MainServer;
 
+import java.io.Serializable;
 
-public class ConsumptionCounter {
+public class ConsumptionCounter implements Serializable{
 	int WatsPerHour=0;
 	int costOfOneKilo=0;
 	Server server;

@@ -144,7 +144,7 @@ public class Server extends Thread {
     public void saveTimeToFile() // When closing? or when turning the lamp off?
     {	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String dateToSave=sdf.format(Calendar.getInstance().getTime());
-    	try{FileWriter fw = new FileWriter("filename.txt", true);
+    	try{FileWriter fw = new FileWriter("files/filename.txt", true);
     			BufferedWriter bw = new BufferedWriter(fw);
     			PrintWriter out = new PrintWriter(bw);
     		out.println(dateToSave+":"+minutesCounted);}
@@ -155,7 +155,7 @@ public class Server extends Thread {
     }
     
     public void printStatics()
-    {	readAndSort("filename.txt");
+    {	readAndSort("files/filename.txt");
     	System.out.println(Arrays.asList(ourMap)); // method 1
     	
     }
