@@ -380,8 +380,9 @@ public class LightPanel extends JPanel {
                 lamp1_off.setEnabled(false);
             }
             else if (e.getSource() == startTimer) {
-                System.out.println("Turn the light on \nfrom: "+list.getSelectedValue()+
-                        "\ntill: "+list1.getSelectedValue());
+               // System.out.println("Turn the light on \nfrom: "+list.getSelectedValue()+
+                 //       "\ntill: "+list1.getSelectedValue());
+                controller.buttonPressed(ButtonType.statistic);
             }
             else if (e.getSource() == stopTimer) {
                 System.out.println("Turn the light off \nfrom: "+list.getSelectedValue()+

@@ -129,6 +129,10 @@ public class MessageController extends Thread {
 
     public synchronized void messageHandler(Request msg) throws IOException {
         String request = msg.getTextMessage();
+        if(request.toLowerCase().contains("total")){
+
+            server.printStatics();
+        }
         request = "server" + request;
         Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));

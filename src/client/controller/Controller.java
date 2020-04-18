@@ -36,8 +36,9 @@ public class Controller {
             case lamp1_off:
                 client.sendRequest("off");
                 break;
-            case stratTimer:
-                System.out.println();
+            case statistic:
+                client.sendRequest("Total");
+                System.out.println("Total");
                 break;
         }
     }
