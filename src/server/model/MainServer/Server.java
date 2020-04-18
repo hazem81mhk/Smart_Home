@@ -1,11 +1,15 @@
 package server.model.MainServer;
 
 import server.controller.Controller;
+import server.model.MainServer.MessageController;
+import server.model.MainServer.TrafficRegister;
+import server.model.MainServer.User;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Server extends Thread {
     private int serverPort;
@@ -17,8 +21,33 @@ public class Server extends Thread {
     private ArrayList<MessageController> messageControllerList = new ArrayList<MessageController>();
     private ArrayList<String> userList = new ArrayList<String>();
     private ArrayList<String> onlineUser = new ArrayList<>();
+    private Date onTimer;
+    private Date offTimer;
+    private int minutesCounted=0;
+   
 
-    public Server(int port, Controller controller) throws IOException {
+	public void setOnTimer(Date onTimer) {
+		this.onTimer = onTimer;
+	}
+
+	public void setOffTimer(Date offTimer) {
+		this.offTimer = offTimer;
+		countTimeOfConsumption(onTimer,offTimer);
+		System.out.println();
+	}
+	public void countTimeOfConsumption(Date on,Date off)
+	{
+		minutesCounted+=(int)getDateDiff(on, off, TimeUnit.MINUTES);
+	}
+	public int countConsumptionCost(int kiloWatsPerHour,int costOfOneKilo)
+	{
+		int hours=minutesCounted/60;
+		int cost=hours*kiloWatsPerHour*costOfOneKilo;
+		return cost;
+	}
+	
+
+	public Server(int port, Controller controller) throws IOException {
         this.controller = controller;
         this.serverPort = port;
         serverSocket = new ServerSocket(serverPort);
@@ -101,6 +130,10 @@ public class Server extends Thread {
         File file = new File("files/allTraffic.txt");
         file.delete();
     }
+    public static long getDateDiff(java.util.Date date, java.util.Date date2, TimeUnit timeUnit) {
+	    long diffInMillies = date2.getTime() - date.getTime();
+	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+	}
 }
 
 

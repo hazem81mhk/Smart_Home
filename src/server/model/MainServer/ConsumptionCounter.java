@@ -1,4 +1,5 @@
-package server.modelServer;
+package server.model.MainServer;
+
 
 public class ConsumptionCounter {
 	int kiloWatsPerHour=0;

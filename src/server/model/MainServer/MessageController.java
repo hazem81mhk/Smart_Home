@@ -1,10 +1,7 @@
-package server.modelServer;
+package server.model.MainServer;
 
 import server.model.ArduinoServer.Statee;
-import server.model.MainServer.CommandHandler;
-import server.model.MainServer.Request;
-import server.model.MainServer.TrafficRegister;
-import server.model.MainServer.User;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
