@@ -33,7 +33,7 @@ public class Server extends Thread {
 	public void setOffTimer(Date offTimer) {
 		this.offTimer = offTimer;
 		countTimeOfConsumption(onTimer,offTimer);
-		System.out.println();
+		System.out.println("The lampa was on for "+minutesCounted);
 	}
 	public void countTimeOfConsumption(Date on,Date off)
 	{
