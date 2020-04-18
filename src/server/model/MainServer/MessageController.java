@@ -21,11 +21,11 @@ public class MessageController extends Thread {
     private CommandHandler cmdHandler;
     private User user;
     private SimpleDateFormat simpleDateFormat;
-    
+    private ObjectOutputStream oosm ;
     private ArrayList<User> allUsersList;
     private ArrayList<String> onlineUser;
     private HashMap<String, ObjectOutputStream> userSocket = new HashMap<String, ObjectOutputStream>();
-
+    private ConsumptionCounter consObject;
     public MessageController(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
@@ -62,10 +62,31 @@ public class MessageController extends Thread {
             messageHandler((Request) messageObject);
         } else if (messageObject instanceof Statee) {
             stateHandler((Statee) messageObject);
+        }else if (messageObject instanceof ConsumptionCounter) {
+            consHandler((ConsumptionCounter) messageObject);
         }
     }
 
-    private void stateHandler(Statee state) {
+    private void consHandler(ConsumptionCounter consObject) {
+    	this.consObject=consObject;
+    	consObject.setServer(server);
+    	consObject.setCost();
+    	try {
+			oosm.writeObject(consObject);
+			oosm.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("We have a problem sending consObject");
+		}
+    	
+    	
+    	
+		
+		
+	}
+
+	private void stateHandler(Statee state) {
         String stateTxt = state.getState();
         if(stateTxt.toLowerCase().contains("on"))
             server.setOnTimer(Calendar.getInstance().getTime());
