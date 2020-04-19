@@ -3,6 +3,7 @@ package client.model;
 import server.model.MainServer.Request;
 import server.model.MainServer.User;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,12 +18,12 @@ import java.net.Socket;
 
 public class Client extends Thread {
     private int port;
-    private InetAddress ip;
+    private String ip;
     private Socket socket;
     private ObjectInputStream ois;
     private ObjectOutputStream ous;
 
-    public Client(InetAddress ip, int port) {
+    public Client(String ip, int port) {
         this.ip = ip;
         this.port = port;
         start();
@@ -35,20 +36,21 @@ public class Client extends Thread {
             clientSocket = new Socket(ip, port);
             ous = new ObjectOutputStream(clientSocket.getOutputStream());
             ois = new ObjectInputStream(clientSocket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("We have a problem connecting to the server");
-        }
-
-        try {
-            while (true) {
-                Object object = ois.readObject();
-                if (object != null) {
-                    sort(object);
+            try {
+                while (true) {
+                    Object object = ois.readObject();
+                    if (object != null) {
+                        sort(object);
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println(e);
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            System.out.println("We have a problem connecting to the server");
+            JOptionPane.showMessageDialog(null, "You have a problem connecting to the server" +
+                    "\n Please make sure that the server is running ");
         }
     }
 

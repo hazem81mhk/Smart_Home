@@ -20,7 +20,7 @@ public class Controller {
     private Client client;
 
     public Controller() throws UnknownHostException {
-        client = new Client(InetAddress.getLocalHost(), 8000);
+        client = new Client("81.224.148.215", 8000);
         String userName = JOptionPane.showInputDialog("Please Enter Your User Name", null);
         User user = new User(userName);
         client.sendUser(user);
