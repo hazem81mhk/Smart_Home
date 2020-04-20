@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Statee implements Serializable {
     private String state;
-    public Statee(String state) {
-        this.state=state;
 
+    public Statee(String state) {
+        this.state = state;
     }
-    public String getState()
-    {
+
+    public String getState() {
         return state;
     }
 }

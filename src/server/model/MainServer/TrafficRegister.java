@@ -23,20 +23,4 @@ public class TrafficRegister {
         String logStr = time + "    " + user.getName() + " is Offline!";
         server.sendTrafficUser(logStr);
     }
-
-    public void msgOffline(String receiver, String sender, String sendTime) {
-        String logStr = sendTime + "    is send to Offline user. Receiver is: " + receiver + ", Sender is: " + sender;
-        server.sendTrafficMessage(logStr);
-
-    }
-
-    public void msgOnline(String reciver, String sender, String sendTime, String received) {
-        String logStr = sendTime + "    is send, " + received + " is received.  Receiver is: " + reciver + ", Sender is: " + sender;
-        server.sendTrafficMessage(logStr);
-    }
-
-    public void msgOnlineSend(String reciver, String sender, String sendTime, String received) {
-        String logStr = received + "    message is deliver.  " + sendTime + " was send, Receiver is: " + reciver + ", Sender is: " + sender;
-        server.sendTrafficMessage(logStr);
-    }
 }

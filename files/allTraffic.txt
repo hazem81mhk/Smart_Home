@@ -1,1 +1,143 @@
-2020/04/19 18:42:48   Server Connected, Port: 8000
+2020/04/20 16:59:42   Server Connected, Port: 8000
+2020/04/20 16:59:44   Server Disconnected
+2020/04/20 17:00:01   Server Connected, Port: 8000
+2020/04/20 17:23:00   Server Connected, Port: 8000
+2020/04/20 17:28:19   Server Connected, Port: 8000
+2020/04/20 18:08:28   Main server is connected at port: 8000
+2020/04/20 18:08:28   Arduino server is connected att port: 9000
+2020/04/20 18:08:40   Server Disconnected
+2020/04/20 18:11:59   Main server is connected at port: 8000
+2020/04/20 18:11:59   Arduino server is connected att port: 9000
+2020/04/20 18:12:03   Main server id disconnected
+2020/04/20 18:14:01   Main server is connected at port: 8000
+2020/04/20 18:14:01   Arduino server is connected att port: 9000
+2020/04/20 18:14:04   Main server id disconnected
+2020/04/20 18:15:29   Main server is connected at port: 8000
+2020/04/20 18:15:29   Arduino server is connected att port: 9000
+2020/04/20 18:15:30   Main server is disconnected
+2020/04/20 18:15:35   Main server is disconnected
+2020/04/20 18:16:37   Main server is connected at port: 8000
+2020/04/20 18:16:37   Arduino server is connected att port: 9000
+2020/04/20 18:16:38   Main server is disconnected
+2020/04/20 18:16:44   Main server is connected at port: 8000
+2020/04/20 18:19:53   Main server is connected at port: 8000
+2020/04/20 18:19:53   Arduino server is connected att port: 9000
+2020/04/20 18:19:55   Main server is disconnected
+2020/04/20 18:20:03   Main server is connected at port: 8000
+2020/04/20 18:20:03   Arduino server is connected att port: 9000
+2020/04/20 18:20:06   Main server is disconnected
+2020/04/20 18:23:31   Main server is connected at port: 8000
+2020/04/20 18:23:31   Arduino server is connected att port: 9000
+2020/04/20 18:23:32   Main server is disconnected
+2020/04/20 18:23:41   Main server is connected at port: 8000
+2020/04/20 18:24:55   Main server is connected at port: 8000
+2020/04/20 18:24:55   Arduino server is connected att port: 9000
+2020/04/20 18:24:57   Main server is disconnected
+2020/04/20 18:25:02   Main server is connected at port: 8000
+2020/04/20 18:25:02   Arduino server is connected att port: 9000
+2020/04/20 18:25:13   Main server is disconnected
+2020/04/20 18:27:06   Main server is connected at port: 8000
+2020/04/20 18:27:06   Arduino server is connected att port: 9000
+2020/04/20 18:27:09   Main server and Arduino server are disconnected
+2020/04/20 18:27:17   Main server is connected at port: 8000
+2020/04/20 18:27:17   Arduino server is connected att port: 9000
+2020/04/20 18:27:23   Main server and Arduino server are disconnected
+2020/04/20 18:28:30   Main server is connected at port: 8000
+2020/04/20 18:28:30   Arduino server is connected att port: 9000
+2020/04/20 19:18:44   Main server is connected at port: 8000
+2020/04/20 19:18:44   Arduino server is connected att port: 9000
+2020/04/20 20:17:18   Main server is connected at port: 8000
+2020/04/20 20:17:18   Arduino server is connected att port: 9000
+The lampa was on for 4
+The lampa was on for 4
+2020/04/20 20:24:42   Main server is connected at port: 8000
+2020/04/20 20:24:42   Arduino server is connected att port: 9000
+2020/04/20 20:26:18   Main server is connected at port: 8000
+2020/04/20 20:26:18   Arduino server is connected att port: 9000
+2020/04/20 20:27:52   Main server is connected at port: 8000
+2020/04/20 20:27:52   Arduino server is connected att port: 9000
+The lampa was on for 0
+The lampa was on for 0
+The lampa was on for 9
+2020/04/20 20:55:20   Main server is connected at port: 8000
+2020/04/20 20:55:20   Arduino server is connected att port: 9000
+The lampa was on for 0
+2020/04/20 20:58:53   Main server is connected at port: 8000
+2020/04/20 20:58:53   Arduino server is connected att port: 9000
+2020/04/20 21:31:14   Main server is connected at port: 8000
+2020/04/20 21:31:14   Arduino server is connected att port: 9000
+The lampa was on for 0
+2020/04/20 21:50:58   Main server is connected at port: 8000
+2020/04/20 21:50:58   Arduino server is connected att port: 9000
+2020/04/20 21:58:32   Main server is connected at port: 8000
+2020/04/20 21:58:32   Arduino server is connected att port: 9000
+2020/04/20 21:59:09   Main server and Arduino server are disconnected
+2020/04/20 22:00:43   Main server is connected at port: 8000
+2020/04/20 22:00:43   Arduino server is connected att port: 9000
+Arduino is Connected
+2020/04/20 22:01:09   Main server and Arduino server are disconnected
+2020/04/20 22:05:15    Main server is connected at port: 8000
+2020/04/20 22:05:15    Arduino server is connected att port: 9000
+2020/04/20 22:05:32    Arduino is Connected
+2020/04/20 22:05:39   Main server and Arduino server are disconnected
+2020/04/20 22:09:03    Main server is connected at port: 8000
+2020/04/20 22:09:03    Arduino server is connected att port: 9000
+2020/04/20 22:09:20    Arduino is Connected
+2020/04/20 22:09:20    Arduino is Connected
+2020/04/20 22:09:24    The lamp is turned off
+The lampa was on for 0
+2020/04/20 22:09:48    The lamp is succesfully turned on
+2020/04/20 22:10:04    The lamp is turned off
+The lampa was on for 0
+2020/04/20 22:11:25    The lamp is succesfully turned on
+2020/04/20 22:11:37    The lamp is turned off
+The lampa was on for 0
+2020/04/20 22:11:46    The lamp is succesfully turned on
+2020/04/20 22:11:54    The lamp is turned off
+The lampa was on for 0
+2020/04/20 22:12:14    The lamp is turned off
+The lampa was on for 0
+2020/04/20 22:15:37    The lamp is succesfully turned on
+2020/04/20 22:15:38    The lamp is turned off
+The lampa was on for 0
+2020/04/20 22:15:42    The lamp is succesfully turned on
+2020/04/20 22:22:57    The lamp is turned off
+The lampa was on for 7
+2020/04/20 22:23:03    Main server and Arduino server are disconnected
+2020/04/21 01:35:53    Main server is connected at port: 8000
+2020/04/21 01:35:53    Arduino server is connected att port: 9000
+2020/04/21 01:36:58    Main server is connected at port: 8000
+2020/04/21 01:36:58    Arduino server is connected att port: 9000
+2020/04/21 01:37:03    Arduino is Connected
+2020/04/21 01:37:03    Arduino is Connected
+2020/04/21 01:37:29    Arduino is Connected
+2020/04/21 01:37:29    Arduino is Connected
+2020/04/21 01:37:32    The lamp is turned off
+2020/04/21 01:37:32    The lampa was on for 0
+2020/04/21 01:37:40    The lamp is turned on
+2020/04/21 01:39:23    Arduino is Connected
+2020/04/21 01:39:23    Arduino is Connected
+2020/04/21 01:39:33    The lamp is turned on
+2020/04/21 01:39:47    The lamp is turned off
+2020/04/21 01:39:47    The lampa was on for 0
+2020/04/21 01:39:47    The lamp is turned on
+2020/04/21 01:39:54    The lamp is turned off
+2020/04/21 01:39:54    The lampa was on for 0
+2020/04/21 01:40:02    The lamp is turned on
+2020/04/21 01:40:14    The lamp is turned off
+2020/04/21 01:40:14    The lampa was on for 0
+2020/04/21 01:40:33    The lamp is turned on
+2020/04/21 01:41:03    The lamp is turned off
+2020/04/21 01:41:03    The lampa was on for 0
+2020/04/21 01:41:53    Arduino is Connected
+2020/04/21 01:41:53    Arduino is Connected
+2020/04/21 01:42:03    The lamp is turned on
+2020/04/21 01:42:16    The lamp is turned off
+2020/04/21 01:42:16    The lampa was on for 0
+2020/04/21 01:42:46    The lamp is turned on
+2020/04/21 01:43:03    The lamp is turned off
+2020/04/21 01:43:03    The lampa was on for 0
+2020/04/21 01:43:07    The lamp is turned on
+2020/04/21 01:43:24    The lamp is turned off
+2020/04/21 01:43:24    The lampa was on for 0
+2020/04/21 01:44:32    Main server and Arduino server are disconnected

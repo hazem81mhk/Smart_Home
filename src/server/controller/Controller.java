@@ -13,34 +13,39 @@ import java.util.Date;
 
 public class Controller {
     private Server server;
+    private ArduinoServer arduinoServer;
     private ServerGUI serverGUI;
     private PrintWriter out;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-    public Controller() throws FileNotFoundException {
+    public Controller() throws IOException {
         serverGUI = new ServerGUI(this);
-        out = new PrintWriter("files/allTraffic.txt");
+        out = new PrintWriter(new BufferedWriter(new FileWriter("files/allTraffic.txt",true)));
     }
 
     public void buttonPressed(ButtonType buttonType) throws IOException, ParseException {
         switch (buttonType) {
-            case startStop:
+            case start:
                 if (serverGUI.getPort().equals("") || serverGUI.getPort().isEmpty()) {
                     errMessage("Please enter server port number");
                     serverGUI.setPort("");
                 } else {
-                    if (server != null) {
-                        stopServer();
-                    } else {
+                    //if (server != null) {
+                      //  stopServer();
+                    //} else {
                         try {
                             startServer();
                         } catch (NumberFormatException e) {
                             errMessage("Pleas enter just number");
                             serverGUI.setPort("");
                         }
-                    }
+                   // }
                 }
                 break;
+            case stop:
+                stopServer();
+                break;
+
             case searchLog:
                 serverGUI.setSearchFrameVisibility();
                 break;
@@ -56,13 +61,19 @@ public class Controller {
         String time = sdf.format(new Date());
         server = new Server(Integer.parseInt(serverGUI.getPort()), this);
         server.start();
-        String logStr = time + "   Server Connected, Port: " + serverGUI.getPort();
-        serverGUI.appendEvent(logStr);
+        String logStr = time + "    Main server is connected at port: " + serverGUI.getPort();
+        serverGUI.appendEventLog(logStr);
         System.out.println(logStr);
         out.println(logStr);
         out.flush();
-        serverGUI.setConDis(true);//True if server is running
-        new ArduinoServer(9000);
+        serverGUI.setStart();
+        arduinoServer= new ArduinoServer(9000);
+        String logStrArduino  = time + "    Arduino server is connected att port: " + arduinoServer.getPort();
+        serverGUI.appendEventLog(logStrArduino);
+        System.out.println(logStrArduino);
+        out.println(logStrArduino);
+        out.flush();
+
     }
 
     //Stop server if server is running when you close serverGUI
@@ -71,9 +82,10 @@ public class Controller {
         if (server != null) {
             try {
                 server.closeSocket();
-                serverGUI.setConDis(false);
-                String logStr = time + "   Server Disconnected";
-                serverGUI.appendEvent(logStr);
+                arduinoServer.closeArduinoServerSocket();
+                serverGUI.setStop();
+                String logStr = time + "    Main server and Arduino server are disconnected";
+                serverGUI.appendEventLog(logStr);
                 System.out.println(logStr);
                 out.println(logStr);
                 out.flush();
@@ -84,15 +96,8 @@ public class Controller {
         }
     }
 
-    public void disPlayChat(String logStr) {
-        serverGUI.appendChat(logStr);
-        out.println(logStr);
-        out.flush();
-        System.out.println(logStr);
-    }
-
     public void disPlayEvent(String logStr) {
-        serverGUI.appendEvent(logStr);
+        serverGUI.appendEventLog(logStr);
         out.println(logStr);
         out.flush();
         System.out.println(logStr);

@@ -9,5 +9,5 @@ public enum ButtonType {
     lamp1_On,
     lamp1_off,
     stratTimer,
-    statistic
+    statistic,
 }

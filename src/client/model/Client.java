@@ -18,12 +18,12 @@ import java.net.Socket;
 
 public class Client extends Thread {
     private int port;
-    private String ip;
+    private InetAddress ip;
     private Socket socket;
     private ObjectInputStream ois;
     private ObjectOutputStream ous;
 
-    public Client(String ip, int port) {
+    public Client(InetAddress ip, int port) {
         this.ip = ip;
         this.port = port;
         start();
