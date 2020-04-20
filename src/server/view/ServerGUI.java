@@ -15,8 +15,8 @@ import java.util.Date;
 public class ServerGUI extends JFrame {
     private Controller controller;
 
-    private JButton startStop, searchLog, searchGO;
-    private JTextArea chat, event, log;
+    private JButton start, stop, searchLog, searchGO;
+    private JTextArea eventLog, log;
     private JTextField tfPortNbr, dateField1, dateField2, time1Field, time2Field;
     private JFrame searchFrame;
 
@@ -31,7 +31,8 @@ public class ServerGUI extends JFrame {
         JFrame mainFrame = new JFrame();
         mainFrame.setSize(800, 400);
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        mainFrame.setTitle("Server");
+        mainFrame.setTitle("                                                            " +
+                "                       << Smart Home Server >>");
         mainFrame.setLocationRelativeTo(null);
 
         //Search Frame (search log)
@@ -43,27 +44,23 @@ public class ServerGUI extends JFrame {
 
         //initialize components
         //TextAreas with scroll as needed
-        //Chat
-        chat = new JTextArea(60, 60);
-        chat.setEditable(false);
-        appendChat("Chat Room\n");
-        JScrollPane chatScroll = new JScrollPane(chat, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
         //Event
-        event = new JTextArea(60, 60);
-        event.setEditable(false);
-        appendEvent("Event Room\n");
-        JScrollPane eventScroll = new JScrollPane(event, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        eventLog = new JTextArea(20, 60);
+        eventLog.setEditable(false);
+        appendEventLog("Event log\n");
+        JScrollPane chatScroll = new JScrollPane(eventLog, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        //log
+
+        //Search log
         log = new JTextArea(60, 60);
         log.setEditable(false);
-        appendLog("Log\n");
+        appendLog("Search log\n");
         JScrollPane logScroll = new JScrollPane(log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //ButtonType
-        String conDis = "Start Server";
-        startStop = new JButton(conDis);
+        start = new JButton("Start Server");
+        stop =new JButton("Stop Server");
+        stop.setEnabled(false);
         searchLog = new JButton("Search log");
         searchGO = new JButton("Search");
 
@@ -98,14 +95,15 @@ public class ServerGUI extends JFrame {
         north.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 0));
         north.add(portLabel);
         north.add(tfPortNbr);
-        north.add(startStop);
+        north.add(start);
+        north.add(stop);
         north.add(searchLog);
 
         //south in MainProgramServer Frame (server)
         JPanel south = new JPanel();
         south.setLayout(new GridLayout(1, 2));
         south.add(chatScroll);
-        south.add(eventScroll);
+        //south.add(eventScroll);
 
         //southFL in Search Frame (Search log)
         JPanel southFL = new JPanel();
@@ -146,37 +144,42 @@ public class ServerGUI extends JFrame {
         addListeners();
     }
 
-    //Gets String and writes it in Chat Room
-    public void appendChat(String str) {
-        chat.append(str + "\n");
+    //Gets String and writes it in Eveny box
+    public void appendEventLog(String str) {
+        eventLog.append(str + "\n");
     }
 
-    //Gets String and writes it in Event Room
-    public void appendEvent(String str) {
-        event.append(str + "\n");
-    }
 
-    //Gets String and writes it in Log Room
+    //Gets String and writes it in Log box
     public void appendLog(String str) {
         log.append(str + "\n");
     }
 
     private void addListeners() {
         ActionListener listener = new ButtonActionListeners();
-        startStop.addActionListener(listener);
+        start.addActionListener(listener);
+        stop.addActionListener(listener);
         searchLog.addActionListener(listener);
         searchGO.addActionListener(listener);
     }
 
     class ButtonActionListeners implements ActionListener, KeyListener {
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == startStop) {
+            if (e.getSource() == start) {
                 try {
-                    controller.buttonPressed(ButtonType.startStop);
+                    controller.buttonPressed(ButtonType.start);
                 } catch (IOException | ParseException ex) {
                     ex.printStackTrace();
                 }
-            } else if (e.getSource() == searchLog) {
+            }
+            if (e.getSource()==stop){
+                try {
+                    controller.buttonPressed(ButtonType.stop);
+                } catch (IOException | ParseException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else if (e.getSource() == searchLog) {
                 try {
                     controller.buttonPressed(ButtonType.searchLog);
                 } catch (IOException | ParseException ex) {
@@ -195,14 +198,13 @@ public class ServerGUI extends JFrame {
 
         @Override
         public void keyTyped(KeyEvent e) {
-
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 try {
-                    controller.buttonPressed(ButtonType.startStop);
+                    controller.buttonPressed(ButtonType.start);
                 } catch (IOException | ParseException ex) {
                     ex.printStackTrace();
                 }
@@ -211,8 +213,17 @@ public class ServerGUI extends JFrame {
 
         @Override
         public void keyReleased(KeyEvent e) {
-
         }
+    }
+
+    public void setStart() {
+        start.setEnabled(false);
+        stop.setEnabled(true);
+    }
+
+    public void setStop(){
+        stop.setEnabled(false);
+        start.setEnabled(true);
     }
 
     public String getPort() {
@@ -221,15 +232,6 @@ public class ServerGUI extends JFrame {
 
     public void setPort(String str) {
         tfPortNbr.setText(str);
-    }
-
-    //Set text in conDis button, true if server is running
-    public void setConDis(Boolean bool) {
-        if (bool == true) {
-            startStop.setText("Stop Server");
-        } else {
-            startStop.setText("Start Server");
-        }
     }
 
     public void setSearchFrameVisibility() {
