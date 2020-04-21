@@ -1,13 +1,13 @@
 package client.view;
 
 import javax.swing.*;
-        import javax.swing.border.TitledBorder;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI extends JPanel{
-
+    private String kwkr,kw,cost, strttime, totime, consfr, consto;
     //JPanel
     private JPanel jplmp = new JPanel();
     private JPanel jplampst = new JPanel();
@@ -17,13 +17,11 @@ public class GUI extends JPanel{
     private JPanel jpcons = new JPanel();
     private JPanel jpconsfr = new JPanel();
     private JPanel jpconsto = new JPanel();
-
     //JButton
     private JButton jbon = new JButton("ON");
     private JButton jboff = new JButton("OFF");
     private JButton jbsch = new JButton("Start Schedule");
     private JButton jbcons = new JButton("Get consumption");
-
     //JLabel
     private JLabel jlkwkr = new JLabel("KW/Kr");
     private JLabel jlkw = new JLabel("KW");
@@ -44,12 +42,10 @@ public class GUI extends JPanel{
     private JLabel jlctm = new JLabel("Month");
     private JLabel jlctd = new JLabel("Day");
     private JLabel jlctt = new JLabel("Time");
-
     //JTextfield
     private JTextField jtkwkr = new JTextField();
     private JTextField jtkw = new JTextField();
     private JTextField jtcst = new JTextField();
-
     //JList
     private JList<String> listschedulestartM;
     private JList<String> listschedulestartD;
@@ -64,48 +60,56 @@ public class GUI extends JPanel{
     private JList<String> listconstoD;
     private JList<String> listconstoT;
 
-    //Listmodels
-    private DefaultListModel listModel1;
+    DefaultListModel<String> lmmonth = new DefaultListModel<String>();
+    DefaultListModel<String> lmday = new DefaultListModel<>();
+    DefaultListModel<String> listModel = new DefaultListModel<String>();
+
+
+    Font F1 = new Font("Arial",Font.PLAIN,13);
+    Font F2 = new Font("Arial",Font.BOLD,11);
 
     public GUI() {
         //JFRAME
         JFrame jf = new JFrame();
-        jf.add(jplmp);
-
         jf.setPreferredSize(new Dimension(360, 680));
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setTitle("SmartHome Application");
         jf.pack();
         jf.setVisible(true);
+        jf.add(jplmp);
 
-        //JPanel Lamp
+        Lamp();
+        Lampstate();
+        Schedule();
+        Consumption();
+
+        jbon.addActionListener(new ButtonActionListeners());
+        jboff.addActionListener(new ButtonActionListeners());
+    }
+    public void Lamp(){
         jplmp.setPreferredSize(new Dimension(360, 680));
         jplmp.setBorder(BorderFactory.createTitledBorder(null,"Lamp 1:",
                 TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
                 new Font("Arial",Font.PLAIN,15),Color.BLACK));
         jplmp.add(jplampst, BorderLayout.NORTH);
         jplmp.add(jpsch, BorderLayout.CENTER);
-        jplmp.add(jpcons,BorderLayout.SOUTH);
-
-        //JPanel LampState
-        jplampst.setPreferredSize(new Dimension(300,60));
-        jplampst.setBorder(BorderFactory.createTitledBorder(null,"Lamp State",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.PLAIN,13),Color.BLUE));
+        jplmp.add(jpcons,BorderLayout.SOUTH);}
+    public void Lampstate() {
+        jplampst.setPreferredSize(new Dimension(300, 60));
+        jplampst.setBorder(BorderFactory.createTitledBorder(null, "Lamp State", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F1, Color.BLUE));
+        //JButton on&off i Lampstate panelen
+        Dimension dimb = new Dimension(120, 28);
+        jbon.setPreferredSize(dimb);
+        jboff.setPreferredSize(dimb);
         jplampst.add(jbon);
         jplampst.add(jboff);
-
-        //JButton on&off i Lampstate panelen
-        jbon.setPreferredSize(new Dimension(120,28));
-        jboff.setPreferredSize(new Dimension(120,28));
-
-        //Schedule panel
+    }
+    public void Schedule(){
         jpsch.setPreferredSize(new Dimension(300,220));
         jpsch.setBorder(BorderFactory.createTitledBorder(null,"Schedule",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.PLAIN,13),Color.BLUE));
-
-
-        //JList för tiden i Start lamp panel
-        DefaultListModel<String> listModel = new DefaultListModel<String>();
+                F1,Color.BLUE));
+        //JList för tiden
         listModel.addElement("00:00");
         listModel.addElement("00:15");
         listModel.addElement("00:30");
@@ -211,10 +215,7 @@ public class GUI extends JPanel{
 
         JScrollPane Time = new JScrollPane(listschedulestartT);
 
-        //JList för Month i Start lamp panel
-
-        DefaultListModel<String> lmmonth = new DefaultListModel<String>();
-
+        //JList för Month
         lmmonth.addElement("January");
         lmmonth.addElement("February");
         lmmonth.addElement("March");
@@ -229,16 +230,13 @@ public class GUI extends JPanel{
         lmmonth.addElement("December");
 
         listschedulestartM = new JList<String>(lmmonth);
-
         listschedulestartM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listschedulestartM.setSelectedIndex(0);
         listschedulestartM.setVisibleRowCount(9);
 
         JScrollPane Month = new JScrollPane(listschedulestartM);
 
-        //JList för dagar i start lamp panelen
-        DefaultListModel<String> lmday = new DefaultListModel<>();
-
+        //JList för dagar
         lmday.addElement("1");
         lmday.addElement("2");
         lmday.addElement("3");
@@ -272,165 +270,112 @@ public class GUI extends JPanel{
         lmday.addElement("31");
 
         listschedulestartD = new JList<>(lmday);
-
         listschedulestartD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listschedulestartD.setSelectedIndex(0);
         listschedulestartD.setVisibleRowCount(1);
 
         JScrollPane Day = new JScrollPane(listschedulestartD);
-
-        // Add to panel
-        jpsch.add(jpstart, BorderLayout.NORTH);
-        jpsch.add(jpto, BorderLayout.SOUTH);
-        jpsch.add(jbsch);
-
-        jpstart.add(Month);
-        jpstart.add(Day);
-        jpstart.add(Time);
-
-
-
-
         //JPanel start i Schedule panelen
         jpstart.setPreferredSize(new Dimension(280,75));
         jpstart.setBorder(BorderFactory.createTitledBorder(null,"Start lamp from:",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.BOLD,11),Color.BLACK));
-        jpstart.add(jlSM);
-        jpstart.add(jlSD);
-        jpstart.add(jlST);
-
+                F2,Color.BLACK));
         jpstart.setLayout(new GridLayout(2,3));
-
-
 
         //JPanel to i schedule panelen
         jpto.setPreferredSize(new Dimension(280,75));
         jpto.setLayout(new GridLayout(2,3));
         jpto.setBorder(BorderFactory.createTitledBorder(null,"To:",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.BOLD,11),Color.BLACK));
+                F2,Color.BLACK));
 
+        jpsch.add(jpstart, BorderLayout.NORTH);
+        jpsch.add(jpto, BorderLayout.SOUTH);
+        jpsch.add(jbsch);
+
+        jpstart.add(jlSM);
+        jpstart.add(jlSD);
+        jpstart.add(jlST);
+        jpstart.add(Month);
+        jpstart.add(Day);
+        jpstart.add(Time);
         //JList för tiden i Schedule to panelen
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
         //DefaultListModel listModel = new DefaultListModel();
         listModel2=listModel;
 
         listscheduletoT = new JList<String>(listModel2);
-
         listscheduletoT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listscheduletoT.setSelectedIndex(0);
         listscheduletoT.setVisibleRowCount(8);
 
         JScrollPane Time2 = new JScrollPane(listscheduletoT);
-
         //JList för Månad i Schedule to panelen
         DefaultListModel<String> lmmonth2 = new DefaultListModel<String>();
         lmmonth2=lmmonth;
 
-
         listscheduletoM = new JList<>(lmmonth);
-
         listscheduletoM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listscheduletoM.setSelectedIndex(0);
         listscheduletoM.setVisibleRowCount(9);
 
         JScrollPane Month2 = new JScrollPane(listscheduletoM);
-
         //JList för dagar i schedule to panelen
         DefaultListModel<String> lmday2 = new DefaultListModel<>();
         lmday2=lmday;
 
-
         listscheduletoD = new JList<>(lmday2);
-
         listscheduletoD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listscheduletoD.setSelectedIndex(0);
         listscheduletoD.setVisibleRowCount(1);
 
         JScrollPane Day2 = new JScrollPane(listscheduletoD);
 
-        //
-
-
         jpto.add(jlStM, BorderLayout.NORTH);
         jpto.add(jlStD, BorderLayout.NORTH);
         jpto.add(jlStT, BorderLayout.NORTH);
-
         jpto.add(Month2);
         jpto.add(Day2);
         jpto.add(Time2);
-
-
-
-        //JPanel Consumption
+    }
+    public void Consumption(){
         jpcons.setPreferredSize(new Dimension(300,320));
         jpcons.setBorder(BorderFactory.createTitledBorder(null,"Consumption",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.PLAIN,13),Color.BLUE));
-
-
+                F1,Color.BLUE));
 
         jpcons.add(jpconsfr);
         jpcons.add(jpconsto);
-
-        //JPanel där jlabel finns och jtextfield
-        JPanel jpcon1 = new JPanel();
-        jpcons.add(jpcon1);
-        jpcon1.setPreferredSize(new Dimension(280,90));
-        jpcon1.setLayout(new GridLayout(3,2));
-        jpcon1.add(jlkwkr);
-        jpcon1.add(jtkwkr);
-        jpcon1.add(jlkw);
-        jpcon1.add(jtkw);
-        jpcon1.add(jlcst);
-        jpcon1.add(jtcst);
-
-
         //Jpanel from i consumption
-        jpconsfr.setPreferredSize(new Dimension(280,75));
+        Dimension dim1 = new Dimension(280,75);
+        jpconsfr.setPreferredSize(dim1);
         jpconsfr.setBorder(BorderFactory.createTitledBorder(null,"From:",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.BOLD,11),Color.BLACK));
+                F2,Color.BLACK));
         jpconsfr.setLayout(new GridLayout(2,3));
-        jpconsfr.add(jlcfm);
-        jpconsfr.add(jlcfd);
-        jpconsfr.add(jlcft);
 
         //JPanel to i consumption
-        jpconsto.setPreferredSize(new Dimension(280,75));
+        jpconsto.setPreferredSize(dim1);
         jpconsto.setBorder(BorderFactory.createTitledBorder(null,"To:",TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.BOLD,11),Color.BLACK));
+                F2,Color.BLACK));
         jpconsto.setLayout(new GridLayout(2,3));
-        jpconsto.add(jlctm);
-        jpconsto.add(jlctd);
-        jpconsto.add(jlctt);
-
-        //JButton i consumption panelen längt ner
-        jpcons.add(jbcons);
 
         //Button setenable
         jbon.setEnabled(true);
         jboff.setEnabled(false);
-
-
 
         //JList i Consumption From Panelen
         DefaultListModel<String> listModel3 = new DefaultListModel<String>();
         listModel3=listModel;
 
         listconsfromT = new JList<>(listModel3);
-
         listconsfromT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listconsfromT.setSelectedIndex(0);
         listconsfromT.setVisibleRowCount(8);
 
         JScrollPane Time3 = new JScrollPane(listconsfromT);
 
-
         //JList för Month i Consumption from panelen
-
         DefaultListModel<String> lmmonth3 = new DefaultListModel<String>();
         lmmonth3=lmmonth;
 
         listconsfromM = new JList<>(lmmonth3);
-
         listconsfromM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listconsfromM.setSelectedIndex(0);
         listconsfromM.setVisibleRowCount(9);
@@ -442,61 +387,119 @@ public class GUI extends JPanel{
         lmday3=lmday;
 
         listconsfromD = new JList<String>(lmday3);
-
         listconsfromD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listconsfromD.setSelectedIndex(0);
         listconsfromD.setVisibleRowCount(1);
 
         JScrollPane Day3 = new JScrollPane(listconsfromD);
 
-        //Add to Consuption from panel
+        jpconsfr.add(jlcfm);
+        jpconsfr.add(jlcfd);
+        jpconsfr.add(jlcft);
         jpconsfr.add(Month3);
         jpconsfr.add(Day3);
         jpconsfr.add(Time3);
-
         //JList för tiden i Consumption To panelen
         DefaultListModel<String> listModel4 = new DefaultListModel<>();
         listModel4=listModel;
 
         listconstoT = new JList<String>(listModel4);
-
         listconstoT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listconstoT.setSelectedIndex(0);
         listconstoT.setVisibleRowCount(8);
 
         JScrollPane Time4 = new JScrollPane(listconstoT);
-
         //Jlist för månader i consumption to panelen
-
         DefaultListModel<String> lmmonth4 = new DefaultListModel<>();
         lmmonth4=lmmonth;
         listconstoM = new JList<String>(lmmonth4);
-
         listconstoM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listconstoM.setSelectedIndex(0);
         listconstoM.setVisibleRowCount(9);
 
         JScrollPane Month4 = new JScrollPane(listconstoM);
-
         //JList för dagar i consumption to panelen
         DefaultListModel<String> lmday4 = new DefaultListModel<>();
         lmday4=lmday;
         listconstoD = new JList<>(lmday4);
-
         listconstoD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listconstoD.setSelectedIndex(0);
         listconstoD.setVisibleRowCount(1);
 
         JScrollPane Day4 = new JScrollPane(listconstoD);
-
-        //
+        jpconsto.add(jlctm);
+        jpconsto.add(jlctd);
+        jpconsto.add(jlctt);
         jpconsto.add(Month4);
         jpconsto.add(Day4);
         jpconsto.add(Time4);
+        //JPanel där jlabel finns och jtextfield
+        JPanel jpcon1 = new JPanel();
+        jpcons.add(jpcon1);
+        jpcon1.setPreferredSize(new Dimension(280,90));
+        jpcon1.setLayout(new GridLayout(3,2));
+        jpcon1.add(jlkwkr);
+        jpcon1.add(jtkwkr);
+        jpcon1.add(jlkw);
+        jpcon1.add(jtkw);
+        jpcon1.add(jlcst);
+        jpcon1.add(jtcst);
+        jpcons.add(jbcons);
+    }
 
-        jbon.addActionListener(new ButtonActionListeners());
-        jboff.addActionListener(new ButtonActionListeners());
-
+    public void setStarttime(String Month, String Day, String Time){
+        Month = listschedulestartM.getSelectedValue();
+        Day = listschedulestartD.getSelectedValue();
+        Time = listschedulestartT.getSelectedValue();
+        this.strttime = "Time start from: " + Month+ ", " + Day+ ", " + Time;
+    }
+    public String getStarttime(){
+        return strttime;
+    }
+    public void setTotime(String Month, String Day, String Time){
+        Month = listscheduletoD.getSelectedValue();
+        Day = listscheduletoD.getSelectedValue();
+        Time = listscheduletoT.getSelectedValue();
+        this.totime  = "to: " + Month+ ", " + Day+ ", " + Time;
+    }
+    public String getTotime(){
+        return totime;
+    }
+    public void setConsfr(String Month, String Day, String Time){
+        Month = listconsfromM.getSelectedValue();
+        Day = listconsfromD.getSelectedValue();
+        Time = listconsfromT.getSelectedValue();
+        this.consfr = "Time start from: " + Month+ ", " + Day+ ", " + Time;
+    }
+    public String getConsfr(){
+        return consfr;
+    }
+    public void setConsto(String Month, String Day, String Time){
+        Month = listconstoM.getSelectedValue();
+        Day = listconstoD.getSelectedValue();
+        Time = listconstoT.getSelectedValue();
+        this.consto  = "to: " + Month+ ", " + Day+ ", " + Time;
+    }
+    public String getConsto(){
+        return consto;
+    }
+    public void setKwkr(){
+        this.kwkr = jtkwkr.getText();
+    }
+    public String getKwkr(){
+        return  kwkr;
+    }
+    public void setKw(){
+        this.kw = jtkw.getText();
+    }
+    public String getKw(){
+        return  kw;
+    }
+    public void setCost(){
+        this.cost = jtcst.getText();
+    }
+    public String getCost(){
+        return cost;
     }
 
     class ButtonActionListeners implements ActionListener {
@@ -505,7 +508,6 @@ public class GUI extends JPanel{
                 jbon.setEnabled(false);
                 jboff.setEnabled(true);
                 System.out.println("ON");
-
             }
             else if (e.getSource() == jboff) {
                 jbon.setEnabled(true);
@@ -520,7 +522,6 @@ public class GUI extends JPanel{
             }
         }
     }
-
     public static void main(String[] args) {
         new GUI();
     }
