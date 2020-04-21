@@ -13,19 +13,18 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 
-
 public class MessageController extends Thread {
     private final Server server;
     private final Socket socket;
     private TrafficRegister trafficRegister;
-    private CommandHandler cmdHandler;
     private User user;
-    private SimpleDateFormat simpleDateFormat;
-    private ObjectOutputStream oosm ;
+    private SimpleDateFormat sdf;
+    private ObjectOutputStream oosm;
     private ArrayList<User> allUsersList;
     private ArrayList<String> onlineUser;
     private HashMap<String, ObjectOutputStream> userSocket = new HashMap<String, ObjectOutputStream>();
     private ConsumptionCounter consObject;
+
     public MessageController(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
@@ -33,7 +32,7 @@ public class MessageController extends Thread {
 
         allUsersList = new ArrayList<User>();
         onlineUser = new ArrayList<String>();
-        simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     }
 
     public void run() {
@@ -59,46 +58,11 @@ public class MessageController extends Thread {
         if (messageObject instanceof User) {
             userHandler((User) messageObject);
         } else if (messageObject instanceof Request) {
-            messageHandler((Request) messageObject);
+            requestHandler((Request) messageObject);
         } else if (messageObject instanceof Statee) {
             stateHandler((Statee) messageObject);
-        }else if (messageObject instanceof ConsumptionCounter) {
+        } else if (messageObject instanceof ConsumptionCounter) {
             consHandler((ConsumptionCounter) messageObject);
-        }
-    }
-
-    private void consHandler(ConsumptionCounter consObject) {
-    	this.consObject=consObject;
-    	consObject.setServer(server);
-    	consObject.setCost();
-    	try {
-			oosm.writeObject(consObject);
-			oosm.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("We have a problem sending consObject");
-		}
-    	
-    	
-    	
-		
-		
-	}
-
-	private void stateHandler(Statee state) {
-        String stateTxt = state.getState();
-        if(stateTxt.toLowerCase().contains("on"))
-            server.setOnTimer(Calendar.getInstance().getTime());
-            if(stateTxt.toLowerCase().contains("off"))
-            {
-            	server.setOffTimer(Calendar.getInstance().getTime());
-            }
-        Request requestToClient = new Request("State update:" + stateTxt);
-        try {
-            onlineBroadcast(requestToClient);
-        } catch (IOException e) {
-            System.out.println("We have a problem with broadcasting the message");
         }
     }
 
@@ -107,12 +71,59 @@ public class MessageController extends Thread {
         allUsersList = server.getUsers();
         if (allUsersList.contains(user)) {
             server.setOnlineUser(user.getName());
-
         } else {
             server.addUser(user);
             ObjectOutputStream oosm = new ObjectOutputStream(socket.getOutputStream());
             server.setClientSocket(user.getName(), oosm);
             server.setOnlineUser(user.getName());
+        }
+    }
+
+    public synchronized void requestHandler(Request msg) throws IOException {
+        String request = msg.getTextMessage();
+        if (request.toLowerCase().contains("getConsumption")) {
+            server.printStatics();
+        }
+        request = "server" + request;
+        Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
+        bw.write(request);
+        bw.newLine();
+        bw.flush();
+        arduinoSocket.close();
+    }
+
+    private void stateHandler(Statee state) {
+        String stateTxt = state.getState();
+        String time = sdf.format(new Date());
+        if (stateTxt.toLowerCase().contains("on")) {
+            server.sendTrafficMessage(time+"    "+stateTxt);
+            server.setOnTimer(Calendar.getInstance().getTime());
+        }
+        if (stateTxt.toLowerCase().contains("off")) {
+            server.sendTrafficMessage(time+"    "+stateTxt);
+            server.setOffTimer(Calendar.getInstance().getTime());
+        }
+        if(stateTxt.toLowerCase().contains("connected")){
+            server.sendTrafficMessage(time+"    "+stateTxt);
+        }
+        Request requestToClient = new Request("State update:" + stateTxt);
+        try {
+            onlineBroadcast(requestToClient);
+        } catch (IOException e) {
+            System.out.println("We have a problem with broadcasting the message");
+        }
+    }
+
+    private void consHandler(ConsumptionCounter consObject) {
+        this.consObject = consObject;
+        consObject.setServer(server);
+        consObject.setCost();
+        try {
+            oosm.writeObject(consObject);
+            oosm.flush();
+        } catch (IOException e) {
+            System.out.println("We have a problem sending consObject");
         }
     }
 
@@ -127,24 +138,6 @@ public class MessageController extends Thread {
         }
     }
 
-    public synchronized void messageHandler(Request msg) throws IOException {
-        String request = msg.getTextMessage();
-        if(request.toLowerCase().contains("total")){
-
-            server.printStatics();
-        }
-        request = "server" + request;
-        Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
-        bw.write(request);
-        bw.newLine();
-        bw.flush();
-        arduinoSocket.close();
-        
-      
-        
-
-    }
 
     public synchronized ObjectOutputStream getReciverSocket(User reciver) {
         userSocket = server.getClientSocket();
@@ -162,14 +155,15 @@ public class MessageController extends Thread {
     }
 
     private void setsendtime(Request request) {
-        String time = simpleDateFormat.format(new Date());
+        String time = sdf.format(new Date());
         request.setSendTime(time);
     }
 
     private void setreceivedtime(Request request) {
-        String time = simpleDateFormat.format(new Date());
+        String time = sdf.format(new Date());
         request.setReciveTime(time);
     }
+
     public void closeInputStream() {
         try {
             socket.getOutputStream().close();

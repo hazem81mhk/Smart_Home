@@ -1,7 +1,8 @@
 package server.model.MainServer;
 
 public enum ButtonType {
-    startStop,
+    start,
+    stop,
     searchLog,
     searchGO
 }

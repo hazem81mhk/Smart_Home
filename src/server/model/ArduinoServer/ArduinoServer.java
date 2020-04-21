@@ -1,5 +1,7 @@
 package server.model.ArduinoServer;
 
+import server.model.MainServer.Server;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,7 +20,9 @@ import java.net.Socket;
 public class ArduinoServer extends Thread {
 
     private ServerSocket serverSocket;
+    private int port;
     private Arduino arduino;
+    private Server server;
 
     /**
      * The constructor take the port number shares the values to the class's instance variables,
@@ -29,19 +33,33 @@ public class ArduinoServer extends Thread {
 
     public ArduinoServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
+        this.port=port;
         start();
     }
 
     public void run() {
-        System.out.println("ArduinoServer.ArduinoServer running. Port number is " + serverSocket.getLocalPort() + ".");
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
                 ArduinoHandler arduinoHandler = new ArduinoHandler(socket, this);
             } catch (IOException e) {
-                System.out.println(e);
+                //System.out.println("We have a problem in our Arduino sever socket");
+                try {
+                    serverSocket.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                break;
             }
         }
+    }
+
+    public void closeArduinoServerSocket() throws IOException {
+        serverSocket.close();
+    }
+
+    public int getPort() {
+        return port;
     }
 
     public void setArduino(Arduino arduino) {
