@@ -38,4 +38,8 @@ public class MainPanel extends JPanel {
         //add(curtainPanel, BorderLayout.CENTER);
         //add(lockPanel, BorderLayout.SOUTH);
     }
+
+    public GUI getGui(){
+        return gui;
+    }
 }

@@ -1,5 +1,10 @@
 package server.model.MainServer;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +15,7 @@ import java.util.Calendar;
 public class Schema extends Thread {
     private String start;
     private String end;
+    private boolean flag = true;
 
     public Schema(String start, String end) {
         this.start = start;
@@ -32,15 +38,34 @@ public class Schema extends Thread {
         LocalTime endTime = LocalTime.parse(getTime(end));
 
         LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(localDateTime);
+        //System.out.println(localDateTime);
 
         if (todaysDate.after(startDate) || todaysDate.equals(startDate)) {
             if (todaysDate.before(endDate) || todaysDate.equals(endDate)) {
-                System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
-                if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
-                    if (endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime)) {
-                        System.out.println("The time is right");
+                //System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
+                if (!todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
+                    result = true;
+                } else {
+                    if (todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
+                        if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
+                            result = true;
+                        }
+                    }
+                    if (endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime) && !endDate.equals(startDate)) {
                         result = true;
+                    }
+                    if (startDate.equals(endDate) && startDate.equals(todaysDate)) {
+                        if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
+                            if ((endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime))) {
+                                result = true;
+                                System.out.println("ppp");
+                                if (!current_Time.isBefore(endTime)){
+                                    System.out.println("Time is off");
+                                    //sendRequest("off");
+                                    //setFlag(false);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -53,12 +78,13 @@ public class Schema extends Thread {
 
     public String getTime(String str) {
         String submitedTime = str.substring(11, str.length());
+        //System.out.println(submitedTime);
         return submitedTime;
     }
 
     public void run() {
-        while (true) {
-            while (true) {
+        while (flag) {
+            while (flag) {
                 try {
                     if (!checkDate(start, end)) break;
                 } catch (ParseException e) {
@@ -66,6 +92,7 @@ public class Schema extends Thread {
                 }
                 System.out.println("TIME IS PERFECT");
                 try {
+                    //sendRequest("on");
                     sleep(10000);
                 } catch (InterruptedException e) {
                     System.out.println("Sleep problem");
@@ -73,6 +100,7 @@ public class Schema extends Thread {
             }
             System.out.println("SORRY very SORRY");
             try {
+                //sendRequest("off");
                 sleep(10000);
             } catch (InterruptedException e) {
                 System.out.println("SleepProblem");
@@ -80,9 +108,29 @@ public class Schema extends Thread {
         }
     }
 
+    public void sendRequest(String request) {
+        try {
+            request = "server" + request;
+            Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
+            bw.write(request);
+            bw.newLine();
+            bw.flush();
+            arduinoSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setFlag(boolean bool) {
+        this.flag = bool;
+    }
+
     public static void main(String[] args) {
-        String date1 = "2020-04-18 01:16:00";
-        String date2 = "2020-04-18 01:17:00";
-        Schema t = new Schema(date1, date2);
+        String sta="2020-04-23 01:33:00";
+        String end="2020-04-23 01:38:00";
+        Schema sc=new Schema(sta,end);
+
     }
 }
