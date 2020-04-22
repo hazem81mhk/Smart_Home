@@ -2,12 +2,8 @@ package client.controller;
 
 import client.model.Client;
 import client.view.ButtonType;
+import client.view.ClientLogin;
 import client.view.MainFrame;
-import server.model.MainServer.User;
-
-import javax.swing.*;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * 11/04/2020
@@ -16,29 +12,39 @@ import java.net.UnknownHostException;
  */
 
 public class Controller {
-    private MainFrame gui;
+    private MainFrame mainFrame;
+    private ClientLogin clientLogin;
     private Client client;
 
-    public Controller() throws UnknownHostException {
-        client = new Client(InetAddress.getLocalHost(), 8000);   //"81.224.148.215"
-        String userName = JOptionPane.showInputDialog("Please Enter Your User Name", null);
-        User user = new User(userName);
-        client.sendUser(user);
-        gui = new MainFrame(this);
+    public Controller() {
+        clientLogin = new ClientLogin(this);
+    }
 
+    public void startClient() {
+        clientLogin.setFramevisiblity(false);
+        client = new Client(clientLogin.getIp(), clientLogin.getPort(), clientLogin.getUserName(), this);   //"81.224.148.215"
+    }
+
+    public void startClientGui() {
+        mainFrame = new MainFrame(this);
     }
 
     public void buttonPressed(ButtonType button) {
         switch (button) {
+            case login:
+                startClient();
+                break;
             case lamp1_On:
                 client.sendRequest("on");
                 break;
             case lamp1_off:
                 client.sendRequest("off");
                 break;
-            case statistic:
-                client.sendRequest("getConsumption");
-                System.out.println("Total");
+            case start_schedule:
+                client.sendRequest("startschedule");
+                break;
+            case get_consumption:
+                client.sendRequest("getcnsumptin");
                 break;
         }
     }

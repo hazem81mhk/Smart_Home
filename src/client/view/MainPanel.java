@@ -15,7 +15,8 @@ import client.controller.Controller;
 
 public class MainPanel extends JPanel {
     private Controller controller;
-    private LightPanel lightPanel;
+    //private LightPanel lightPanel;
+    private GUI gui;
     private BorderLayout layout;
 
     public MainPanel(Controller controller) {
@@ -29,9 +30,11 @@ public class MainPanel extends JPanel {
         Border border = this.getBorder();
         Border margin = BorderFactory.createEmptyBorder(12, 12, 12, 12);
         setBorder(new CompoundBorder(border, margin));
-        lightPanel = new LightPanel(controller);
+        //lightPanel = new LightPanel(controller);
+        gui=new GUI(controller);
 
-        add(lightPanel, BorderLayout.NORTH);
+        //add(lightPanel, BorderLayout.NORTH);
+        add(gui);
         //add(curtainPanel, BorderLayout.CENTER);
         //add(lockPanel, BorderLayout.SOUTH);
     }

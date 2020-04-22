@@ -17,7 +17,8 @@ public class ServerGUI extends JFrame {
 
     private JButton start, stop, searchLog, searchGO;
     private JTextArea eventLog, log;
-    private JTextField tfPortNbr, dateField1, dateField2, time1Field, time2Field;
+    private JTextField tfPortNbr=new JTextField("8000");
+    private JTextField dateField1, dateField2, time1Field, time2Field;
     private JFrame searchFrame;
 
     public ServerGUI(Controller controller) {
@@ -65,7 +66,6 @@ public class ServerGUI extends JFrame {
         searchGO = new JButton("Search");
 
         //Textfields
-        tfPortNbr = new JTextField();
         tfPortNbr.setPreferredSize(new Dimension(60, 20));
 
         //tfPortNbr.setEditable(false);

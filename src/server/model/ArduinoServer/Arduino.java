@@ -19,7 +19,7 @@ public class Arduino {
             outPut.newLine();
             outPut.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("The Arduino is disconnected");
         }
     }
 }

@@ -1,3 +1,4 @@
+/*
 package client.view;
 
 import client.controller.Controller;
@@ -14,11 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+*/
 /**
  * 011/04/2020
  *
  * @Mohammed Hazem Kudaimi
- */
+ *//*
+
 
 public class LightPanel extends JPanel {
     private Controller controller;
@@ -391,3 +394,4 @@ public class LightPanel extends JPanel {
         }
     }
 }
+*/

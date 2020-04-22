@@ -13,7 +13,7 @@ public class Server extends Thread {
     private int serverPort;
     private ServerSocket serverSocket;
     private Controller controller;
-    private TrafficRegister trafficRegister;
+    //private TrafficRegister trafficRegister;
 
     private HashMap<String, ObjectOutputStream> clientSocket = new HashMap<String, ObjectOutputStream>();
     private ArrayList<MessageController> messageControllerList = new ArrayList<MessageController>();
@@ -28,36 +28,12 @@ public class Server extends Thread {
     private ArrayList<Integer> indexArr = new ArrayList<Integer>();
     private ArrayList<String> indexStr = new ArrayList<String>();
 
-
-    public void setOnTimer(Date onTimer) {
-        this.onTimer = onTimer;
-    }
-
-    public void setOffTimer(Date offTimer) {
-        this.offTimer = offTimer;
-        countTimeOfConsumption(onTimer, offTimer);
-        saveTimeToFile();
-        sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String time = sdf.format(new Date());
-        String logStr = (time+"    The lampa was on for " + minutesCounted);
-        sendTrafficMessage(logStr);
-    }
-
-    public void countTimeOfConsumption(Date on, Date off) {
-        minutesCounted = (int) getDateDiff(on, off, TimeUnit.MINUTES);
-    }
-
-    public int countConsumptionCost(int kiloWatsPerHour, int costOfOneKilo) {
-        int hours = minutesCounted / 60;
-        int cost = hours * kiloWatsPerHour * costOfOneKilo;
-        return cost;
-    }
-
     public Server(int port, Controller controller) throws IOException {
         this.controller = controller;
         this.serverPort = port;
         serverSocket = new ServerSocket(serverPort);
-        trafficRegister = new TrafficRegister(this);
+        sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        //trafficRegister = new TrafficRegister(this);
     }
 
     public void run() {
@@ -104,6 +80,8 @@ public class Server extends Thread {
         return clientSocket;
     }
 
+
+
     public void setOnlineUser(String user) {
         onlineUser.add(user);
     }
@@ -126,21 +104,48 @@ public class Server extends Thread {
     }
 
 
-    public TrafficRegister getTrafficRegister() {
-        return trafficRegister;
-    }
+    //public TrafficRegister getTrafficRegister() {
+    //    return trafficRegister;
+    //}
 
     public void sendTrafficMessage(String logStr) {
         controller.disPlayEvent(logStr);
     }
 
-    public void sendTrafficUser(String logStr) {
-        controller.disPlayEvent(logStr);
+    //public void sendTrafficUser(String logStr) {
+    //    controller.disPlayEvent(logStr);
+    //}
+
+
+
+
+
+    public void setOnTimer(Date onTimer) {
+        this.onTimer = onTimer;
+    }
+
+    public void setOffTimer(Date offTimer) {
+        this.offTimer = offTimer;
+        countTimeOfConsumption(onTimer, offTimer);
+        saveTimeToFile();
+        String time = sdf.format(new Date());
+        String logStr = (time+"    The lampa was on for " + minutesCounted+" minutes.");
+        sendTrafficMessage(logStr);
+    }
+
+    public void countTimeOfConsumption(Date on, Date off) {
+        minutesCounted = (int) getDateDiff(on, off, TimeUnit.MINUTES);
     }
 
     public static long getDateDiff(java.util.Date date, java.util.Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    }
+
+    public int countConsumptionCost(int kiloWatsPerHour, int costOfOneKilo) {
+        int hours = minutesCounted / 60;
+        int cost = hours * kiloWatsPerHour * costOfOneKilo;
+        return cost;
     }
 
     // When closing? or when turning the lamp off?
@@ -160,9 +165,9 @@ public class Server extends Thread {
 
     public void printStatics() {
         readAndSort("files/lampLog.txt");
-        System.out.println(Arrays.asList(ourMap)); // method 1
-        System.out.println("printStatics");
-
+        String time = sdf.format(new Date());
+        String logStr =time+"    Client want to get consumption:"+Arrays.asList(ourMap);
+        sendTrafficMessage(logStr);
     }
 
 

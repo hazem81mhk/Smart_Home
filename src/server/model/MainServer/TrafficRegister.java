@@ -1,3 +1,4 @@
+/*
 package server.model.MainServer;
 
 import java.text.SimpleDateFormat;
@@ -15,12 +16,13 @@ public class TrafficRegister {
     public void userIsOnline(User user) {
         String time = simpleDateFormat.format(new Date());
         String logStr = time + "    " + user.getName() + " is Online!";
-        server.sendTrafficUser(logStr);
+       // server.sendTrafficUser(logStr);
     }
 
     public void userIsOffline(User user) {
         String time = simpleDateFormat.format(new Date());
         String logStr = time + "    " + user.getName() + " is Offline!";
-        server.sendTrafficUser(logStr);
+       // server.sendTrafficUser(logStr);
     }
 }
+*/

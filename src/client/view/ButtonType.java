@@ -6,8 +6,9 @@ package client.view;
  */
 
 public enum ButtonType {
+    login,
     lamp1_On,
     lamp1_off,
-    stratTimer,
-    statistic,
+    start_schedule,
+    get_consumption,
 }

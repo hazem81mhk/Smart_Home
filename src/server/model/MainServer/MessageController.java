@@ -16,7 +16,7 @@ import java.util.Map.Entry;
 public class MessageController extends Thread {
     private final Server server;
     private final Socket socket;
-    private TrafficRegister trafficRegister;
+    //private TrafficRegister trafficRegister;
     private User user;
     private SimpleDateFormat sdf;
     private ObjectOutputStream oosm;
@@ -28,7 +28,7 @@ public class MessageController extends Thread {
     public MessageController(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
-        this.trafficRegister = server.getTrafficRegister();
+        //this.trafficRegister = server.getTrafficRegister();
 
         allUsersList = new ArrayList<User>();
         onlineUser = new ArrayList<String>();
@@ -77,35 +77,42 @@ public class MessageController extends Thread {
             server.setClientSocket(user.getName(), oosm);
             server.setOnlineUser(user.getName());
         }
+        //not worked
+        String userName = user.getName();
+        String time = sdf.format(new Date());
+        server.sendTrafficMessage(time + "    " + userName+" is connected to the server");
+        //System.out.println(userName);
     }
 
     public synchronized void requestHandler(Request msg) throws IOException {
         String request = msg.getTextMessage();
-        if (request.toLowerCase().contains("getConsumption")) {
+        String time = sdf.format(new Date());
+        if (request.toLowerCase().contains("getcnsumptin")) {
             server.printStatics();
+        } else {
+            request = "server" + request;
+            Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
+            bw.write(request);
+            bw.newLine();
+            bw.flush();
+            arduinoSocket.close();
         }
-        request = "server" + request;
-        Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
-        bw.write(request);
-        bw.newLine();
-        bw.flush();
-        arduinoSocket.close();
     }
 
     private void stateHandler(Statee state) {
         String stateTxt = state.getState();
         String time = sdf.format(new Date());
         if (stateTxt.toLowerCase().contains("on")) {
-            server.sendTrafficMessage(time+"    "+stateTxt);
+            server.sendTrafficMessage(time + "    " + stateTxt);
             server.setOnTimer(Calendar.getInstance().getTime());
         }
         if (stateTxt.toLowerCase().contains("off")) {
-            server.sendTrafficMessage(time+"    "+stateTxt);
+            server.sendTrafficMessage(time + "    " + stateTxt);
             server.setOffTimer(Calendar.getInstance().getTime());
         }
-        if(stateTxt.toLowerCase().contains("connected")){
-            server.sendTrafficMessage(time+"    "+stateTxt);
+        if (stateTxt.toLowerCase().contains("connected")) {
+            server.sendTrafficMessage(time + "    " + stateTxt);
         }
         Request requestToClient = new Request("State update:" + stateTxt);
         try {
@@ -152,16 +159,6 @@ public class MessageController extends Thread {
             System.out.print("OUR SOCKET IS FUCKED UP!");
         }
         return oos;
-    }
-
-    private void setsendtime(Request request) {
-        String time = sdf.format(new Date());
-        request.setSendTime(time);
-    }
-
-    private void setreceivedtime(Request request) {
-        String time = sdf.format(new Date());
-        request.setReciveTime(time);
     }
 
     public void closeInputStream() {

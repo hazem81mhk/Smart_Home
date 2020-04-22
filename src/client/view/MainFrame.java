@@ -10,8 +10,8 @@ import client.controller.Controller;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
-    private int width=500;
-    private int height=700;
+    private int width=400;
+    private int height=10;
 
     private Controller controller;
     private MainPanel mainPanel;
@@ -22,8 +22,8 @@ public class MainFrame extends JFrame {
     }
 
     private void setupFrame() {
-        final int offsetX = width / 5;
-        final int offsetY = height / 5;
+        final int offsetX = width;
+        final int offsetY = height;
         setSize(width, height);
         setTitle("                  <<<< Smart Home >>>>");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

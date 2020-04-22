@@ -8,7 +8,6 @@ public class Request implements Serializable {
     private User sender;
     private ArrayList<User> reciverList;
     private String textMessage;
-    private ImageIcon imageMessage;
     private String sendTime;
     private String reciveTime;
 
@@ -26,10 +25,6 @@ public class Request implements Serializable {
 
     public String getTextMessage() {
         return textMessage;
-    }
-
-    public ImageIcon getImageMessage() {
-        return imageMessage;
     }
 
     public String getSendTime() {
