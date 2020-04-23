@@ -3,6 +3,7 @@ package client.model;
 import client.controller.Controller;
 import client.view.Schedule;
 import server.model.ArduinoServer.Statee;
+import server.model.MainServer.ConsumptionCounter;
 import server.model.MainServer.Request;
 import server.model.MainServer.User;
 
@@ -68,13 +69,13 @@ public class Client extends Thread {
             Request request = (Request) object;
             String stateTxt = request.getTextMessage();
             if(stateTxt.toLowerCase().contains("arduino is cnnected"))
-                System.out.println("Arduino is Connected");
+                System.out.println("Message receive from the server: Arduino is Connected");
             if (stateTxt.toLowerCase().contains("on")) {
-                System.out.println("Lamp is on");
+                System.out.println("Message receive from the server: Now, The lamp is on");
                 controller.setButtonOff();
             }
             if (stateTxt.toLowerCase().contains("off")) {
-                System.out.println("lamp is off");
+                System.out.println("Message receive from the server: Now, the lamp is off");
                 controller.setButtonOn();
                 //System.out.println(request.getTextMessage());
 
@@ -93,6 +94,16 @@ public class Client extends Thread {
         }
     */
         }
+        if (object instanceof ConsumptionCounter)
+        {
+            consumptionHandler((ConsumptionCounter)object);
+        }
+    }
+
+    private void consumptionHandler(ConsumptionCounter object) {
+        String str=("From"+object.getDateStart()+" To: "+object.getDateEnd()+" You have spent :"+object.getCost()+" On the lamp");
+        JOptionPane.showMessageDialog(null,str);
+        controller.sendUpdate(str);
     }
 
     public void sendRequest(String request) {
@@ -103,6 +114,15 @@ public class Client extends Thread {
             ous.flush();
         } catch (IOException e) {
             System.out.println("There is a problem to send the request");
+        }
+    }
+    public void sendCons(ConsumptionCounter cons) {
+        System.out.println("Get consumption is send to server");
+        try {
+            ous.writeObject(cons);
+            ous.flush();
+        } catch (IOException e) {
+            System.out.println("There is a problem to send Get consumption");
         }
     }
 

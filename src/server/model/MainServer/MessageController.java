@@ -78,7 +78,7 @@ public class MessageController extends Thread {
             server.setOnlineUser(user.getName());
         } else {
             server.addUser(user);
-            ObjectOutputStream oosm = new ObjectOutputStream(socket.getOutputStream());
+             this.oosm = new ObjectOutputStream(socket.getOutputStream());
             server.setClientSocket(user.getName(), oosm);
             server.setOnlineUser(user.getName());
         }
@@ -133,12 +133,16 @@ public class MessageController extends Thread {
 			numberOfMinutes = server.printStatics(dateStart,dateEnda);
 			 consObject.setConsumedMinuets(numberOfMinutes);
 		     consObject.setCost();
+            String time = sdf.format(new Date());
+            String logStr =time+"    Client want to get consumption with results: "+consObject.getCost();
+            server.sendTrafficMessage(logStr);
 		} catch (NumberFormatException | ParseException e1) {
 			e1.printStackTrace();
 		} 
        
         try {
-            oosm.writeObject(consObject);
+
+            oosm.writeObject(consObject.getConObject());
             oosm.flush();
         } catch (IOException e) {
             System.out.println("We have a problem sending consObject");

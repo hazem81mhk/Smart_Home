@@ -5,6 +5,7 @@ import client.view.ButtonType;
 import client.view.ClientLogin;
 import client.view.MainFrame;
 import client.view.Schedule;
+import server.model.MainServer.ConsumptionCounter;
 
 /**
  * 11/04/2020
@@ -38,6 +39,16 @@ public class Controller {
                 mainFrame.getMainPanel().getGui().getTotime());
         client.sendSchedule(schedule);
     }
+
+    public void getConsumption (){
+        mainFrame.getMainPanel().getGui().setConsumptionFor();
+        mainFrame.getMainPanel().getGui().setConsumptionTo();
+        ConsumptionCounter cons=new ConsumptionCounter((mainFrame.getMainPanel().getGui().getConsfr()),
+                (mainFrame.getMainPanel().getGui().getConsto()), Integer.parseInt(mainFrame.getMainPanel().getGui().getKw()),
+                Integer.parseInt(mainFrame.getMainPanel().getGui().getKwkr()));
+        client.sendCons(cons);
+    }
+
     public void setButtonOff(){
         mainFrame.getMainPanel().getGui().setLampButtonOff();
     }
@@ -73,8 +84,12 @@ public class Controller {
                 startSchedule();
                 break;
             case get_consumption:
-                client.sendRequest("getcnsumptin");
+                getConsumption();
                 break;
         }
+    }
+
+    public void sendUpdate(String str) {
+        mainFrame.getMainPanel().getGui().appendLog(str);
     }
 }

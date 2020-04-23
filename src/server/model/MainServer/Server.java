@@ -158,9 +158,8 @@ public class Server extends Thread {
 
     public int printStatics(String startDate,String endDate) throws NumberFormatException, ParseException {
         int result=readAndSort(startDate,endDate);
-        String time = sdf.format(new Date());
-        String logStr =time+"    Client want to get consumption:"+Arrays.asList(ourMap);
-        sendTrafficMessage(logStr);
+
+
         return result;
     }
 
@@ -181,7 +180,6 @@ public class Server extends Thread {
             	lineDate=line.substring(0,19);
             	if(checkDate(startDate,endDate,lineDate))
             	{	int lineNumb=Integer.parseInt(line.substring(20,line.length()));
-            	System.out.println(line);
             		minutesForCost+=lineNumb;
             		
             	}

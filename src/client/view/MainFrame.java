@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame {
     private int width=400;
-    private int height=10;
+    private int height=0;
 
     private Controller controller;
     private MainPanel mainPanel;

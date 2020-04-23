@@ -1732,3 +1732,186 @@ The lampa was on for 7
 2020/04/23 17:07:43    The lamp is turned on
 2020/04/23 17:07:44    The lamp is turned off
 2020/04/23 17:07:44    The lampa was on for 0 minutes.
+2020/04/23 19:11:55    Main server is connected at port: 8000
+2020/04/23 19:11:55    Arduino server is connected att port: 9000
+2020/04/23 19:12:14    sad is connected to the server
+2020/04/23 19:12:22    Arduino is Cnnected
+2020/04/23 19:12:26    The lamp is turned on
+2020/04/23 19:12:39    The lamp is turned off
+2020/04/23 19:12:39    The lampa was on for 0 minutes.
+2020/04/23 19:12:48    The lamp is turned on
+2020/04/23 19:12:51    The lamp is turned off
+2020/04/23 19:12:51    The lampa was on for 0 minutes.
+2020/04/23 20:13:32    Main server is connected at port: 8000
+2020/04/23 20:13:32    Arduino server is connected att port: 9000
+2020/04/23 20:18:21    Main server is connected at port: 8000
+2020/04/23 20:18:21    Arduino server is connected att port: 9000
+2020/04/23 20:18:32    asd is connected to the server
+2020/04/23 20:20:23    Arduino is Cnnected
+2020/04/23 20:20:51    Main server and Arduino server are disconnected
+2020/04/23 20:22:25    Main server is connected at port: 8000
+2020/04/23 20:22:25    Arduino server is connected att port: 9000
+2020/04/23 20:22:30    Arduino is Cnnected
+2020/04/23 20:23:07    Arduino is Cnnected
+2020/04/23 20:23:17    sd is connected to the server
+2020/04/23 20:23:26    The lamp is turned on
+2020/04/23 20:23:31    The lamp is turned off
+2020/04/23 20:23:31    The lampa was on for 0 minutes.
+2020/04/23 20:23:35    The lamp is turned on
+2020/04/23 20:23:37    The lamp is turned off
+2020/04/23 20:23:37    The lampa was on for 0 minutes.
+2020/04/23 20:23:38    The lamp is turned on
+2020/04/23 20:23:40    The lamp is turned off
+2020/04/23 20:23:40    The lampa was on for 0 minutes.
+2020/04/23 20:23:56    The lamp is turned on
+2020/04/23 20:23:56    The lamp is turned off
+2020/04/23 20:23:56    The lampa was on for 0 minutes.
+2020/04/23 20:24:00    The lamp is turned on
+2020/04/23 20:24:02    The lamp is turned off
+2020/04/23 20:24:02    The lampa was on for 0 minutes.
+2020/04/23 20:24:05    The lamp is turned on
+2020/04/23 20:24:05    The lamp is turned off
+2020/04/23 20:24:05    The lampa was on for 0 minutes.
+2020/04/23 20:24:05    The lamp is turned on
+2020/04/23 20:24:09    The lamp is turned off
+2020/04/23 20:24:09    The lampa was on for 0 minutes.
+2020/04/23 20:24:11    The lamp is turned on
+2020/04/23 20:24:15    The lamp is turned off
+2020/04/23 20:24:15    The lampa was on for 0 minutes.
+2020/04/23 20:24:17    The lamp is turned on
+2020/04/23 20:24:18    The lamp is turned off
+2020/04/23 20:24:18    The lampa was on for 0 minutes.
+2020/04/23 20:24:19    The lamp is turned on
+2020/04/23 20:24:19    The lamp is turned off
+2020/04/23 20:24:19    The lampa was on for 0 minutes.
+2020/04/23 20:24:21    The lamp is turned off
+2020/04/23 20:24:21    The lamp is turned on
+2020/04/23 20:24:21    The lamp is turned off
+2020/04/23 20:24:21    The lampa was on for 0 minutes.
+2020/04/23 20:24:22    The lamp is turned on
+2020/04/23 20:24:22    The lampa was on for 0 minutes.
+2020/04/23 20:24:22    The lamp is turned on
+2020/04/23 20:24:24    The lamp is turned on
+2020/04/23 20:24:24    The lamp is turned off
+2020/04/23 20:24:24    The lamp is turned off
+2020/04/23 20:24:24    The lamp is turned off
+2020/04/23 20:24:24    The lampa was on for 0 minutes.
+2020/04/23 20:24:24    The lamp is turned on
+2020/04/23 20:24:24    The lamp is turned on
+2020/04/23 20:24:24    The lampa was on for 0 minutes.
+2020/04/23 20:24:24    The lampa was on for 0 minutes.
+2020/04/23 20:24:26    The lamp is turned off
+2020/04/23 20:24:26    The lampa was on for 0 minutes.
+2020/04/23 20:24:28    The lamp is turned on
+2020/04/23 20:24:30    The lamp is turned on
+2020/04/23 20:24:30    The lamp is turned off
+2020/04/23 20:24:30    The lampa was on for 0 minutes.
+2020/04/23 20:24:30    The lamp is turned off
+2020/04/23 20:24:30    The lampa was on for 0 minutes.
+2020/04/23 20:24:32    The lamp is turned on
+2020/04/23 20:24:32    The lamp is turned off
+2020/04/23 20:24:32    The lampa was on for 0 minutes.
+2020/04/23 20:25:52    {startSchedule= 2020-04-24 20:25:00, endSchedule= 2020-04-24 20:40:00}
+2020/04/23 20:26:11    {startSchedule= 2020-04-23 20:25:00, endSchedule= 2020-04-23 20:40:00}
+2020/04/23 20:26:11    The lamp is turned off
+2020/04/23 20:26:11    The lampa was on for 1 minutes.
+2020/04/23 20:26:21    The lamp is turned on
+2020/04/23 20:26:40    {startSchedule= 2020-04-23 20:30:00, endSchedule= 2020-04-23 20:35:00}
+2020/04/23 20:26:40    The lamp is turned off
+2020/04/23 20:26:40    The lampa was on for 0 minutes.
+2020/04/23 20:26:44    The lamp is turned on
+2020/04/23 20:26:52    The lamp is turned off
+2020/04/23 20:26:52    The lampa was on for 0 minutes.
+2020/04/23 20:30:01    The lamp is turned on
+2020/04/23 20:30:09    The lamp is turned off
+2020/04/23 20:30:09    The lampa was on for 0 minutes.
+2020/04/23 20:30:11    The lamp is turned on
+2020/04/23 20:30:15    The lamp is turned off
+2020/04/23 20:30:15    The lampa was on for 0 minutes.
+2020/04/23 20:30:21    The lamp is turned on
+2020/04/23 20:30:23    The lamp is turned off
+2020/04/23 20:30:23    The lampa was on for 0 minutes.
+2020/04/23 20:30:25    The lamp is turned on
+2020/04/23 20:31:50    The lamp is turned off
+2020/04/23 20:31:51    The lampa was on for 1 minutes.
+2020/04/23 20:31:51    The lamp is turned on
+2020/04/23 20:35:02    The lamp is turned off
+2020/04/23 20:35:02    The lampa was on for 3 minutes.
+2020/04/23 20:35:19    Client want to get consumption:[{}]
+2020/04/23 20:45:53    Main server is connected at port: 8000
+2020/04/23 20:45:53    Arduino server is connected att port: 9000
+2020/04/23 20:46:03    sad is connected to the server
+2020/04/23 20:46:33    Client want to get consumption:[{}]
+2020/04/23 20:50:59    Main server is connected at port: 8000
+2020/04/23 20:50:59    Arduino server is connected att port: 9000
+2020/04/23 20:51:55    asd is connected to the server
+2020/04/23 20:52:16    Client want to get consumption:[{}]
+2020/04/23 20:56:42    Main server is connected at port: 8000
+2020/04/23 20:56:42    Arduino server is connected att port: 9000
+2020/04/23 20:56:56    ha is connected to the server
+2020/04/23 20:57:24    Client want to get consumption:[{}]
+2020/04/23 20:59:25    Main server is connected at port: 8000
+2020/04/23 20:59:25    Arduino server is connected att port: 9000
+2020/04/23 20:59:37    kjh is connected to the server
+2020/04/23 20:59:51    Client want to get consumption:[{}]
+2020/04/23 21:02:44    Main server is connected at port: 8000
+2020/04/23 21:02:44    Arduino server is connected att port: 9000
+2020/04/23 21:02:58    hal is connected to the server
+2020/04/23 21:03:07    Client want to get consumption:[{}]
+2020/04/23 21:08:02    Main server is connected at port: 8000
+2020/04/23 21:08:02    Arduino server is connected att port: 9000
+2020/04/23 21:08:20    123 is connected to the server
+2020/04/23 21:08:33    Client want to get consumption:[{}]
+2020/04/23 21:11:23    Main server is connected at port: 8000
+2020/04/23 21:11:23    Arduino server is connected att port: 9000
+2020/04/23 21:11:40    123 is connected to the server
+2020/04/23 21:11:55    Client want to get consumption:[{}]
+2020/04/23 21:17:03    Main server is connected at port: 8000
+2020/04/23 21:17:03    Arduino server is connected att port: 9000
+2020/04/23 21:17:24    123 is connected to the server
+2020/04/23 21:17:50    Client want to get consumption:[{}]
+2020/04/23 21:19:23    Main server is connected at port: 8000
+2020/04/23 21:19:23    Arduino server is connected att port: 9000
+2020/04/23 21:19:42    jhgf is connected to the server
+2020/04/23 21:19:53    Client want to get consumption:[{}]
+2020/04/23 21:22:08    Main server is connected at port: 8000
+2020/04/23 21:22:08    Arduino server is connected att port: 9000
+2020/04/23 21:22:18    zxc is connected to the server
+2020/04/23 21:22:28    Client want to get consumption:[{}]
+2020/04/23 21:29:16    Main server is connected at port: 8000
+2020/04/23 21:29:16    Arduino server is connected att port: 9000
+2020/04/23 21:29:27    zxc is connected to the server
+2020/04/23 21:29:37    Client want to get consumption with results: 23625.333333333332
+2020/04/23 21:29:49    Client want to get consumption with results: 0.0
+2020/04/23 21:49:18    Main server is connected at port: 8000
+2020/04/23 21:49:18    Arduino server is connected att port: 9000
+2020/04/23 21:49:30    sad is connected to the server
+2020/04/23 21:50:01    Client want to get consumption with results: 1260.75
+2020/04/23 21:56:41    Main server is connected at port: 8000
+2020/04/23 21:56:41    Arduino server is connected att port: 9000
+2020/04/23 21:56:45    ad is connected to the server
+2020/04/23 22:01:53    Main server is connected at port: 8000
+2020/04/23 22:01:53    Arduino server is connected att port: 9000
+2020/04/23 22:02:12    wes is connected to the server
+2020/04/23 22:03:12    Main server is connected at port: 8000
+2020/04/23 22:03:12    Arduino server is connected att port: 9000
+2020/04/23 22:03:23    asd is connected to the server
+2020/04/23 22:04:29    sad is connected to the server
+2020/04/23 22:05:41    asd is connected to the server
+2020/04/23 22:06:46    asd is connected to the server
+2020/04/23 22:07:24    asd is connected to the server
+2020/04/23 22:07:55    sad is connected to the server
+2020/04/23 22:09:02    asd is connected to the server
+2020/04/23 22:10:00    asd is connected to the server
+2020/04/23 22:10:32    asd is connected to the server
+2020/04/23 22:11:19    sda is connected to the server
+2020/04/23 22:12:27    asd is connected to the server
+2020/04/23 22:13:12    sadf is connected to the server
+2020/04/23 22:14:04    wer is connected to the server
+2020/04/23 22:31:12    asd is connected to the server
+2020/04/23 22:31:19    Client want to get consumption with results: 0.0
+2020/04/23 22:31:37    Client want to get consumption with results: 0.0
+2020/04/23 22:31:41    Client want to get consumption with results: 0.0
+2020/04/23 22:32:03    Client want to get consumption with results: 12.0
+2020/04/23 22:32:52    asd is connected to the server
+2020/04/23 22:32:59    Client want to get consumption with results: 2367.75

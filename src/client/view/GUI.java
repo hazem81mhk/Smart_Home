@@ -13,7 +13,7 @@ import java.util.Calendar;
 public class GUI extends JPanel {
     private Controller controller;
     private int width = 320;
-    private int height = 600;
+    private int height = 800;
 
     private String kwkr, kw, cost, strttime, totime, consfr, consto;
     //JPanel
@@ -25,6 +25,9 @@ public class GUI extends JPanel {
     private JPanel jpcons = new JPanel();
     private JPanel jpconsfr = new JPanel();
     private JPanel jpconsto = new JPanel();
+    private JPanel jptextArra =new JPanel();
+
+    private JTextArea textArea;
     //JButton
     private JButton jbon = new JButton("ON");
     private JButton jboff = new JButton("OFF");
@@ -85,6 +88,7 @@ public class GUI extends JPanel {
         Lampstate();
         Schedule();
         Consumption();
+        textArea();
 
         ActionListener listener = new ButtonActionListeners();
         jbon.addActionListener(listener);
@@ -102,7 +106,25 @@ public class GUI extends JPanel {
         jplmp.add(jplampst, BorderLayout.NORTH);
         jplmp.add(jpsch, BorderLayout.CENTER);
         jplmp.add(jpcons, BorderLayout.SOUTH);
+        jplmp.add(jptextArra,BorderLayout.SOUTH);
         add(jplmp, BorderLayout.CENTER);
+    }
+
+    public void textArea(){
+        jptextArra.setPreferredSize(new Dimension(300,70));
+        jptextArra.setBorder(BorderFactory.createTitledBorder(null, "Update:",
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                new Font("Arial", Font.PLAIN, 15), Color.BLACK));
+        textArea=new JTextArea(2,25);
+        textArea.setEditable(false);
+        JScrollPane chatScroll = new JScrollPane(textArea,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        appendLog("Hello");
+        jptextArra.add(textArea);
+    }
+
+    public void appendLog(String str) {
+        textArea.append(str + "\n");
     }
 
     public void Lampstate() {
@@ -433,6 +455,15 @@ public class GUI extends JPanel {
         this.consfr = "Time start from: " + Month + ", " + Day + ", " + Time;
     }
 
+    public void setConsumptionFor(){
+        String Month = listconsfromM.getSelectedValue();
+        String Day = listconsfromD.getSelectedValue();
+        String Time = listconsfromT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.consfr = currentDate + Month + "-" + Day + " " + Time + ":00";
+    }
+
     public String getConsfr() {
         return consfr;
     }
@@ -444,24 +475,25 @@ public class GUI extends JPanel {
         this.consto = "to: " + Month + ", " + Day + ", " + Time;
     }
 
+    public void setConsumptionTo(){
+        String Month = listconstoM.getSelectedValue();
+        String Day = listconstoD.getSelectedValue();
+        String Time = listconstoT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.consto = currentDate + Month + "-" + Day + " " + Time + ":00";
+    }
+
     public String getConsto() {
         return consto;
     }
 
-    public void setKwkr() {
-        this.kwkr = jtkwkr.getText();
-    }
-
     public String getKwkr() {
-        return kwkr;
-    }
-
-    public void setKw() {
-        this.kw = jtkw.getText();
+        return jtkwkr.getText();
     }
 
     public String getKw() {
-        return kw;
+        return jtkw.getText();
     }
 
     public void setLampButtonOn() {
@@ -492,7 +524,19 @@ public class GUI extends JPanel {
                 //setSelectedTotime();
                 //System.out.println(getTotime());
             } else if (e.getSource() == jbcons) {
-                controller.buttonPressed(ButtonType.get_consumption);
+                try {
+                    if(jtkw.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null,"Please enter your lamp kW");
+                    }
+                    else if(jtkwkr.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Please enter the cost per kW");
+                    }else {
+                        controller.buttonPressed(ButtonType.get_consumption);
+                    }
+                }catch (NumberFormatException ee){
+                    JOptionPane.showMessageDialog(null, "Please enter just numbers");
+                }
+
                 //System.out.println("Gui: get consumption");
             }
         }
