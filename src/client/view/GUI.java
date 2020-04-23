@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * 18/04/2020
+ *
+ * @Agon Beqa
+ */
+
 public class GUI extends JPanel {
     private Controller controller;
     private int width = 320;
@@ -111,16 +117,17 @@ public class GUI extends JPanel {
     }
 
     public void textArea(){
-        jptextArra.setPreferredSize(new Dimension(300,70));
+        jptextArra.setPreferredSize(new Dimension(300,90));
         jptextArra.setBorder(BorderFactory.createTitledBorder(null, "Update:",
                 TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 new Font("Arial", Font.PLAIN, 15), Color.BLACK));
-        textArea=new JTextArea(2,25);
+        textArea=new JTextArea(3,27);
         textArea.setEditable(false);
-        JScrollPane chatScroll = new JScrollPane(textArea,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        appendLog("Hello");
-        jptextArra.add(textArea);
+        //JScrollPane Scroll = new JScrollPane(textArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane Scroll=new JScrollPane(textArea);
+        Scroll.setHorizontalScrollBar(null);
+        //appendLog("");
+        jptextArra.add(Scroll);
     }
 
     public void appendLog(String str) {
@@ -140,7 +147,7 @@ public class GUI extends JPanel {
     }
 
     public void Schedule() {
-        jpsch.setPreferredSize(new Dimension(300, 220));
+        jpsch.setPreferredSize(new Dimension(300, 210));
         jpsch.setBorder(BorderFactory.createTitledBorder(null, "Schedule", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F1, Color.BLUE));
         //JList för tiden
@@ -235,13 +242,13 @@ public class GUI extends JPanel {
 
         JScrollPane Day = new JScrollPane(listschedulestartD);
         //JPanel start i Schedule panelen
-        jpstart.setPreferredSize(new Dimension(280, 75));
+        jpstart.setPreferredSize(new Dimension(280, 70));
         jpstart.setBorder(BorderFactory.createTitledBorder(null, "Start lamp from:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F2, Color.BLACK));
         jpstart.setLayout(new GridLayout(2, 3));
 
         //JPanel to i schedule panelen
-        jpto.setPreferredSize(new Dimension(280, 75));
+        jpto.setPreferredSize(new Dimension(280, 70));
         jpto.setLayout(new GridLayout(2, 3));
         jpto.setBorder(BorderFactory.createTitledBorder(null, "To:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F2, Color.BLACK));
@@ -297,14 +304,14 @@ public class GUI extends JPanel {
     }
 
     public void Consumption() {
-        jpcons.setPreferredSize(new Dimension(300, 280));
+        jpcons.setPreferredSize(new Dimension(300, 270));
         jpcons.setBorder(BorderFactory.createTitledBorder(null, "Consumption", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F1, Color.BLUE));
 
         jpcons.add(jpconsfr);
         jpcons.add(jpconsto);
         //Jpanel from i consumption
-        Dimension dim1 = new Dimension(280, 75);
+        Dimension dim1 = new Dimension(280, 70);
         jpconsfr.setPreferredSize(dim1);
         jpconsfr.setBorder(BorderFactory.createTitledBorder(null, "From:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F2, Color.BLACK));

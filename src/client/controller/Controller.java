@@ -10,7 +10,7 @@ import server.model.MainServer.ConsumptionCounter;
 /**
  * 11/04/2020
  *
- * @Mohammed Hazem Kudaimi
+ * @Mohammed Amayri and Mohammed Hazem Kudaimi
  */
 
 public class Controller {

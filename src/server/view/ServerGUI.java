@@ -12,6 +12,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 10/04/2020
+ *
+ * @Moahmmed Hazem Kudaimi and Mohammed Amayri
+ */
+
 public class ServerGUI extends JFrame {
     private Controller controller;
 
@@ -49,7 +55,7 @@ public class ServerGUI extends JFrame {
         eventLog = new JTextArea(20, 60);
         eventLog.setEditable(false);
         appendEventLog("Event log\n");
-        JScrollPane chatScroll = new JScrollPane(eventLog, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane chatScroll = new JScrollPane(eventLog, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 
         //Search log

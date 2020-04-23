@@ -2,6 +2,12 @@ package server.model.ArduinoServer;
 
 import java.io.Serializable;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri
+ */
+
 public class Statee implements Serializable {
     private String state;
 

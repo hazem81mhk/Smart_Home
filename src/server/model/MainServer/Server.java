@@ -13,11 +13,16 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri and Moahmmed Hazem Kudaimi
+ */
+
 public class Server extends Thread {
     private int serverPort;
     private ServerSocket serverSocket;
     private Controller controller;
-    //private TrafficRegister trafficRegister;
 
     private HashMap<String, ObjectOutputStream> clientSocket = new HashMap<String, ObjectOutputStream>();
     private ArrayList<MessageController> messageControllerList = new ArrayList<MessageController>();
@@ -32,10 +37,10 @@ public class Server extends Thread {
     private ArrayList<Integer> indexArr = new ArrayList<Integer>();
     private ArrayList<String> indexStr = new ArrayList<String>();
 
-    private int minutesForCost=0;
+    private int minutesForCost = 0;
 
-    private Schema schema=null;
-    private boolean lampStatus=false;
+    private Schema schema = null;
+    private boolean lampStatus = false;
     private MessageController messageController;
 
 
@@ -90,8 +95,6 @@ public class Server extends Thread {
         return clientSocket;
     }
 
-
-
     public void setOnlineUser(String user) {
         onlineUser.add(user);
     }
@@ -126,7 +129,7 @@ public class Server extends Thread {
         countTimeOfConsumption(onTimer, offTimer);
         saveTimeToFile();
         String time = sdf.format(new Date());
-        String logStr = (time+"    The lampa was on for " + minutesCounted+" minutes.");
+        String logStr = (time + "    The lampa was on for " + minutesCounted + " minutes.");
         sendTrafficMessage(logStr);
     }
 
@@ -139,33 +142,27 @@ public class Server extends Thread {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-  
-
     // When closing? or when turning the lamp off?
     public void saveTimeToFile() {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateToSave = sdf.format(Calendar.getInstance().getTime());
         try (FileWriter fw = new FileWriter("files/lampLog.txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println(dateToSave + ":" + minutesCounted);
-
-            //more code
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }
     }
 
-    public int printStatics(String startDate,String endDate) throws NumberFormatException, ParseException {
-        int result=readAndSort(startDate,endDate);
-
-
+    public int printStatics(String startDate, String endDate) throws NumberFormatException, ParseException {
+        int result = readAndSort(startDate, endDate);
         return result;
     }
 
 
-    int readAndSort(String startDate, String endDate)  {
-        
+    int readAndSort(String startDate, String endDate) {
+
         int minutesForCost = 0;
         try {
             FileReader fr = new FileReader("files/lampLog.txt");
@@ -174,40 +171,37 @@ public class Server extends Thread {
             String subString = line.substring(0, 10);
             String lineDate;
             String subString1 = null;
-            int x=0;
+            int x = 0;
             while (line != null) {
-            	
-            	lineDate=line.substring(0,19);
-            	if(checkDate(startDate,endDate,lineDate))
-            	{	int lineNumb=Integer.parseInt(line.substring(20,line.length()));
-            		minutesForCost+=lineNumb;
-            		
-            	}
+
+                lineDate = line.substring(0, 19);
+                if (checkDate(startDate, endDate, lineDate)) {
+                    int lineNumb = Integer.parseInt(line.substring(20, line.length()));
+                    minutesForCost += lineNumb;
+
+                }
                 line = br.readLine();
                 x++;
             }
-           }
-        
-            catch(NumberFormatException | ParseException | IOException e )
-            {
-            	System.out.println(e);
-            }
-		return minutesForCost;
+        } catch (NumberFormatException | ParseException | IOException e) {
+            System.out.println(e);
+        }
+        return minutesForCost;
 
     }
-    
-    public boolean checkDate(String start, String end,String line) throws ParseException {
+
+    public boolean checkDate(String start, String end, String line) throws ParseException {
         boolean result = false;
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    
-		String lineDate=line.substring(0,10);
+
+        String lineDate = line.substring(0, 10);
         Date startDate = sdf.parse(start);
         Date endDate = sdf.parse(end);
         Date todaysDate = sdf.parse(lineDate);
 
         //String currentTime = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
-        
+
         LocalTime current_Time = LocalTime.parse(getTime(line));
         LocalTime startTime = LocalTime.parse(getTime(start));
         LocalTime endTime = LocalTime.parse(getTime(end));
@@ -220,7 +214,7 @@ public class Server extends Thread {
                 //System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
                 if (!todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
                     result = true;
-                    
+
                 } else {
                     if (todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
                         if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
@@ -234,8 +228,8 @@ public class Server extends Thread {
                         if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
                             if ((endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime))) {
                                 result = true;
-                              }
-                           
+                            }
+
                         }
                     }
                 }
@@ -244,35 +238,34 @@ public class Server extends Thread {
             System.out.println("NO YOUR DATE IS WRONG");
             result = false;
         }
-
         return result;
     }
+
     public String getTime(String str) {
         String submitedTime = str.substring(11, str.length());
         return submitedTime;
-
-       
     }
 
-    public void setSchedule(String startDate,String endDate) {
+    public void setSchedule(String startDate, String endDate) {
         if (schema == null) {
             schema = new Schema(startDate, endDate, this);
         } else {
             sendRequest("off");
             schema.setFlag(false);
             //schema.sendRequest("off");
-            schema=null;
+            schema = null;
             schema = new Schema(startDate, endDate, this);
         }
     }
 
-    public boolean getStatus(){
+    public boolean getStatus() {
         return lampStatus;
     }
-    public void setStatus(boolean status)
-    {
-        this.lampStatus=status;
+
+    public void setStatus(boolean status) {
+        this.lampStatus = status;
     }
+
     public void sendRequest(String request) {
         try {
             request = "server" + request;

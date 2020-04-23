@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * 11/04/2020
  *
- * @Mohammed Hazem Kudaimi
+ * @Mohammed Hazem Kudaimi and Mohammed Amayri
  */
 
 public class MainProgramClient {

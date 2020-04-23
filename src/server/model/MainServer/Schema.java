@@ -12,6 +12,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri and Moahmmed Hazem Kudaimi
+ */
+
 public class Schema extends Thread {
     private String start;
     private String end;
@@ -96,7 +102,7 @@ public class Schema extends Thread {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                System.out.println("TIME IS PERFECT");
+                //System.out.println("TIME IS PERFECT");
                 try {
                     if(!server.getStatus()){
                         sendRequest("on");
@@ -106,7 +112,7 @@ public class Schema extends Thread {
                     System.out.println("Sleep problem");
                 }
             }
-            System.out.println("SORRY very SORRY");
+            //System.out.println("SORRY very SORRY");
             try {
                 //sendRequest("off");
                 sleep(10000);
@@ -132,12 +138,5 @@ public class Schema extends Thread {
 
     public void setFlag(boolean bool) {
         this.flag = bool;
-    }
-
-    public static void main(String[] args) {
-        String sta="2020-04-23 12:27:00";
-        String end="2020-04-23 12:28:00";
-        //Schema sc=new Schema(sta,end);
-
     }
 }

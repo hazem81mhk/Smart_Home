@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * 18/04/2020
+ *
+ * @Agon Beqa
+ */
+
 public class ClientLogin extends JPanel{
     private Controller controller;
     private JTextField jtfusr = new JTextField();

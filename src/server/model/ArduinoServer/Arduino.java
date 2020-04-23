@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri and Moahmmed Hazem Kudaimi
+ */
+
 public class Arduino {
     OutputStream ous;
 

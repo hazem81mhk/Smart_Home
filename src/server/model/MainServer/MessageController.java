@@ -14,6 +14,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri and Moahmmed Hazem Kudaimi
+ */
 
 public class MessageController extends Thread {
     private final Server server;

@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri
+ */
+
 public class Request implements Serializable {
     private User sender;
     private ArrayList<User> reciverList;

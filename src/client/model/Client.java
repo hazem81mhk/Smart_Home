@@ -68,21 +68,30 @@ public class Client extends Thread {
         if (object instanceof Request) {
             Request request = (Request) object;
             String stateTxt = request.getTextMessage();
-            if(stateTxt.toLowerCase().contains("arduino is cnnected"))
+            if (stateTxt.toLowerCase().contains("arduino is cnnected")) {
                 System.out.println("Message receive from the server: Arduino is Connected");
+                controller.sendUpdate("Arduino is Connected");
+            }
             if (stateTxt.toLowerCase().contains("on")) {
                 System.out.println("Message receive from the server: Now, The lamp is on");
                 controller.setButtonOff();
+                controller.sendUpdate("Lamp is on");
             }
             if (stateTxt.toLowerCase().contains("off")) {
                 System.out.println("Message receive from the server: Now, the lamp is off");
                 controller.setButtonOn();
+                controller.sendUpdate("Lamp is off");
                 //System.out.println(request.getTextMessage());
-
-        /*} else if (object instanceof Statee) {
+            }
+        /* if (object instanceof Statee) {
             stateHandler((Statee) object);
         }*/
-            }
+
+        }
+        if (object instanceof ConsumptionCounter) {
+            consumptionHandler((ConsumptionCounter) object);
+        }
+    }
 
    /* public void stateHandler(Statee state) {
         String stateTxt = state.getState();
@@ -93,16 +102,13 @@ public class Client extends Thread {
             System.out.println("lamp is off");
         }
     */
-        }
-        if (object instanceof ConsumptionCounter)
-        {
-            consumptionHandler((ConsumptionCounter)object);
-        }
-    }
+
 
     private void consumptionHandler(ConsumptionCounter object) {
-        String str=("From"+object.getDateStart()+" To: "+object.getDateEnd()+" You have spent :"+object.getCost()+" On the lamp");
-        JOptionPane.showMessageDialog(null,str);
+        //String str = ("From" + object.getDateStart() + " To: " + object.getDateEnd() + " You have spent :" + object.getCost() + " On the lamp");
+        String str = String.format(" You have spent :%1.2fkr On the lamp", object.getCost() );
+        System.out.println(str);
+        //JOptionPane.showMessageDialog(null, str);
         controller.sendUpdate(str);
     }
 
@@ -116,6 +122,7 @@ public class Client extends Thread {
             System.out.println("There is a problem to send the request");
         }
     }
+
     public void sendCons(ConsumptionCounter cons) {
         System.out.println("Get consumption is send to server");
         try {
@@ -128,7 +135,9 @@ public class Client extends Thread {
 
     public void sendUser(User user) {
         try {
-            System.out.println("User name: " + user.getName() + ", is connected to the server.");
+            String str = "User name: " + user.getName() + ", is connected to the server.";
+            System.out.println(str);
+            //controller.sendUpdate(str);
             ous.writeObject(user);
             ous.flush();
         } catch (IOException e) {

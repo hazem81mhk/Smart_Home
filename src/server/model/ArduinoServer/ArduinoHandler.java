@@ -7,7 +7,7 @@ import java.net.Socket;
 /**
  * 05/04/2020
  *
- * @Mohammed Hazem Kudaimi
+ * @Mohammed Hazem Kudaimi and Mohammed Amayri
  */
 
 public class ArduinoHandler extends Thread {

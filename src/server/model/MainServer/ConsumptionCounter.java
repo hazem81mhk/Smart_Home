@@ -2,6 +2,12 @@ package server.model.MainServer;
 
 import java.io.Serializable;
 
+/**
+ * 10/04/2020
+ *
+ * @Mohammed Amayri
+ */
+
 public class ConsumptionCounter implements Serializable {
     String dateStart;
     String dateEnd;

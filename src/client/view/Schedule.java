@@ -2,6 +2,12 @@ package client.view;
 
 import java.io.Serializable;
 
+/**
+ * 18/04/2020
+ *
+ * @Mohammed Amayri
+ */
+
 public class Schedule implements Serializable {
     private String startSchedule;
     private String endSchedule;
