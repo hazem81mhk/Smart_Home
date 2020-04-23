@@ -2,6 +2,7 @@ package client.model;
 
 import client.controller.Controller;
 import client.view.Schedule;
+import server.model.ArduinoServer.Statee;
 import server.model.MainServer.Request;
 import server.model.MainServer.User;
 
@@ -30,9 +31,9 @@ public class Client extends Thread {
     public Client(String ip, int port, String userName, Controller controller) {
         this.ip = ip;
         this.port = port;
-        this.userName =userName;
-        this.user=new User(userName);
-        this.controller=controller;
+        this.userName = userName;
+        this.user = new User(userName);
+        this.controller = controller;
         start();
     }
 
@@ -65,13 +66,38 @@ public class Client extends Thread {
     private void sort(Object object) {
         if (object instanceof Request) {
             Request request = (Request) object;
-            System.out.println(request.getTextMessage());
+            String stateTxt = request.getTextMessage();
+            if(stateTxt.toLowerCase().contains("arduino is cnnected"))
+                System.out.println("Arduino is Connected");
+            if (stateTxt.toLowerCase().contains("on")) {
+                System.out.println("Lamp is on");
+                controller.setButtonOff();
+            }
+            if (stateTxt.toLowerCase().contains("off")) {
+                System.out.println("lamp is off");
+                controller.setButtonOn();
+                //System.out.println(request.getTextMessage());
+
+        /*} else if (object instanceof Statee) {
+            stateHandler((Statee) object);
+        }*/
+            }
+
+   /* public void stateHandler(Statee state) {
+        String stateTxt = state.getState();
+        if (stateTxt.toLowerCase().contains("on")) {
+            System.out.println("Lamp is on");
+        }
+        if (stateTxt.toLowerCase().contains("off")) {
+            System.out.println("lamp is off");
+        }
+    */
         }
     }
 
     public void sendRequest(String request) {
         Request req = new Request(request);
-        System.out.println("Request to the server send: "+request);
+        System.out.println("Request to the server send: " + request);
         try {
             ous.writeObject(req);
             ous.flush();
@@ -82,7 +108,7 @@ public class Client extends Thread {
 
     public void sendUser(User user) {
         try {
-            System.out.println("User name: "+user.getName()+", is connected to the server.");
+            System.out.println("User name: " + user.getName() + ", is connected to the server.");
             ous.writeObject(user);
             ous.flush();
         } catch (IOException e) {
@@ -90,9 +116,9 @@ public class Client extends Thread {
         }
     }
 
-    public void sendSchedule(Schedule schedule){
+    public void sendSchedule(Schedule schedule) {
         try {
-            System.out.println("Schedule to the server send: "+schedule);
+            System.out.println("Schedule to the server send: " + schedule);
             ous.writeObject(schedule);
             ous.flush();
         } catch (IOException e) {

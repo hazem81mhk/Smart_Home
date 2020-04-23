@@ -38,6 +38,13 @@ public class Controller {
                 mainFrame.getMainPanel().getGui().getTotime());
         client.sendSchedule(schedule);
     }
+    public void setButtonOff(){
+        mainFrame.getMainPanel().getGui().setLampButtonOff();
+    }
+
+    public void setButtonOn(){
+        mainFrame.getMainPanel().getGui().setLampButtonOn();
+    }
 
     public void buttonPressed(ButtonType button) {
         switch (button) {
@@ -51,7 +58,7 @@ public class Controller {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                mainFrame.getMainPanel().getGui().setLampButtonOff();
+                //mainFrame.getMainPanel().getGui().setLampButtonOff();
                 break;
             case lamp1_off:
                 client.sendRequest("off");
@@ -60,7 +67,7 @@ public class Controller {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                mainFrame.getMainPanel().getGui().setLampButtonOn();
+                //mainFrame.getMainPanel().getGui().setLampButtonOn();
                 break;
             case start_schedule:
                 startSchedule();

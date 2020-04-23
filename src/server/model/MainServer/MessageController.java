@@ -116,7 +116,7 @@ public class MessageController extends Thread {
             server.setOffTimer(Calendar.getInstance().getTime());
             server.setStatus(false);
         }
-        if (stateTxt.toLowerCase().contains("connected")) {
+        if (stateTxt.toLowerCase().contains("cnnected")) {
             server.sendTrafficMessage(time + "    " + stateTxt);
         }
         Request requestToClient = new Request("State update:" + stateTxt);

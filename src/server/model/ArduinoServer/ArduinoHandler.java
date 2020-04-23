@@ -72,8 +72,8 @@ public class ArduinoHandler extends Thread {
     private void StatusUpdate(String inputMessage) {
         //System.out.println("Our input Message is :" + inputMessage);
         switch (inputMessage) {
-            case "Connected":
-                sendStatus("Arduino is Connected");
+            case "Cnnected":
+                sendStatus("Arduino is Cnnected");
                 try {
                     Arduino arduino = new Arduino(socket.getOutputStream());
                     server.setArduino(arduino);
