@@ -29,7 +29,7 @@ public class Schema extends Thread {
         boolean result = false;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        String currentDate = sdf.format(Calendar.getInstance().getTime());//readLine();
         Date startDate = sdf.parse(start);
         Date endDate = sdf.parse(end);
         Date todaysDate = sdf.parse(currentDate);
