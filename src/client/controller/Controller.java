@@ -46,9 +46,21 @@ public class Controller {
                 break;
             case lamp1_On:
                 client.sendRequest("on");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mainFrame.getMainPanel().getGui().setLampButtonOff();
                 break;
             case lamp1_off:
                 client.sendRequest("off");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mainFrame.getMainPanel().getGui().setLampButtonOn();
                 break;
             case start_schedule:
                 startSchedule();
