@@ -109,10 +109,12 @@ public class MessageController extends Thread {
         if (stateTxt.toLowerCase().contains("on")) {
             server.sendTrafficMessage(time + "    " + stateTxt);
             server.setOnTimer(Calendar.getInstance().getTime());
+            server.setStatus(true);
         }
         if (stateTxt.toLowerCase().contains("off")) {
             server.sendTrafficMessage(time + "    " + stateTxt);
             server.setOffTimer(Calendar.getInstance().getTime());
+            server.setStatus(false);
         }
         if (stateTxt.toLowerCase().contains("connected")) {
             server.sendTrafficMessage(time + "    " + stateTxt);

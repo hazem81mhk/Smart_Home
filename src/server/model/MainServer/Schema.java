@@ -16,10 +16,12 @@ public class Schema extends Thread {
     private String start;
     private String end;
     private boolean flag = true;
+    private Server server;
 
-    public Schema(String start, String end) {
+    public Schema(String start, String end, Server server) {
         this.start = start;
         this.end = end;
+        this.server=server;
         start();
     }
 
@@ -58,12 +60,16 @@ public class Schema extends Thread {
                         if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
                             if ((endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime))) {
                                 result = true;
-                                System.out.println("ppp");
-                                if (!current_Time.isBefore(endTime)){
-                                    System.out.println("Time is off");
-                                    //sendRequest("off");
-                                    //setFlag(false);
+                              }
+                            if (current_Time.isAfter(endTime)){
+                                System.out.println("Time is off");
+                                if(server.getStatus())
+                                {
+                                    sendRequest("off");
+                                    setFlag(false);
                                 }
+
+                                //this.isInterrupted();
                             }
                         }
                     }
@@ -92,7 +98,9 @@ public class Schema extends Thread {
                 }
                 System.out.println("TIME IS PERFECT");
                 try {
-                    //sendRequest("on");
+                    if(!server.getStatus()){
+                        sendRequest("on");
+                    }
                     sleep(10000);
                 } catch (InterruptedException e) {
                     System.out.println("Sleep problem");
@@ -120,7 +128,6 @@ public class Schema extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void setFlag(boolean bool) {
@@ -128,9 +135,9 @@ public class Schema extends Thread {
     }
 
     public static void main(String[] args) {
-        String sta="2020-04-23 01:33:00";
-        String end="2020-04-23 01:38:00";
-        Schema sc=new Schema(sta,end);
+        String sta="2020-04-23 12:27:00";
+        String end="2020-04-23 12:28:00";
+        //Schema sc=new Schema(sta,end);
 
     }
 }

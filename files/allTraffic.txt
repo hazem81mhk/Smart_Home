@@ -1346,3 +1346,389 @@ The lampa was on for 7
 2020/04/23 01:29:45    The lamp is turned on
 2020/04/23 01:29:55    The lamp is turned on
 2020/04/23 01:30:54    Main server and Arduino server are disconnected
+2020/04/23 12:04:07    Main server is connected at port: 8000
+2020/04/23 12:04:07    Arduino server is connected att port: 9000
+2020/04/23 12:04:11    Main server and Arduino server are disconnected
+2020/04/23 12:05:52    Main server is connected at port: 8000
+2020/04/23 12:05:52    Arduino server is connected att port: 9000
+2020/04/23 12:06:05    asd is connected to the server
+2020/04/23 12:06:44    Arduino is Connected
+2020/04/23 12:06:44    Arduino is Connected
+2020/04/23 12:06:48    The lamp is turned on
+2020/04/23 12:06:52    The lamp is turned off
+2020/04/23 12:06:53    The lampa was on for 0 minutes.
+2020/04/23 12:06:55    The lamp is turned on
+2020/04/23 12:06:57    The lamp is turned off
+2020/04/23 12:06:57    The lampa was on for 0 minutes.
+2020/04/23 12:07:12    The lamp is turned on
+2020/04/23 12:07:12    The lamp is turned off
+2020/04/23 12:07:12    The lampa was on for 0 minutes.
+2020/04/23 12:07:26    The lamp is turned on
+2020/04/23 12:07:38    The lamp is turned off
+2020/04/23 12:07:38    The lampa was on for 0 minutes.
+2020/04/23 12:07:50    The lamp is turned on
+2020/04/23 12:07:50    The lamp is turned off
+2020/04/23 12:07:50    The lampa was on for 0 minutes.
+2020/04/23 12:07:50    The lamp is turned on
+2020/04/23 12:07:54    The lamp is turned off
+2020/04/23 12:07:54    The lampa was on for 0 minutes.
+2020/04/23 12:08:23    The lamp is turned on
+2020/04/23 12:08:25    The lamp is turned off
+2020/04/23 12:08:25    The lamp is turned on
+2020/04/23 12:08:25    The lampa was on for 0 minutes.
+2020/04/23 12:08:25    The lamp is turned on
+2020/04/23 12:08:25    The lamp is turned off
+2020/04/23 12:08:25    The lampa was on for 0 minutes.
+2020/04/23 12:08:39    The lamp is turned off
+2020/04/23 12:08:39    The lamp is turned on
+2020/04/23 12:08:39    The lampa was on for 0 minutes.
+2020/04/23 12:09:34    The lamp is turned off
+2020/04/23 12:09:34    The lampa was on for 0 minutes.
+2020/04/23 12:09:36    The lamp is turned on
+2020/04/23 12:09:36    The lamp is turned off
+2020/04/23 12:09:36    The lampa was on for 0 minutes.
+2020/04/23 12:10:27    The lamp is turned on
+2020/04/23 12:11:26    The lamp is turned off
+2020/04/23 12:11:26    The lampa was on for 0 minutes.
+2020/04/23 12:11:28    The lamp is turned on
+2020/04/23 12:16:24    The lamp is turned off
+2020/04/23 12:16:24    The lampa was on for 4 minutes.
+2020/04/23 12:16:26    The lamp is turned on
+2020/04/23 12:16:39    The lamp is turned off
+2020/04/23 12:16:39    The lampa was on for 0 minutes.
+2020/04/23 12:16:42    The lamp is turned on
+2020/04/23 12:17:13    The lamp is turned off
+2020/04/23 12:17:13    The lampa was on for 0 minutes.
+2020/04/23 12:20:59    The lamp is turned on
+2020/04/23 12:21:03    The lamp is turned off
+2020/04/23 12:21:03    The lampa was on for 0 minutes.
+2020/04/23 12:22:47    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 00:00:00}
+2020/04/23 12:22:54    Main server and Arduino server are disconnected
+2020/04/23 14:16:53    Main server is connected at port: 8000
+2020/04/23 14:16:53    Arduino server is connected att port: 9000
+2020/04/23 14:17:13    Arduino is Connected
+2020/04/23 14:17:13    Arduino is Connected
+2020/04/23 14:17:19    Hamodi is connected to the server
+2020/04/23 14:18:17    {startSchedule= 2020-01-01 09:00, endSchedule= 2020-05-01 03:00}
+2020/04/23 14:19:31    The lamp is turned on
+2020/04/23 14:19:35    The lamp is turned on
+2020/04/23 14:19:38    The lamp is turned off
+2020/04/23 14:19:38    The lampa was on for 0 minutes.
+2020/04/23 14:19:47    The lamp is turned on
+2020/04/23 14:19:53    The lamp is turned on
+2020/04/23 14:19:54    The lamp is turned off
+2020/04/23 14:19:54    The lampa was on for 0 minutes.
+2020/04/23 14:19:57    The lamp is turned on
+2020/04/23 14:20:02    The lamp is turned on
+2020/04/23 14:20:03    The lamp is turned off
+2020/04/23 14:20:03    The lampa was on for 0 minutes.
+2020/04/23 14:20:07    The lamp is turned on
+2020/04/23 14:20:25    {startSchedule= 2020-01-01 23:00, endSchedule= 2020-03-01 03:00}
+2020/04/23 14:20:30    The lamp is turned on
+2020/04/23 14:20:32    The lamp is turned on
+2020/04/23 14:20:34    The lamp is turned off
+2020/04/23 14:20:34    The lampa was on for 0 minutes.
+2020/04/23 14:20:55    {startSchedule= 2020-01-01 23:00, endSchedule= 2020-04-01 03:00}
+2020/04/23 14:21:01    {startSchedule= 2020-01-01 23:00, endSchedule= 2020-05-01 03:00}
+2020/04/23 14:21:01    The lamp is turned on
+2020/04/23 14:21:52    The lamp is turned on
+2020/04/23 14:21:54    The lamp is turned on
+2020/04/23 14:21:56    {startSchedule= 2020-01-01 23:00, endSchedule= 2020-03-01 03:00}
+2020/04/23 14:21:59    The lamp is turned off
+2020/04/23 14:21:59    The lampa was on for 0 minutes.
+2020/04/23 14:26:48    Main server is connected at port: 8000
+2020/04/23 14:26:48    Arduino server is connected att port: 9000
+2020/04/23 14:27:08    Hazem is connected to the server
+2020/04/23 14:27:11    Arduino is Connected
+2020/04/23 14:27:11    Arduino is Connected
+2020/04/23 14:27:26    The lamp is turned on
+2020/04/23 14:27:30    The lamp is turned off
+2020/04/23 14:27:30    The lampa was on for 0 minutes.
+2020/04/23 14:27:38    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 02:20:00}
+2020/04/23 14:27:58    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-07-01 02:20:00}
+2020/04/23 14:27:58    The lamp is turned on
+2020/04/23 14:29:05    {startSchedule= 2020-04-23 14:25:00, endSchedule= 2020-04-23 14:30:00}
+2020/04/23 14:30:05    The lamp is turned off
+2020/04/23 14:30:05    The lampa was on for 2 minutes.
+2020/04/23 14:30:15    The lamp is turned off
+2020/04/23 14:30:15    The lampa was on for 2 minutes.
+2020/04/23 14:30:25    The lamp is turned off
+2020/04/23 14:30:25    The lampa was on for 2 minutes.
+2020/04/23 14:30:35    The lamp is turned off
+2020/04/23 14:30:35    The lampa was on for 2 minutes.
+2020/04/23 14:30:45    The lamp is turned off
+2020/04/23 14:30:45    The lampa was on for 2 minutes.
+2020/04/23 14:30:55    The lamp is turned off
+2020/04/23 14:30:55    The lampa was on for 2 minutes.
+2020/04/23 14:31:06    The lamp is turned off
+2020/04/23 14:31:06    The lampa was on for 3 minutes.
+2020/04/23 14:31:15    The lamp is turned off
+2020/04/23 14:31:15    The lampa was on for 3 minutes.
+2020/04/23 14:31:26    The lamp is turned off
+2020/04/23 14:31:26    The lampa was on for 3 minutes.
+2020/04/23 14:31:36    The lamp is turned off
+2020/04/23 14:31:36    The lampa was on for 3 minutes.
+2020/04/23 14:31:46    The lamp is turned off
+2020/04/23 14:31:46    The lampa was on for 3 minutes.
+2020/04/23 14:31:56    The lamp is turned off
+2020/04/23 14:31:56    The lampa was on for 3 minutes.
+2020/04/23 14:32:06    The lamp is turned off
+2020/04/23 14:32:06    The lampa was on for 4 minutes.
+2020/04/23 14:32:16    The lamp is turned off
+2020/04/23 14:32:16    The lampa was on for 4 minutes.
+2020/04/23 14:32:26    The lamp is turned off
+2020/04/23 14:32:26    The lampa was on for 4 minutes.
+2020/04/23 14:32:36    The lamp is turned off
+2020/04/23 14:32:36    The lampa was on for 4 minutes.
+2020/04/23 14:32:46    The lamp is turned off
+2020/04/23 14:32:46    The lampa was on for 4 minutes.
+2020/04/23 14:32:58    The lamp is turned off
+2020/04/23 14:32:58    The lampa was on for 5 minutes.
+2020/04/23 14:33:06    The lamp is turned off
+2020/04/23 14:33:06    The lampa was on for 5 minutes.
+2020/04/23 14:33:16    The lamp is turned off
+2020/04/23 14:33:16    The lampa was on for 5 minutes.
+2020/04/23 14:33:39    Main server is connected at port: 8000
+2020/04/23 14:33:39    Arduino server is connected att port: 9000
+2020/04/23 14:33:44    Arduino is Connected
+2020/04/23 14:33:44    Arduino is Connected
+2020/04/23 14:33:58    asd is connected to the server
+2020/04/23 14:34:02    The lamp is turned on
+2020/04/23 14:34:04    The lamp is turned off
+2020/04/23 14:34:04    The lampa was on for 0 minutes.
+2020/04/23 14:34:09    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 00:20:00}
+2020/04/23 14:34:21    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-07-01 00:20:00}
+2020/04/23 14:34:21    The lamp is turned on
+2020/04/23 14:34:42    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:20:00}
+2020/04/23 14:36:14    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-08-01 00:20:00}
+2020/04/23 14:37:57    Main server is connected at port: 8000
+2020/04/23 14:37:57    Arduino server is connected att port: 9000
+2020/04/23 14:38:16    Arduino is Connected
+2020/04/23 14:38:16    Arduino is Connected
+2020/04/23 14:38:31    sdad is connected to the server
+2020/04/23 14:38:35    The lamp is turned on
+2020/04/23 14:38:40    The lamp is turned off
+2020/04/23 14:38:40    The lampa was on for 0 minutes.
+2020/04/23 14:38:54    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:00:00}
+2020/04/23 14:38:54    The lamp is turned off
+2020/04/23 14:38:54    The lampa was on for 0 minutes.
+2020/04/23 14:42:39    Main server is connected at port: 8000
+2020/04/23 14:42:39    Arduino server is connected att port: 9000
+2020/04/23 14:42:44    Arduino is Connected
+2020/04/23 14:42:44    Arduino is Connected
+2020/04/23 14:42:55    asd is connected to the server
+2020/04/23 14:43:03    The lamp is turned on
+2020/04/23 14:43:06    The lamp is turned off
+2020/04/23 14:43:06    The lampa was on for 0 minutes.
+2020/04/23 14:43:13    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-02-01 00:00:00}
+2020/04/23 14:43:42    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-06-01 00:00:00}
+2020/04/23 14:43:42    The lamp is turned on
+2020/04/23 14:44:05    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:00:00}
+2020/04/23 14:50:09    Main server is connected at port: 8000
+2020/04/23 14:50:09    Arduino server is connected att port: 9000
+2020/04/23 14:50:39    Arduino is Connected
+2020/04/23 14:50:39    Arduino is Connected
+2020/04/23 14:50:45    asd is connected to the server
+2020/04/23 14:50:48    The lamp is turned on
+2020/04/23 14:50:52    The lamp is turned off
+2020/04/23 14:50:52    The lampa was on for 0 minutes.
+2020/04/23 14:50:54    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 00:25:00}
+2020/04/23 14:50:58    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-10-01 00:25:00}
+2020/04/23 14:50:58    The lamp is turned off
+2020/04/23 14:50:58    The lampa was on for 0 minutes.
+2020/04/23 14:51:08    The lamp is turned on
+2020/04/23 14:51:24    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-10-01 00:25:00}
+2020/04/23 14:51:25    The lamp is turned off
+2020/04/23 14:51:25    The lampa was on for 0 minutes.
+2020/04/23 14:51:35    The lamp is turned on
+2020/04/23 14:51:52    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-04-01 00:25:00}
+2020/04/23 14:51:52    The lamp is turned off
+2020/04/23 14:51:52    The lampa was on for 0 minutes.
+2020/04/23 14:52:38    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-07-01 00:25:00}
+2020/04/23 14:52:38    The lamp is turned off
+2020/04/23 14:52:38    The lampa was on for 1 minutes.
+2020/04/23 14:52:49    The lamp is turned on
+2020/04/23 14:53:29    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-07-01 00:25:00}
+2020/04/23 14:53:29    The lamp is turned off
+2020/04/23 14:53:29    The lampa was on for 0 minutes.
+2020/04/23 14:53:39    The lamp is turned on
+2020/04/23 14:53:44    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-07-01 00:25:00}
+2020/04/23 14:53:44    The lamp is turned off
+2020/04/23 14:53:44    The lampa was on for 0 minutes.
+2020/04/23 14:53:54    The lamp is turned on
+2020/04/23 14:57:50    The lamp is turned off
+2020/04/23 14:57:50    The lampa was on for 3 minutes.
+2020/04/23 14:57:55    The lamp is turned on
+2020/04/23 14:58:03    The lamp is turned off
+2020/04/23 14:58:03    The lampa was on for 0 minutes.
+2020/04/23 14:58:05    The lamp is turned on
+2020/04/23 14:58:09    The lamp is turned off
+2020/04/23 14:58:09    The lampa was on for 0 minutes.
+2020/04/23 14:58:15    The lamp is turned on
+2020/04/23 14:58:21    The lamp is turned off
+2020/04/23 14:58:21    The lampa was on for 0 minutes.
+2020/04/23 14:58:25    The lamp is turned on
+2020/04/23 14:59:26    The lamp is turned on
+2020/04/23 14:59:30    The lamp is turned off
+2020/04/23 14:59:30    The lampa was on for 0 minutes.
+2020/04/23 14:59:35    The lamp is turned on
+2020/04/23 15:00:37    {startSchedule= 2020-04-23 15:00:00, endSchedule= 2020-04-23 15:05:00}
+2020/04/23 15:00:37    The lamp is turned off
+2020/04/23 15:00:37    The lampa was on for 1 minutes.
+2020/04/23 15:00:47    The lamp is turned on
+2020/04/23 15:00:54    {startSchedule= 2020-04-23 15:05:00, endSchedule= 2020-04-23 15:10:00}
+2020/04/23 15:00:54    The lamp is turned off
+2020/04/23 15:00:54    The lampa was on for 0 minutes.
+2020/04/23 15:05:07    The lamp is turned on
+2020/04/23 15:06:48    Main server is connected at port: 8000
+2020/04/23 15:06:48    Arduino server is connected att port: 9000
+2020/04/23 15:07:04    asd is connected to the server
+2020/04/23 15:07:04    Arduino is Connected
+2020/04/23 15:07:04    Arduino is Connected
+2020/04/23 15:07:14    The lamp is turned on
+2020/04/23 15:07:15    The lamp is turned off
+2020/04/23 15:07:15    The lampa was on for 0 minutes.
+2020/04/23 15:07:24    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 00:00:00}
+2020/04/23 15:07:27    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-09-01 00:00:00}
+2020/04/23 15:07:27    The lamp is turned off
+2020/04/23 15:07:27    The lampa was on for 0 minutes.
+2020/04/23 15:07:37    The lamp is turned on
+2020/04/23 15:07:46    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:00:00}
+2020/04/23 15:07:47    The lamp is turned off
+2020/04/23 15:07:47    The lampa was on for 0 minutes.
+2020/04/23 15:07:54    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-06-01 00:00:00}
+2020/04/23 15:07:55    The lamp is turned off
+2020/04/23 15:07:55    The lampa was on for 0 minutes.
+2020/04/23 15:08:04    The lamp is turned on
+2020/04/23 15:11:17    Main server is connected at port: 8000
+2020/04/23 15:11:17    Arduino server is connected att port: 9000
+2020/04/23 15:11:25    Arduino is Connected
+2020/04/23 15:11:25    Arduino is Connected
+2020/04/23 15:11:38    adsw is connected to the server
+2020/04/23 15:11:43    The lamp is turned on
+2020/04/23 15:11:49    The lamp is turned off
+2020/04/23 15:11:49    The lampa was on for 0 minutes.
+2020/04/23 15:11:51    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-07-01 00:00:00}
+2020/04/23 15:11:52    The lamp is turned off
+2020/04/23 15:11:52    The lampa was on for 0 minutes.
+2020/04/23 15:12:02    The lamp is turned on
+2020/04/23 15:12:06    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-02-01 00:00:00}
+2020/04/23 15:12:06    The lamp is turned off
+2020/04/23 15:12:06    The lampa was on for 0 minutes.
+2020/04/23 15:12:14    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-08-01 00:00:00}
+2020/04/23 15:12:14    The lamp is turned off
+2020/04/23 15:12:14    The lampa was on for 0 minutes.
+2020/04/23 15:12:24    The lamp is turned on
+2020/04/23 15:15:30    Main server is connected at port: 8000
+2020/04/23 15:15:30    Arduino server is connected att port: 9000
+2020/04/23 15:15:56    asd is connected to the server
+2020/04/23 15:16:02    Arduino is Connected
+2020/04/23 15:16:02    Arduino is Connected
+2020/04/23 15:16:03    The lamp is turned on
+2020/04/23 15:16:04    The lamp is turned off
+2020/04/23 15:16:04    The lampa was on for 0 minutes.
+2020/04/23 15:16:07    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:00:00}
+2020/04/23 15:18:37    Main server is connected at port: 8000
+2020/04/23 15:18:37    Arduino server is connected att port: 9000
+2020/04/23 15:19:10    Arduino is Connected
+2020/04/23 15:19:10    Arduino is Connected
+2020/04/23 15:19:15    das is connected to the server
+2020/04/23 15:19:18    The lamp is turned on
+2020/04/23 15:19:22    The lamp is turned off
+2020/04/23 15:19:22    The lampa was on for 0 minutes.
+2020/04/23 15:19:25    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:00:00}
+2020/04/23 15:19:29    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-05-01 00:00:00}
+2020/04/23 15:19:30    The lamp is turned off
+2020/04/23 15:19:30    The lampa was on for 0 minutes.
+2020/04/23 15:19:40    The lamp is turned on
+2020/04/23 15:21:37    Main server is connected at port: 8000
+2020/04/23 15:21:37    Arduino server is connected att port: 9000
+2020/04/23 15:21:55    asd is connected to the server
+2020/04/23 15:21:58    Arduino is Connected
+2020/04/23 15:21:58    Arduino is Connected
+2020/04/23 15:22:06    The lamp is turned on
+2020/04/23 15:22:10    The lamp is turned off
+2020/04/23 15:22:10    The lampa was on for 0 minutes.
+2020/04/23 15:22:13    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-02-01 00:00:00}
+2020/04/23 15:22:18    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-06-01 00:00:00}
+2020/04/23 15:22:18    The lamp is turned off
+2020/04/23 15:22:18    The lampa was on for 0 minutes.
+2020/04/23 15:22:28    The lamp is turned on
+2020/04/23 15:22:36    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-04-01 00:00:00}
+2020/04/23 15:22:36    The lamp is turned off
+2020/04/23 15:22:36    The lampa was on for 0 minutes.
+2020/04/23 15:22:38    The lamp is turned on
+2020/04/23 15:22:57    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-03-01 00:00:00}
+2020/04/23 15:22:57    The lamp is turned off
+2020/04/23 15:22:57    The lampa was on for 0 minutes.
+2020/04/23 15:22:58    The lamp is turned on
+2020/04/23 15:23:03    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-06-01 00:00:00}
+2020/04/23 15:23:03    The lamp is turned off
+2020/04/23 15:23:03    The lampa was on for 0 minutes.
+2020/04/23 15:23:09    The lamp is turned on
+2020/04/23 16:44:27    Main server is connected at port: 8000
+2020/04/23 16:44:27    Arduino server is connected att port: 9000
+2020/04/23 16:44:40    Arduino is Connected
+2020/04/23 16:44:40    Arduino is Connected
+2020/04/23 16:45:24    asd is connected to the server
+2020/04/23 16:45:28    The lamp is turned on
+2020/04/23 16:45:30    The lamp is turned off
+2020/04/23 16:45:30    The lampa was on for 0 minutes.
+2020/04/23 16:45:31    The lamp is turned on
+2020/04/23 16:45:33    The lamp is turned off
+2020/04/23 16:45:33    The lampa was on for 0 minutes.
+2020/04/23 16:45:37    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-08-01 00:00:00}
+2020/04/23 16:45:37    The lamp is turned on
+2020/04/23 16:45:55    Client want to get consumption:[{2020-04-23=355, 2020-04-22=0, 2020-04-18=6, 2020-04-19=16, 2020-04-21=12, 2020-04-20=26}]
+2020/04/23 16:46:08    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-08-01 00:00:00}
+2020/04/23 16:46:08    The lamp is turned off
+2020/04/23 16:46:08    The lampa was on for 0 minutes.
+2020/04/23 16:46:17    The lamp is turned on
+2020/04/23 16:46:35    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-02-01 00:00:00}
+2020/04/23 16:46:35    The lamp is turned off
+2020/04/23 16:46:35    The lampa was on for 0 minutes.
+2020/04/23 16:46:37    The lamp is turned on
+2020/04/23 16:47:20    The lamp is turned on
+2020/04/23 16:47:21    The lamp is turned off
+2020/04/23 16:47:21    The lampa was on for 0 minutes.
+2020/04/23 16:47:27    The lamp is turned on
+2020/04/23 16:47:44    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-05-01 00:00:00}
+2020/04/23 16:47:44    The lamp is turned off
+2020/04/23 16:47:44    The lampa was on for 0 minutes.
+2020/04/23 16:47:48    The lamp is turned on
+2020/04/23 16:48:52    {startSchedule= 2020-04-23 16:45:00, endSchedule= 2020-04-23 16:50:00}
+2020/04/23 16:48:52    The lamp is turned off
+2020/04/23 16:48:52    The lampa was on for 1 minutes.
+2020/04/23 16:48:55    The lamp is turned on
+2020/04/23 16:50:03    The lamp is turned off
+2020/04/23 16:50:03    The lampa was on for 1 minutes.
+2020/04/23 16:50:06    The lamp is turned on
+2020/04/23 17:06:52    Main server is connected at port: 8000
+2020/04/23 17:06:52    Arduino server is connected att port: 9000
+2020/04/23 17:07:07    jkhn is connected to the server
+2020/04/23 17:07:13    Arduino is Connected
+2020/04/23 17:07:13    Arduino is Connected
+2020/04/23 17:07:18    The lamp is turned on
+2020/04/23 17:07:20    The lamp is turned off
+2020/04/23 17:07:20    The lampa was on for 0 minutes.
+2020/04/23 17:07:21    The lamp is turned on
+2020/04/23 17:07:23    The lamp is turned off
+2020/04/23 17:07:23    The lampa was on for 0 minutes.
+2020/04/23 17:07:24    The lamp is turned on
+2020/04/23 17:07:26    The lamp is turned off
+2020/04/23 17:07:26    The lampa was on for 0 minutes.
+2020/04/23 17:07:27    The lamp is turned on
+2020/04/23 17:07:29    The lamp is turned off
+2020/04/23 17:07:29    The lampa was on for 0 minutes.
+2020/04/23 17:07:31    The lamp is turned on
+2020/04/23 17:07:32    The lamp is turned off
+2020/04/23 17:07:32    The lampa was on for 0 minutes.
+2020/04/23 17:07:36    The lamp is turned on
+2020/04/23 17:07:38    The lamp is turned off
+2020/04/23 17:07:38    The lampa was on for 0 minutes.
+2020/04/23 17:07:40    The lamp is turned on
+2020/04/23 17:07:42    The lamp is turned off
+2020/04/23 17:07:42    The lampa was on for 0 minutes.
+2020/04/23 17:07:43    The lamp is turned on
+2020/04/23 17:07:44    The lamp is turned off
+2020/04/23 17:07:44    The lampa was on for 0 minutes.

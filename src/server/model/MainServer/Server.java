@@ -3,6 +3,7 @@ package server.model.MainServer;
 import server.controller.Controller;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,8 @@ public class Server extends Thread {
     private ArrayList<Integer> indexArr = new ArrayList<Integer>();
     private ArrayList<String> indexStr = new ArrayList<String>();
     private Schema schema=null;
+    private boolean lampStatus=false;
+    private MessageController messageController;
 
     public Server(int port, Controller controller) throws IOException {
         this.controller = controller;
@@ -212,11 +215,34 @@ public class Server extends Thread {
 
     public void setSchedule(String startDate,String endDate) {
         if (schema == null) {
-            schema = new Schema(startDate, endDate);
+            schema = new Schema(startDate, endDate, this);
         } else {
+            sendRequest("off");
             schema.setFlag(false);
+            //schema.sendRequest("off");
             schema=null;
-            schema = new Schema(startDate, endDate);
+            schema = new Schema(startDate, endDate, this);
+        }
+    }
+
+    public boolean getStatus(){
+        return lampStatus;
+    }
+    public void setStatus(boolean status)
+    {
+        this.lampStatus=status;
+    }
+    public void sendRequest(String request) {
+        try {
+            request = "server" + request;
+            Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
+            bw.write(request);
+            bw.newLine();
+            bw.flush();
+            arduinoSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

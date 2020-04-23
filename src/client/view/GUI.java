@@ -122,102 +122,27 @@ public class GUI extends JPanel {
         jpsch.setBorder(BorderFactory.createTitledBorder(null, "Schedule", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F1, Color.BLUE));
         //JList för tiden
-        listModel.addElement("00:00");
-        listModel.addElement("00:15");
-        listModel.addElement("00:30");
-        listModel.addElement("00:45");
-        listModel.addElement("01:00");
-        listModel.addElement("01:15");
-        listModel.addElement("01:30");
-        listModel.addElement("01:45");
-        listModel.addElement("02:00");
-        listModel.addElement("02:15");
-        listModel.addElement("02:30");
-        listModel.addElement("02:45");
-        listModel.addElement("03:00");
-        listModel.addElement("03:15");
-        listModel.addElement("03:30");
-        listModel.addElement("03:45");
-        listModel.addElement("04:00");
-        listModel.addElement("04:15");
-        listModel.addElement("04:30");
-        listModel.addElement("04:45");
-        listModel.addElement("05:00");
-        listModel.addElement("05:15");
-        listModel.addElement("05:30");
-        listModel.addElement("05:45");
-        listModel.addElement("06:00");
-        listModel.addElement("06:15");
-        listModel.addElement("06:30");
-        listModel.addElement("06:45");
-        listModel.addElement("07:00");
-        listModel.addElement("07:15");
-        listModel.addElement("07:30");
-        listModel.addElement("07:45");
-        listModel.addElement("08:00");
-        listModel.addElement("08:15");
-        listModel.addElement("08:30");
-        listModel.addElement("08:45");
-        listModel.addElement("09:00");
-        listModel.addElement("09:15");
-        listModel.addElement("09:30");
-        listModel.addElement("09:45");
-        listModel.addElement("10:00");
-        listModel.addElement("10:15");
-        listModel.addElement("10:30");
-        listModel.addElement("10:45");
-        listModel.addElement("11:00");
-        listModel.addElement("11:15");
-        listModel.addElement("11:30");
-        listModel.addElement("11:45");
-        listModel.addElement("12:00");
-        listModel.addElement("12:15");
-        listModel.addElement("12:30");
-        listModel.addElement("12:45");
-        listModel.addElement("13:00");
-        listModel.addElement("13:15");
-        listModel.addElement("13:30");
-        listModel.addElement("13:45");
-        listModel.addElement("14:00");
-        listModel.addElement("14:15");
-        listModel.addElement("14:30");
-        listModel.addElement("14:45");
-        listModel.addElement("15:00");
-        listModel.addElement("15:15");
-        listModel.addElement("15:30");
-        listModel.addElement("15:45");
-        listModel.addElement("16:00");
-        listModel.addElement("16:15");
-        listModel.addElement("16:30");
-        listModel.addElement("16:45");
-        listModel.addElement("17:00");
-        listModel.addElement("17:15");
-        listModel.addElement("17:30");
-        listModel.addElement("17:45");
-        listModel.addElement("18:00");
-        listModel.addElement("18:15");
-        listModel.addElement("18:30");
-        listModel.addElement("18:45");
-        listModel.addElement("19:00");
-        listModel.addElement("19:15");
-        listModel.addElement("19:30");
-        listModel.addElement("19:45");
-        listModel.addElement("20:00");
-        listModel.addElement("20:15");
-        listModel.addElement("20:30");
-        listModel.addElement("20:45");
-        listModel.addElement("21:00");
-        listModel.addElement("21:15");
-        listModel.addElement("21:30");
-        listModel.addElement("21:45");
-        listModel.addElement("22:00");
-        listModel.addElement("22:15");
-        listModel.addElement("22:30");
-        listModel.addElement("22:45");
-        listModel.addElement("23:00");
-        listModel.addElement("23:15");
-        listModel.addElement("23:30");
-        listModel.addElement("23:45");
+        int y = 0;
+        String mystring;
+        String hour;
+        String minute;
+        for (int x = 0; x < 24; x++) {
+            while (y != 60) {
+                if (x < 10) {
+                    hour = ("0" + x);
+                } else {
+                    hour = String.valueOf(x);
+                }
+                if (y < 10) {
+                    minute = ("0" + y);
+                } else {
+                    minute = String.valueOf(y);
+                }
+                y += 5;
+                listModel.addElement(hour + ":" + minute);
+            }
+            y = 0;
+        }
 
         listschedulestartT = new JList<String>(listModel);
 
@@ -474,7 +399,7 @@ public class GUI extends JPanel {
         String Time = listschedulestartT.getSelectedValue();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
         String currentDate = sdf.format(Calendar.getInstance().getTime());
-        this.strttime = currentDate + Month + "-" + Day + " " + Time+":00";
+        this.strttime = currentDate + Month + "-" + Day + " " + Time + ":00";
     }
 
     public String getStarttime() {
@@ -494,7 +419,7 @@ public class GUI extends JPanel {
         String Time = listscheduletoT.getSelectedValue();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
         String currentDate = sdf.format(Calendar.getInstance().getTime());
-        this.totime = currentDate + Month + "-" + Day + " " + Time+":00";
+        this.totime = currentDate + Month + "-" + Day + " " + Time + ":00";
     }
 
     public String getTotime() {
@@ -539,17 +464,25 @@ public class GUI extends JPanel {
         return kw;
     }
 
+    public void setLampButtonOn() {
+        jbon.setEnabled(true);
+        jboff.setEnabled(false);
+    }
+
+    public void setLampButtonOff() {
+        jbon.setEnabled(false);
+        jboff.setEnabled(true);
+    }
+
     class ButtonActionListeners implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == jbon) {
                 controller.buttonPressed(ButtonType.lamp1_On);
-                jbon.setEnabled(false);
-                jboff.setEnabled(true);
+                //setLampButtonOff();
                 //System.out.println("Gui: ON");
             } else if (e.getSource() == jboff) {
                 controller.buttonPressed(ButtonType.lamp1_off);
-                jbon.setEnabled(true);
-                jboff.setEnabled(false);
+                //setLampButtonOn();
                 //System.out.println("Gui: OFF");
             } else if (e.getSource() == jbsch) {
                 //System.out.println("Gui: start schedule");
