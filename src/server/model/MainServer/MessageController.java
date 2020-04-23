@@ -5,6 +5,7 @@ import server.model.ArduinoServer.Statee;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,10 +87,6 @@ public class MessageController extends Thread {
 
     public synchronized void requestHandler(Request msg) throws IOException {
         String request = msg.getTextMessage();
-        String time = sdf.format(new Date());
-        if (request.toLowerCase().contains("getcnsumptin")) {
-            server.printStatics();
-        } else {
             request = "server" + request;
             Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
@@ -98,7 +95,7 @@ public class MessageController extends Thread {
             bw.flush();
             arduinoSocket.close();
         }
-    }
+    
 
     private void stateHandler(Statee state) {
         String stateTxt = state.getState();
@@ -124,8 +121,17 @@ public class MessageController extends Thread {
 
     private void consHandler(ConsumptionCounter consObject) {
         this.consObject = consObject;
-        consObject.setServer(server);
-        consObject.setCost();
+        String dateStart=consObject.getDateStart();
+        String dateEnda=consObject.getDateEnd();
+        int numberOfMinutes;
+		try {
+			numberOfMinutes = server.printStatics(dateStart,dateEnda);
+			 consObject.setConsumedMinuets(numberOfMinutes);
+		     consObject.setCost();
+		} catch (NumberFormatException | ParseException e1) {
+			e1.printStackTrace();
+		} 
+       
         try {
             oosm.writeObject(consObject);
             oosm.flush();

@@ -5,7 +5,10 @@ import server.controller.Controller;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +30,7 @@ public class Server extends Thread {
     private HashMap<String, Integer> ourMap = new HashMap<String, Integer>();
     private ArrayList<Integer> indexArr = new ArrayList<Integer>();
     private ArrayList<String> indexStr = new ArrayList<String>();
+    private int minutesForCost=0;
 
     public Server(int port, Controller controller) throws IOException {
         this.controller = controller;
@@ -142,15 +146,11 @@ public class Server extends Thread {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    public int countConsumptionCost(int kiloWatsPerHour, int costOfOneKilo) {
-        int hours = minutesCounted / 60;
-        int cost = hours * kiloWatsPerHour * costOfOneKilo;
-        return cost;
-    }
+  
 
     // When closing? or when turning the lamp off?
     public void saveTimeToFile() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateToSave = sdf.format(Calendar.getInstance().getTime());
         try (FileWriter fw = new FileWriter("files/lampLog.txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
@@ -163,65 +163,101 @@ public class Server extends Thread {
         }
     }
 
-    public void printStatics() {
-        readAndSort("files/lampLog.txt");
+    public int printStatics(String startDate,String endDate) throws NumberFormatException, ParseException {
+        int result=readAndSort(startDate,endDate);
         String time = sdf.format(new Date());
         String logStr =time+"    Client want to get consumption:"+Arrays.asList(ourMap);
         sendTrafficMessage(logStr);
+        return result;
     }
 
 
-    void readAndSort(String filename) {
-        int index = -1;
+    int readAndSort(String startDate, String endDate)  {
+        
+        int minutesForCost = 0;
         try {
-            FileReader fr = new FileReader(filename);
+            FileReader fr = new FileReader("files/lampLog.txt");
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
             String subString = line.substring(0, 10);
-
+            String lineDate;
             String subString1 = null;
+            int x=0;
             while (line != null) {
-                if (subString.equals(subString1)) {
-                    int number = Integer.parseInt(line.substring(11, line.length()));
-                    {
-                        int toAddTo = indexArr.get(index) + number;
-                        //System.out.println("Arr index"+index+"we found the value "+indexArr.get(index)+" and added "+number+" we got ");
-                        indexArr.add(index, toAddTo);
-                        //System.out.println(indexArr.get(index));
-                    }
-                } else {
-                    index++;
-
-                    //System.out.println("We are increasing the index now ");
-                    subString1 = subString;
-                    int number = Integer.parseInt(line.substring(11, line.length()));
-                    //System.out.println(number);
-
-                    indexArr.add(0);
-                    indexArr.add(index, number);
-                    indexStr.add("");
-                    indexStr.add(index, subString);
-                    //System.out.println("att index"+index+"we added"+number);
-
-                }
+            	
+            	lineDate=line.substring(0,19);
+            	if(checkDate(startDate,endDate,lineDate))
+            	{	int lineNumb=Integer.parseInt(line.substring(20,line.length()));
+            	System.out.println(line);
+            		minutesForCost+=lineNumb;
+            		
+            	}
                 line = br.readLine();
-                if (br.equals(null)) {
-                    break;
-                } else {
-                    try {
-                        subString = line.substring(0, 10);
-                    } catch (NullPointerException e) {
+                x++;
+            }
+           }
+        
+            catch(NumberFormatException | ParseException | IOException e )
+            {
+            	System.out.println(e);
+            }
+		return minutesForCost;
 
+    }
+    
+    public boolean checkDate(String start, String end,String line) throws ParseException {
+        boolean result = false;
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    
+		String lineDate=line.substring(0,10);
+        Date startDate = sdf.parse(start);
+        Date endDate = sdf.parse(end);
+        Date todaysDate = sdf.parse(lineDate);
+
+        //String currentTime = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+        
+        LocalTime current_Time = LocalTime.parse(getTime(line));
+        LocalTime startTime = LocalTime.parse(getTime(start));
+        LocalTime endTime = LocalTime.parse(getTime(end));
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        //System.out.println(localDateTime);
+
+        if (todaysDate.after(startDate) || todaysDate.equals(startDate)) {
+            if (todaysDate.before(endDate) || todaysDate.equals(endDate)) {
+                //System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
+                if (!todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
+                    result = true;
+                    
+                } else {
+                    if (todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
+                        if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
+                            result = true;
+                        }
+                    }
+                    if (endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime) && !endDate.equals(startDate)) {
+                        result = true;
+                    }
+                    if (startDate.equals(endDate) && startDate.equals(todaysDate)) {
+                        if (current_Time.isAfter(startTime) && startTime.isBefore(LocalTime.parse("23:59:59"))) {
+                            if ((endTime.isAfter(LocalTime.parse("00:00:00")) && current_Time.isBefore(endTime))) {
+                                result = true;
+                              }
+                           
+                        }
                     }
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Hello,sorry to bother you but there is an error");
+        } else {
+            System.out.println("NO YOUR DATE IS WRONG");
+            result = false;
         }
-        for (int x = 0; x <= index; x++) {
-            ourMap.put(indexStr.get(x), indexArr.get(x));
-        }
-
+        return result;
+    }
+    public String getTime(String str) {
+        String submitedTime = str.substring(11, str.length());
+        return submitedTime;
     }
 }
 
