@@ -7,6 +7,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class GUI extends JPanel {
     private Controller controller;
@@ -226,18 +228,18 @@ public class GUI extends JPanel {
         JScrollPane Time = new JScrollPane(listschedulestartT);
 
         //JList för Month
-        lmmonth.addElement("January");
-        lmmonth.addElement("February");
-        lmmonth.addElement("March");
-        lmmonth.addElement("April");
-        lmmonth.addElement("May");
-        lmmonth.addElement("June");
-        lmmonth.addElement("July");
-        lmmonth.addElement("August");
-        lmmonth.addElement("September");
-        lmmonth.addElement("October");
-        lmmonth.addElement("November");
-        lmmonth.addElement("December");
+        lmmonth.addElement("01");
+        lmmonth.addElement("02");
+        lmmonth.addElement("03");
+        lmmonth.addElement("04");
+        lmmonth.addElement("05");
+        lmmonth.addElement("06");
+        lmmonth.addElement("07");
+        lmmonth.addElement("08");
+        lmmonth.addElement("09");
+        lmmonth.addElement("10");
+        lmmonth.addElement("11");
+        lmmonth.addElement("12");
 
         listschedulestartM = new JList<String>(lmmonth);
         listschedulestartM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -247,15 +249,15 @@ public class GUI extends JPanel {
         JScrollPane Month = new JScrollPane(listschedulestartM);
 
         //JList för dagar
-        lmday.addElement("1");
-        lmday.addElement("2");
-        lmday.addElement("3");
-        lmday.addElement("4");
-        lmday.addElement("5");
-        lmday.addElement("6");
-        lmday.addElement("7");
-        lmday.addElement("8");
-        lmday.addElement("9");
+        lmday.addElement("01");
+        lmday.addElement("02");
+        lmday.addElement("03");
+        lmday.addElement("04");
+        lmday.addElement("05");
+        lmday.addElement("06");
+        lmday.addElement("07");
+        lmday.addElement("08");
+        lmday.addElement("09");
         lmday.addElement("10");
         lmday.addElement("11");
         lmday.addElement("12");
@@ -458,11 +460,21 @@ public class GUI extends JPanel {
         jpcons.add(jbcons);
     }
 
+
     public void setStarttime(String Month, String Day, String Time) {
         Month = listschedulestartM.getSelectedValue();
         Day = listschedulestartD.getSelectedValue();
         Time = listschedulestartT.getSelectedValue();
         this.strttime = "Time start from: " + Month + ", " + Day + ", " + Time;
+    }
+
+    public void setSelectedStarttime() {
+        String Month = listschedulestartM.getSelectedValue();
+        String Day = listschedulestartD.getSelectedValue();
+        String Time = listschedulestartT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.strttime = currentDate + Month + "-" + Day + " " + Time+":00";
     }
 
     public String getStarttime() {
@@ -474,6 +486,15 @@ public class GUI extends JPanel {
         Day = listscheduletoD.getSelectedValue();
         Time = listscheduletoT.getSelectedValue();
         this.totime = "to: " + Month + ", " + Day + ", " + Time;
+    }
+
+    public void setSelectedTotime() {
+        String Month = listscheduletoM.getSelectedValue();
+        String Day = listscheduletoD.getSelectedValue();
+        String Time = listscheduletoT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.totime = currentDate + Month + "-" + Day + " " + Time+":00";
     }
 
     public String getTotime() {
@@ -532,6 +553,11 @@ public class GUI extends JPanel {
                 //System.out.println("Gui: OFF");
             } else if (e.getSource() == jbsch) {
                 //System.out.println("Gui: start schedule");
+                controller.buttonPressed(ButtonType.start_schedule);
+                //setSelectedStarttime();
+                //System.out.println(getStarttime());
+                //setSelectedTotime();
+                //System.out.println(getTotime());
             } else if (e.getSource() == jbcons) {
                 controller.buttonPressed(ButtonType.get_consumption);
                 //System.out.println("Gui: get consumption");

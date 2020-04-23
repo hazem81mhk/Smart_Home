@@ -1,5 +1,6 @@
 package server.model.MainServer;
 
+import client.view.Schedule;
 import server.model.ArduinoServer.Statee;
 
 import java.io.*;
@@ -25,6 +26,7 @@ public class MessageController extends Thread {
     private ArrayList<String> onlineUser;
     private HashMap<String, ObjectOutputStream> userSocket = new HashMap<String, ObjectOutputStream>();
     private ConsumptionCounter consObject;
+    private Schedule schedule;
 
     public MessageController(Server server, Socket socket) {
         this.server = server;
@@ -64,6 +66,8 @@ public class MessageController extends Thread {
             stateHandler((Statee) messageObject);
         } else if (messageObject instanceof ConsumptionCounter) {
             consHandler((ConsumptionCounter) messageObject);
+        } else if (messageObject instanceof Schedule) {
+            schemaHandler((Schedule) messageObject);
         }
     }
 
@@ -78,10 +82,9 @@ public class MessageController extends Thread {
             server.setClientSocket(user.getName(), oosm);
             server.setOnlineUser(user.getName());
         }
-        //not worked
         String userName = user.getName();
         String time = sdf.format(new Date());
-        server.sendTrafficMessage(time + "    " + userName+" is connected to the server");
+        server.sendTrafficMessage(time + "    " + userName + " is connected to the server");
         //System.out.println(userName);
     }
 
@@ -97,7 +100,7 @@ public class MessageController extends Thread {
         }
     
 
-    private void stateHandler(Statee state) {
+    private synchronized void stateHandler(Statee state) {
         String stateTxt = state.getState();
         String time = sdf.format(new Date());
         if (stateTxt.toLowerCase().contains("on")) {
@@ -119,7 +122,7 @@ public class MessageController extends Thread {
         }
     }
 
-    private void consHandler(ConsumptionCounter consObject) {
+    private synchronized void consHandler(ConsumptionCounter consObject) {
         this.consObject = consObject;
         String dateStart=consObject.getDateStart();
         String dateEnda=consObject.getDateEnd();
@@ -138,6 +141,22 @@ public class MessageController extends Thread {
         } catch (IOException e) {
             System.out.println("We have a problem sending consObject");
         }
+    }
+
+    private synchronized void schemaHandler(Schedule schedule) {
+        this.schedule = schedule;
+        String startDate=schedule.getStartSchedule();
+        String endDate=schedule.getEndSchedule();
+        server.setSchedule(startDate,endDate);
+        //  try {
+        //    oosm.writeObject(schedule);
+       //     oosm.flush();
+       // } catch (IOException e) {
+       //     System.out.println("We have a problem sending schemaObject");
+       // }
+        //schema=new Schema(schedule.getStartSchedule(),schedule.getEndSchedule());
+        String time = sdf.format(new Date());
+        server.sendTrafficMessage(time + "    " + schedule);
     }
 
     public synchronized void onlineBroadcast(Request cmdHandler) throws IOException {

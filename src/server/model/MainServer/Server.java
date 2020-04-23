@@ -30,14 +30,17 @@ public class Server extends Thread {
     private HashMap<String, Integer> ourMap = new HashMap<String, Integer>();
     private ArrayList<Integer> indexArr = new ArrayList<Integer>();
     private ArrayList<String> indexStr = new ArrayList<String>();
+
     private int minutesForCost=0;
+
+    private Schema schema=null;
+
 
     public Server(int port, Controller controller) throws IOException {
         this.controller = controller;
         this.serverPort = port;
         serverSocket = new ServerSocket(serverPort);
         sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        //trafficRegister = new TrafficRegister(this);
     }
 
     public void run() {
@@ -107,22 +110,9 @@ public class Server extends Thread {
         return userList;
     }
 
-
-    //public TrafficRegister getTrafficRegister() {
-    //    return trafficRegister;
-    //}
-
     public void sendTrafficMessage(String logStr) {
         controller.disPlayEvent(logStr);
     }
-
-    //public void sendTrafficUser(String logStr) {
-    //    controller.disPlayEvent(logStr);
-    //}
-
-
-
-
 
     public void setOnTimer(Date onTimer) {
         this.onTimer = onTimer;
@@ -253,11 +243,24 @@ public class Server extends Thread {
             System.out.println("NO YOUR DATE IS WRONG");
             result = false;
         }
+
         return result;
     }
     public String getTime(String str) {
         String submitedTime = str.substring(11, str.length());
         return submitedTime;
+
+       
+    }
+
+    public void setSchedule(String startDate,String endDate) {
+        if (schema == null) {
+            schema = new Schema(startDate, endDate);
+        } else {
+            schema.setFlag(false);
+            schema=null;
+            schema = new Schema(startDate, endDate);
+        }
     }
 }
 

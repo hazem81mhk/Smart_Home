@@ -4,6 +4,7 @@ import client.model.Client;
 import client.view.ButtonType;
 import client.view.ClientLogin;
 import client.view.MainFrame;
+import client.view.Schedule;
 
 /**
  * 11/04/2020
@@ -15,6 +16,7 @@ public class Controller {
     private MainFrame mainFrame;
     private ClientLogin clientLogin;
     private Client client;
+    private Schedule schedule;
 
     public Controller() {
         clientLogin = new ClientLogin(this);
@@ -29,6 +31,14 @@ public class Controller {
         mainFrame = new MainFrame(this);
     }
 
+    public void startSchedule() {
+        mainFrame.getMainPanel().getGui().setSelectedStarttime();
+        mainFrame.getMainPanel().getGui().setSelectedTotime();
+        schedule = new Schedule(mainFrame.getMainPanel().getGui().getStarttime(),
+                mainFrame.getMainPanel().getGui().getTotime());
+        client.sendSchedule(schedule);
+    }
+
     public void buttonPressed(ButtonType button) {
         switch (button) {
             case login:
@@ -41,7 +51,7 @@ public class Controller {
                 client.sendRequest("off");
                 break;
             case start_schedule:
-                client.sendRequest("startschedule");
+                startSchedule();
                 break;
             case get_consumption:
                 client.sendRequest("getcnsumptin");

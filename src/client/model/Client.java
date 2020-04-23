@@ -1,6 +1,7 @@
 package client.model;
 
 import client.controller.Controller;
+import client.view.Schedule;
 import server.model.MainServer.Request;
 import server.model.MainServer.User;
 
@@ -86,6 +87,16 @@ public class Client extends Thread {
             ous.flush();
         } catch (IOException e) {
             System.out.println("There is a problem to send the user");
+        }
+    }
+
+    public void sendSchedule(Schedule schedule){
+        try {
+            System.out.println("Schedule to the server send: "+schedule);
+            ous.writeObject(schedule);
+            ous.flush();
+        } catch (IOException e) {
+            System.out.println("There is a problem to send the schedule");
         }
     }
 }
