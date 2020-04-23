@@ -118,7 +118,7 @@ public class Client extends Thread {
 
     public void sendSchedule(Schedule schedule) {
         try {
-            System.out.println("Schedule to the server send: " + schedule);
+            System.out.println("Schedule to the server send:: " + schedule);
             ous.writeObject(schedule);
             ous.flush();
         } catch (IOException e) {
