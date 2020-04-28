@@ -42,6 +42,9 @@ public class Server extends Thread {
     private Schema schema = null;
     private boolean lampStatus = false;
     private MessageController messageController;
+    private double temp=0;
+    private TempSchedule tempSchedule=null;
+    private CurtainSchedule curtainSchedule=null;
 
 
     public Server(int port, Controller controller) throws IOException {
@@ -279,6 +282,40 @@ public class Server extends Thread {
             e.printStackTrace();
         }
     }
+
+	public void setTemp(String str) {
+		this.temp=Double.parseDouble(str);
+		
+	}
+	public double getTemp()
+	{
+		return temp;
+	}
+    public void setTempSchedule(TempSchedule tempSchedule1) {
+        if (tempSchedule == null) {
+        	tempSchedule = tempSchedule1;
+        	tempSchedule1.setServer(this);
+        	tempSchedule1.startTimer();
+        } else {
+        	tempSchedule.stopTimer();
+        	tempSchedule = tempSchedule1;
+        	tempSchedule1.setServer(this);
+        	tempSchedule1.startTimer();
+        }
+    }
+    public void setCurtainSchedule(CurtainSchedule curtainSchedule1) {
+        if (schema == null) {
+        	curtainSchedule = curtainSchedule1;
+        	curtainSchedule.setServer(this);
+        	curtainSchedule.startTimer();
+        } else {
+        	curtainSchedule.stopTimer();
+        	curtainSchedule = curtainSchedule1;
+        	curtainSchedule.setServer(this);
+        	curtainSchedule.startTimer();
+        }
+    }
+
 }
 
     

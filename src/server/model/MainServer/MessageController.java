@@ -73,10 +73,25 @@ public class MessageController extends Thread {
             consHandler((ConsumptionCounter) messageObject);
         } else if (messageObject instanceof Schedule) {
             schemaHandler((Schedule) messageObject);
+        }else if (messageObject instanceof TempSchedule) {
+            tempSchemaHandler((TempSchedule) messageObject);
+        }else if (messageObject instanceof CurtainSchedule) {
+            curtainHandler((CurtainSchedule) messageObject);
         }
     }
 
-    public synchronized void userHandler(User user) throws IOException {
+    private void curtainHandler(CurtainSchedule object) {
+		server.setCurtainSchedule(object);
+		
+	}
+
+	private void tempSchemaHandler(TempSchedule object) {
+		
+    	server.setTempSchedule(object);
+		
+	}
+
+	public synchronized void userHandler(User user) throws IOException {
         this.user = user;
         allUsersList = server.getUsers();
         if (allUsersList.contains(user)) {
@@ -120,6 +135,9 @@ public class MessageController extends Thread {
         }
         if (stateTxt.toLowerCase().contains("cnnected")) {
             server.sendTrafficMessage(time + "    " + stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("temp")) {
+            server.setTemp(stateTxt.substring(5, stateTxt.length()));
         }
         Request requestToClient = new Request("State update:" + stateTxt);
         try {
