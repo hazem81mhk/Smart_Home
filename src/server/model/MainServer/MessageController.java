@@ -22,7 +22,7 @@ import java.util.Map.Entry;
 
 public class MessageController extends Thread {
     private final Server server;
-    private final Socket socket;
+    private  Socket socket;
     //private TrafficRegister trafficRegister;
     private User user;
     private SimpleDateFormat sdf;
@@ -46,6 +46,7 @@ public class MessageController extends Thread {
     public void run() {
         try {
             ObjectInputStream ois = new ObjectInputStream((socket.getInputStream()));
+            this.oosm = new ObjectOutputStream(socket.getOutputStream());
             while (true) {
                 try {
                     Object o = ois.readObject();
@@ -98,7 +99,6 @@ public class MessageController extends Thread {
             server.setOnlineUser(user.getName());
         } else {
             server.addUser(user);
-             this.oosm = new ObjectOutputStream(socket.getOutputStream());
             server.setClientSocket(user.getName(), oosm);
             server.setOnlineUser(user.getName());
         }
@@ -110,17 +110,45 @@ public class MessageController extends Thread {
 
     public synchronized void requestHandler(Request msg) throws IOException {
         String request = msg.getTextMessage();
-            request = "server" + request;
-            Socket arduinoSocket = new Socket(InetAddress.getLocalHost(), 9000);
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(arduinoSocket.getOutputStream()));
-            bw.write(request);
-            bw.newLine();
-            bw.flush();
-            arduinoSocket.close();
+            if(request.toLowerCase().contains("up")||request.toLowerCase().contains("down"))
+            {
+            	curtainHandler(request);
+            }
+        	
+            server.sendRequest(request);
         }
     
 
-    private synchronized void stateHandler(Statee state) {
+    private void curtainHandler(String request) {
+    	if(request.toLowerCase().contains("anyway"))
+    	{
+    		server.cancelSchedule();
+    		server.sendRequest(request.replace("anyway", ""));
+    	}
+    	else {
+    		
+    	if(server.getCurtainState()||server.getCurtainTempState())
+    	{
+    		
+    		Request errReq=new Request("ERR");
+    		try {
+				oosm.writeObject(errReq);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+    	}
+    	else
+    	{
+    		server.sendRequest(request);
+    	}
+    	}
+		
+		
+	}
+
+	private synchronized void stateHandler(Statee state) {
         String stateTxt = state.getState();
         String time = sdf.format(new Date());
         if (stateTxt.toLowerCase().contains("on")) {

@@ -35,11 +35,18 @@ public class TempSchedule extends TimerTask {
 		if(checkTemp()<=rollUpTemp)
 		{
 			server.sendRequest("up");
+			server.setTempScheduleState(true);
 		}
 		if(checkTemp()>=rollDownTemp)
 		{
 			server.sendRequest("down");
+			server.setTempScheduleState(true);
 		}
+		else
+		{
+			server.setTempScheduleState(false);
+		}
+		
 		
 	}
 	private double checkTemp() {
