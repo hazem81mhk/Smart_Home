@@ -45,6 +45,8 @@ public class Server extends Thread {
     private double temp=0;
     private TempSchedule tempSchedule=null;
     private CurtainSchedule curtainSchedule=null;
+    private boolean scheduleState=false;
+    private boolean tempScheduleState=false;
 
 
     public Server(int port, Controller controller) throws IOException {
@@ -315,6 +317,37 @@ public class Server extends Thread {
         	curtainSchedule.startTimer();
         }
     }
+    public void setScheduleState(boolean state)
+    {
+    	this.scheduleState=state;
+    }
+    public boolean getCurtainState()
+    {
+    	return scheduleState;
+    }
+    
+    public void setTempScheduleState(boolean state)
+    {
+    	this.tempScheduleState=state;
+    }
+    public boolean getCurtainTempState()
+    {
+    	return tempScheduleState;
+    }
+
+	public void cancelSchedule() {
+		try {
+			curtainSchedule.cancel();
+			tempSchedule.cancel();
+		}
+		catch(NullPointerException  e)
+		{
+			System.out.println(e);
+		}
+		
+		
+		
+	}
 
 }
 

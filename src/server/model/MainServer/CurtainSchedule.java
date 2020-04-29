@@ -112,6 +112,15 @@ public class CurtainSchedule  extends TimerTask {
 						if (checkDate(start, end))
 						{
 							server.sendRequest(order);
+							server.setScheduleState(true);
+						}
+						else
+						{	if(server.getCurtainState())
+						{
+							server.sendRequest(antiOrder());
+							server.setScheduleState(false);
+						}
+							
 						}
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
@@ -121,7 +130,19 @@ public class CurtainSchedule  extends TimerTask {
             }
         }
     
-    public void stopTimer()
+    private String antiOrder() {
+		String antiOrder;
+		if(order.toLowerCase().contains("up"))
+		{
+			antiOrder="down";
+		}
+		else
+		{
+			antiOrder="up";
+		}
+		return antiOrder;
+	}
+	public void stopTimer()
 	{
 		timer.cancel();
 		

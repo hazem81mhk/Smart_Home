@@ -150,7 +150,7 @@ public class GUI extends JPanel {
         jpsch.setPreferredSize(new Dimension(300, 210));
         jpsch.setBorder(BorderFactory.createTitledBorder(null, "Schedule", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F1, Color.BLUE));
-        //JList för tiden
+        //JList fÃ¶r tiden
         int y = 0;
         String mystring;
         String hour;
@@ -181,7 +181,7 @@ public class GUI extends JPanel {
 
         JScrollPane Time = new JScrollPane(listschedulestartT);
 
-        //JList för Month
+        //JList fÃ¶r Month
         lmmonth.addElement("01");
         lmmonth.addElement("02");
         lmmonth.addElement("03");
@@ -202,7 +202,7 @@ public class GUI extends JPanel {
 
         JScrollPane Month = new JScrollPane(listschedulestartM);
 
-        //JList för dagar
+        //JList fÃ¶r dagar
         lmday.addElement("01");
         lmday.addElement("02");
         lmday.addElement("03");
@@ -263,7 +263,7 @@ public class GUI extends JPanel {
         jpstart.add(Month);
         jpstart.add(Day);
         jpstart.add(Time);
-        //JList för tiden i Schedule to panelen
+        //JList fÃ¶r tiden i Schedule to panelen
         DefaultListModel<String> listModel2 = new DefaultListModel<String>();
         //DefaultListModel listModel = new DefaultListModel();
         listModel2 = listModel;
@@ -274,7 +274,7 @@ public class GUI extends JPanel {
         listscheduletoT.setVisibleRowCount(8);
 
         JScrollPane Time2 = new JScrollPane(listscheduletoT);
-        //JList för Månad i Schedule to panelen
+        //JList fÃ¶r MÃ¥nad i Schedule to panelen
         DefaultListModel<String> lmmonth2 = new DefaultListModel<String>();
         lmmonth2 = lmmonth;
 
@@ -284,7 +284,7 @@ public class GUI extends JPanel {
         listscheduletoM.setVisibleRowCount(9);
 
         JScrollPane Month2 = new JScrollPane(listscheduletoM);
-        //JList för dagar i schedule to panelen
+        //JList fÃ¶r dagar i schedule to panelen
         DefaultListModel<String> lmday2 = new DefaultListModel<>();
         lmday2 = lmday;
 
@@ -338,7 +338,7 @@ public class GUI extends JPanel {
 
         JScrollPane Time3 = new JScrollPane(listconsfromT);
 
-        //JList för Month i Consumption from panelen
+        //JList fÃ¶r Month i Consumption from panelen
         DefaultListModel<String> lmmonth3 = new DefaultListModel<String>();
         lmmonth3 = lmmonth;
 
@@ -349,7 +349,7 @@ public class GUI extends JPanel {
 
         JScrollPane Month3 = new JScrollPane(listconsfromM);
 
-        //JList för dagar i Consuption from panelen
+        //JList fÃ¶r dagar i Consuption from panelen
         DefaultListModel<String> lmday3 = new DefaultListModel<>();
         lmday3 = lmday;
 
@@ -366,7 +366,7 @@ public class GUI extends JPanel {
         jpconsfr.add(Month3);
         jpconsfr.add(Day3);
         jpconsfr.add(Time3);
-        //JList för tiden i Consumption To panelen
+        //JList fÃ¶r tiden i Consumption To panelen
         DefaultListModel<String> listModel4 = new DefaultListModel<>();
         listModel4 = listModel;
 
@@ -376,7 +376,7 @@ public class GUI extends JPanel {
         listconstoT.setVisibleRowCount(8);
 
         JScrollPane Time4 = new JScrollPane(listconstoT);
-        //Jlist för månader i consumption to panelen
+        //Jlist fÃ¶r mÃ¥nader i consumption to panelen
         DefaultListModel<String> lmmonth4 = new DefaultListModel<>();
         lmmonth4 = lmmonth;
         listconstoM = new JList<String>(lmmonth4);
@@ -385,7 +385,7 @@ public class GUI extends JPanel {
         listconstoM.setVisibleRowCount(9);
 
         JScrollPane Month4 = new JScrollPane(listconstoM);
-        //JList för dagar i consumption to panelen
+        //JList fÃ¶r dagar i consumption to panelen
         DefaultListModel<String> lmday4 = new DefaultListModel<>();
         lmday4 = lmday;
         listconstoD = new JList<>(lmday4);
@@ -400,7 +400,7 @@ public class GUI extends JPanel {
         jpconsto.add(Month4);
         jpconsto.add(Day4);
         jpconsto.add(Time4);
-        //JPanel där jlabel finns och jtextfield
+        //JPanel dÃ¤r jlabel finns och jtextfield
         JPanel jpcon1 = new JPanel();
         jpcons.add(jpcon1);
         jpcon1.setPreferredSize(new Dimension(280, 50));

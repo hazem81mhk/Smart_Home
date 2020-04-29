@@ -1,13 +1,12 @@
 package client.view;
 
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CurtainGui extends JPanel{
+public class CurtainGUI extends JPanel{
     String Curtainsch, Tempsch;
     JPanel jpmain = new JPanel();
     JPanel jp1 = new JPanel();
@@ -25,9 +24,6 @@ public class CurtainGui extends JPanel{
     JLabel jlhr = new JLabel("Higher than ____ to roll down");
     JLabel jllr = new JLabel("Lower than ____ to roll up");
 
-    JTextField jtf1 = new JTextField();
-    JTextField jtf2 = new JTextField();
-
     ButtonGroup ButtonG = new ButtonGroup();
     JCheckBox jcbup = new JCheckBox("UP");
     JCheckBox jcbdwn = new JCheckBox("DOWN");
@@ -39,7 +35,19 @@ public class CurtainGui extends JPanel{
     JSlider jsl1 = new JSlider(JSlider.HORIZONTAL, SLMIN, SLMAX, SLAUTO);
     JSlider jsl2 = new JSlider(JSlider.HORIZONTAL, SLMIN, SLMAX, SLAUTO);
 
-    public CurtainGui() {
+    private JList<String> listschedulestartM;
+    private JList<String> listschedulestartD;
+    private JList<String> listschedulestartT;
+    private JList<String> listscheduletoM;
+    private JList<String> listscheduletoD;
+    private JList<String> listscheduletoT;
+
+
+    DefaultListModel<String> lmmonth = new DefaultListModel<String>();
+    DefaultListModel<String> lmday = new DefaultListModel<>();
+    DefaultListModel<String> lmtime = new DefaultListModel<String>();
+
+    public CurtainGUI() {
         //JFRAME
         JFrame jf = new JFrame();
         jf.add(jpmain);
@@ -73,23 +81,128 @@ public class CurtainGui extends JPanel{
         jp2.setBorder(BorderFactory.createTitledBorder(null,"CurtainSchedule: ",
                     TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,new Font("Arial",Font.PLAIN,15),Color.BLACK));
         jp2.setPreferredSize(new Dimension(330,180));
-        Dimension djt = new Dimension(170,25);
+
         Dimension djl = new Dimension(80,25);
         Dimension dcb = new Dimension(100,40);
         jlf.setPreferredSize(djl);
-        jtf1.setPreferredSize(djt);
         jlt.setPreferredSize(djl);
-        jtf2.setPreferredSize(djt);
         jcbup.setPreferredSize(dcb);
         jcbdwn.setPreferredSize(dcb);
         jbapply1.setPreferredSize(new Dimension(120,30));
         jpmain.add(jp2);
         ButtonG.add(jcbup);
         ButtonG.add(jcbdwn);
+
+        listschedulestartT = new JList<String>(lmtime);
+
+        listschedulestartT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listschedulestartT.setSelectedIndex(0);
+        listschedulestartT.setVisibleRowCount(8);
+
+        JScrollPane Time = new JScrollPane(listschedulestartT);
+
+            listschedulestartM = new JList<String>(lmmonth);
+            listschedulestartM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listschedulestartM.setSelectedIndex(0);
+            listschedulestartM.setVisibleRowCount(9);
+
+            JScrollPane Month = new JScrollPane(listschedulestartM);
+            int y = 0;
+
+            String hour;
+            String minute;
+            String day;
+            String month;
+            for (int m = 0; m<13; m++){
+                if (m<10){
+                    month = ("0" + m);}
+                else {
+                    month = String.valueOf(m);
+                }
+                lmmonth.addElement(month);
+            }
+            for (int z = 0; z<32; z++){
+                if (z<10){
+                day = ("0" + z);}
+                else {
+                    day = String.valueOf(z);
+                }
+                lmday.addElement(day);
+            }
+            for (int x = 0; x < 24; x++) {
+                while (y != 60) {
+                    if (x < 10) {
+                        hour = ("0" + x);
+                    }
+                    else {
+                        hour = String.valueOf(x);
+                    }
+
+                    if (y < 10) {
+                        minute = ("0" + y);
+                    }
+                    else {
+                        minute = String.valueOf(y);
+                    }
+                    y += 5;
+                    lmtime.addElement(hour + ":" + minute);
+                }
+                y = 0;
+            }
+
+            listschedulestartD = new JList<>(lmday);
+            listschedulestartD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listschedulestartD.setSelectedIndex(0);
+            listschedulestartD.setVisibleRowCount(1);
+
+            DefaultListModel<String> listModel2 = new DefaultListModel<String>();
+            //DefaultListModel listModel = new DefaultListModel();
+            listModel2 = lmtime;
+
+            listscheduletoT = new JList<String>(listModel2);
+            listscheduletoT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listscheduletoT.setSelectedIndex(0);
+            listscheduletoT.setVisibleRowCount(1);
+
+            JScrollPane Time2 = new JScrollPane(listscheduletoT);
+            //JList för Månad i Schedule to panelen
+            DefaultListModel<String> lmmonth2 = new DefaultListModel<String>();
+            lmmonth2 = lmmonth;
+
+            listscheduletoM = new JList<>(lmmonth);
+            listscheduletoM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listscheduletoM.setSelectedIndex(0);
+            listscheduletoM.setVisibleRowCount(9);
+
+            JScrollPane Month2 = new JScrollPane(listscheduletoM);
+            //JList för dagar i schedule to panelen
+            DefaultListModel<String> lmday2 = new DefaultListModel<>();
+            lmday2 = lmday;
+
+            listscheduletoD = new JList<>(lmday2);
+            listscheduletoD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listscheduletoD.setSelectedIndex(0);
+            listscheduletoD.setVisibleRowCount(1);
+
+            JScrollPane Day2 = new JScrollPane(listscheduletoD);
+
+            JScrollPane Day = new JScrollPane(listschedulestartD);
+            Month.setPreferredSize(new Dimension(40,25));
+            Day.setPreferredSize(new Dimension(40,25));
+            Time.setPreferredSize(new Dimension(60,25));
+            Month2.setPreferredSize(new Dimension(40,25));
+            Day2.setPreferredSize(new Dimension(40,25));
+            Time2.setPreferredSize(new Dimension(60,25));
+
         jp2.add(jlf);
-        jp2.add(jtf1);
+        jp2.add(Month);
+        jp2.add(Day);
+        jp2.add(Time);
         jp2.add(jlt);
-        jp2.add(jtf2);
+        jp2.add(Month2);
+        jp2.add(Day2);
+        jp2.add(Time2);
+
         jp2.add(jcbup, BorderLayout.CENTER);
         jp2.add(jcbdwn, BorderLayout.CENTER);
         jp2.add(jbapply1);
@@ -125,10 +238,10 @@ public class CurtainGui extends JPanel{
             jbapply2.addActionListener(new TemperatureScheduleActionListen());
     }
     public void setCurtainsch(){
-        String from, to, direction;
-        from = jtf1.getText();
-        to = jtf2.getText();
-        this.Curtainsch ="From: "+ from+ ",to: " + to;
+        String FMonth = listscheduletoM.getSelectedValue();
+        String FDay = listscheduletoD.getSelectedValue();
+        String FTime = listscheduletoT.getSelectedValue();
+        this.Curtainsch ="From: "+ FMonth + ", " + FDay + ", " + FTime+ ",to: ";
     }
     public String getCurtainsch(){
         return  this.Curtainsch;
@@ -176,16 +289,19 @@ public class CurtainGui extends JPanel{
         if (!jcbup.isSelected() && !jcbdwn.isSelected()){
             JOptionPane.showMessageDialog(null, "Pick the direction of the curtain"); }
 
-        else if(jtf1.getText().isEmpty()|jtf2.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Enter when the timer should start and stop");
-        }
         else if (jcbup.isSelected()){
-            System.out.println("Curtain goes UP. From: " + jtf1.getText() + ", To: " + jtf2.getText());
+            System.out.println("Curtain goes UP. From: "  + listschedulestartM.getSelectedValue() +", "+
+                    listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: "+
+                    listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
+                    ", " + listscheduletoT.getSelectedValue());
         }
         else {
-            System.out.println("Curtain goes DOWN. From: " + jtf1.getText() + ", To: " + jtf2.getText());
-        }
-    }}
+            System.out.println("Curtain goes DOWN. From: " + listschedulestartM.getSelectedValue() +", "+
+                    listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: "+
+                    listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
+                    ", " + listscheduletoT.getSelectedValue());
+
+    }}}
 
     class TemperatureScheduleActionListen implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -193,8 +309,7 @@ public class CurtainGui extends JPanel{
         }
     }
 
-    public static void main(String[]args)
-    {
-    	CurtainGui test=new CurtainGui();
+    public static void main(String[] args) {
+        new CurtainGUI();
     }
 }
