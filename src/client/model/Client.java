@@ -2,10 +2,7 @@ package client.model;
 
 import client.controller.Controller;
 import client.view.Schedule;
-import server.model.ArduinoServer.Statee;
-import server.model.MainServer.ConsumptionCounter;
-import server.model.MainServer.Request;
-import server.model.MainServer.User;
+import server.model.MainServer.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -83,6 +80,22 @@ public class Client extends Thread {
                 controller.sendUpdate("Lamp is off");
                 //System.out.println(request.getTextMessage());
             }
+            //AGON
+            if (stateTxt.toLowerCase().contains("up")) {
+                System.out.println("Message receive from the server: Now, The curtain is rolling up");
+                controller.CButtonup();
+                controller.sendUpdate("Curtain is rolling up");
+            }
+            if (stateTxt.toLowerCase().contains("down")) {
+                System.out.println("Message receive from the server: Now, The curtain is rolling down");
+                controller.CButtondown();
+                controller.sendUpdate("Curtain is rolling down");
+            }
+            if (stateTxt.toLowerCase().contains("stop")) {
+                System.out.println("Message receive from the server: Now, The curtain has stopped rolling");
+                controller.CButtonstop();
+                controller.sendUpdate("Curtain has stopped rolling");
+            }
         /* if (object instanceof Statee) {
             stateHandler((Statee) object);
         }*/
@@ -92,7 +105,6 @@ public class Client extends Thread {
             consumptionHandler((ConsumptionCounter) object);
         }
     }
-
    /* public void stateHandler(Statee state) {
         String stateTxt = state.getState();
         if (stateTxt.toLowerCase().contains("on")) {
@@ -102,8 +114,6 @@ public class Client extends Thread {
             System.out.println("lamp is off");
         }
     */
-
-
     private void consumptionHandler(ConsumptionCounter object) {
         //String str = ("From" + object.getDateStart() + " To: " + object.getDateEnd() + " You have spent :" + object.getCost() + " On the lamp");
         String str = String.format(" You have spent :%1.2fkr On the lamp", object.getCost() );
@@ -122,7 +132,6 @@ public class Client extends Thread {
             System.out.println("There is a problem to send the request");
         }
     }
-
     public void sendCons(ConsumptionCounter cons) {
         System.out.println("Get consumption is send to server");
         try {
@@ -132,7 +141,6 @@ public class Client extends Thread {
             System.out.println("There is a problem to send Get consumption");
         }
     }
-
     public void sendUser(User user) {
         try {
             String str = "User name: " + user.getName() + ", is connected to the server.";
@@ -144,7 +152,6 @@ public class Client extends Thread {
             System.out.println("There is a problem to send the user");
         }
     }
-
     public void sendSchedule(Schedule schedule) {
         try {
             System.out.println("Schedule to the server send:: " + schedule);
@@ -152,6 +159,26 @@ public class Client extends Thread {
             ous.flush();
         } catch (IOException e) {
             System.out.println("There is a problem to send the schedule");
+        }
+    }
+
+    public void sendCurtainSchedule(CurtainSchedule cschedule) {
+        try {
+            System.out.println("Curtain schedule to the server sent: " +cschedule);
+            ous.writeObject(cschedule);
+            ous.flush();
+        } catch (IOException e) {
+            System.out.println("Theres a problem sending the Curtain schedule");
+        }
+    }
+
+    public void sendTempSchedule(TempSchedule tempschedule) {
+        try {
+            System.out.println("Temperature schedule to the server sent: " + tempschedule);
+            ous.writeObject(tempschedule);
+            ous.flush();
+        } catch (IOException e) {
+            System.out.println("Theres a problem sending the Temperature schedule");
         }
     }
 }

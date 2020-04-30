@@ -11,4 +11,9 @@ public enum ButtonType {
     lamp1_off,
     start_schedule,
     get_consumption,
+    curtain_up,
+    curtain_down,
+    curtain_stop,
+    curtain_schedule,
+    temp_curtain
 }
