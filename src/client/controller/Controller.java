@@ -1,10 +1,11 @@
 package client.controller;
 
 import client.model.Client;
-import client.view.*;
+import client.view.ButtonType;
+import client.view.ClientLogin;
+import client.view.MainFrame;
+import client.view.Schedule;
 import server.model.MainServer.ConsumptionCounter;
-import server.model.MainServer.CurtainSchedule;
-import server.model.MainServer.TempSchedule;
 
 /**
  * 11/04/2020
@@ -17,8 +18,6 @@ public class Controller {
     private ClientLogin clientLogin;
     private Client client;
     private Schedule schedule;
-    private CurtainSchedule Cschedule;
-    private TempSchedule Tschedule;
 
     public Controller() {
         clientLogin = new ClientLogin(this);
@@ -87,63 +86,7 @@ public class Controller {
             case get_consumption:
                 getConsumption();
                 break;
-
-                //AGON
-            case curtain_up:
-                client.sendRequest("up");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case curtain_down:
-                client.sendRequest("down");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case curtain_stop:
-                client.sendRequest("stop");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case curtain_schedule:
-                CSchedule();
-                break;
-            case temp_curtain:
-                CTempSchedule();
-                break;
         }
-    }
-
-    public void CButtonup() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonUP();}
-
-    public void CButtondown() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonDOWN();}
-
-    public void CButtonstop() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonSTOP();}
-
-    public void CSchedule() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainschedulefrom();
-        mainFrame.getMainPanel().getCurtainGui().setCurtainscheduleto();
-        System.out.println(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom());
-       // CurtainSchedule Cschedulee = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
-        //mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto());
-        //client.sendCurtainSchedule(Cschedulee);
-    }
-
-    public void CTempSchedule(){
-        mainFrame.getMainPanel().getCurtainGui().setTempschedule();
-        //TempSchedule Tschedule = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch());
-        //client.sendTempSchedule();
     }
 
     public void sendUpdate(String str) {

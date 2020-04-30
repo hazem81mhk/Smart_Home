@@ -2086,17 +2086,3 @@ The lampa was on for 7
 2020/04/24 01:26:21    Client want to get consumption with results: 0.0
 2020/04/24 01:26:22    Client want to get consumption with results: 0.0
 2020/04/24 01:27:58    Main server and Arduino server are disconnected
-2020/04/28 18:55:38    Main server is connected at port: 8000
-2020/04/28 18:55:38    Arduino server is connected att port: 9000
-2020/04/28 19:00:52    Main server is connected at port: 8000
-2020/04/28 19:00:52    Arduino server is connected att port: 9000
-2020/04/28 19:01:42    Main server and Arduino server are disconnected
-2020/04/30 14:32:38    Main server is connected at port: 8000
-2020/04/30 14:32:38    Arduino server is connected att port: 9000
-2020/04/30 14:35:26    ag is connected to the server
-2020/04/30 14:36:02    ag is connected to the server
-2020/04/30 14:48:01    Main server is connected at port: 8000
-2020/04/30 14:48:01    Arduino server is connected att port: 9000
-2020/04/30 14:48:26    ag is connected to the server
-2020/04/30 14:52:33    ag is connected to the server
-2020/04/30 15:00:09    ag is connected to the server
