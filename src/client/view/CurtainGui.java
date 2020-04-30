@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 public class CurtainGui extends JPanel{
     private Controller controller;
-    String Curtainschedulefrom, Curtainscheduleto, Tempschedule, Checkboxup,Checkboxdown;
+    String Curtainschedulefrom, Curtainscheduleto, Tempschedule,Checkbox;
     JPanel jpmain = new JPanel();
     JPanel jp1 = new JPanel();
     JPanel jp2 = new JPanel();
@@ -105,7 +105,7 @@ public class CurtainGui extends JPanel{
         String minute;
         String day;
         String month;
-        for (int m = 0; m<13; m++){
+        for (int m = 1; m<13; m++){
             if (m<10){
                 month = ("0" + m);}
             else {
@@ -113,7 +113,7 @@ public class CurtainGui extends JPanel{
             }
             lmmonth.addElement(month);
         }
-        for (int z = 0; z<32; z++){
+        for (int z = 1; z<32; z++){
             if (z<10){
                 day = ("0" + z);}
             else {
@@ -247,13 +247,17 @@ public class CurtainGui extends JPanel{
         String FMonth = listschedulestartM.getSelectedValue();
         String FDay = listschedulestartD.getSelectedValue();
         String FTime = listschedulestartT.getSelectedValue();
-        this.Curtainschedulefrom ="From: "+ FMonth + ", " + FDay + ", " + FTime;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.Curtainschedulefrom ="From: "+ currentDate + FMonth + "-" + FDay + " " + FTime + ":00";
     }
     public void setCurtainscheduleto(){
         String TMonth = listscheduletoM.getSelectedValue();
         String TDay = listscheduletoD.getSelectedValue();
         String TTime = listscheduletoT.getSelectedValue();
-        this.Curtainschedulefrom ="To: "+ TMonth + ", " + TDay + ", " + TTime;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.Curtainscheduleto ="To: " + currentDate + TMonth + "-" + TDay + " " + TTime + ":00";
     }
 
     public String getCurtainschedulefrom(){
@@ -263,26 +267,26 @@ public class CurtainGui extends JPanel{
         return  Curtainscheduleto;
     }
 
-
     public void setTempschedule(){
-        int High,Low;
+        double High,Low;
         High = jsl1.getValue();
         Low = jsl2.getValue();
         this.Tempschedule = "Higher than " + High + " to roll down\n" + "Lower than " + Low + " to roll up";
     }
 
-    public void setCheckboxup(){
-    }
-    public void setCheckboxdown(){
-    }
-    /*public String getCheckboxup(){
-    }
-    public String getCheckboxdown(){
-    }*/
-
-
     public String getTempsch(){
         return Tempschedule;
+    }
+
+    public void setCheckbox(){
+        if (jcbup.isSelected()){
+            this.Checkbox = "UP";
+        } else{
+            this.Checkbox = "DOWN";
+        }
+    }
+    public String getCheckbox(){
+    return Checkbox;
     }
 
     public void setCurtainButtonUP() {
@@ -334,13 +338,13 @@ public class CurtainGui extends JPanel{
 
             if (!jcbup.isSelected() && !jcbdwn.isSelected()){
                 JOptionPane.showMessageDialog(null, "Pick the direction of the curtain"); }
-            else if (jcbup.isSelected()){
+            /*else if (jcbup.isSelected()){
                 controller.buttonPressed(ButtonType.curtain_schedule);
-                /**System.out.println("Curtain goes UP. From: "  + listschedulestartM.getSelectedValue() +", "+
+                System.out.println("Curtain goes UP. From: "  + listschedulestartM.getSelectedValue() +", "+
                         listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: "+
                         listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
-                        ", " + listscheduletoT.getSelectedValue());**/
-            }
+                        ", " + listscheduletoT.getSelectedValue());
+            }*/
             else {
                 controller.buttonPressed(ButtonType.curtain_schedule);
                 /**

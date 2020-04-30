@@ -2100,3 +2100,60 @@ The lampa was on for 7
 2020/04/30 14:48:26    ag is connected to the server
 2020/04/30 14:52:33    ag is connected to the server
 2020/04/30 15:00:09    ag is connected to the server
+2020/05/01 00:12:47    Main server is connected at port: 8000
+2020/05/01 00:12:47    Arduino server is connected att port: 9000
+2020/05/01 00:13:01    ag is connected to the server
+2020/05/01 00:19:20    Main server is connected at port: 8000
+2020/05/01 00:19:20    Arduino server is connected att port: 9000
+2020/05/01 00:19:55    g is connected to the server
+2020/05/01 00:23:06    Main server is connected at port: 8000
+2020/05/01 00:23:06    Arduino server is connected att port: 9000
+2020/05/01 00:23:14    h is connected to the server
+2020/05/01 00:24:17    Main server is connected at port: 8000
+2020/05/01 00:24:17    Arduino server is connected att port: 9000
+2020/05/01 00:24:29    h is connected to the server
+2020/05/01 00:33:00    Main server is connected at port: 8000
+2020/05/01 00:33:00    Arduino server is connected att port: 9000
+2020/05/01 00:33:12    h is connected to the server
+2020/05/01 00:42:52    Main server is connected at port: 8000
+2020/05/01 00:42:52    Arduino server is connected att port: 9000
+2020/05/01 00:43:04    g is connected to the server
+2020/05/01 00:44:37    Main server and Arduino server are disconnected
+2020/05/01 00:44:52    Main server is connected at port: 8000
+2020/05/01 00:44:52    Arduino server is connected att port: 9000
+2020/05/01 00:45:02    h is connected to the server
+2020/05/01 00:46:08    Main server is connected at port: 8000
+2020/05/01 00:46:08    Arduino server is connected att port: 9000
+2020/05/01 00:46:23    h is connected to the server
+2020/05/01 00:48:22    Main server is connected at port: 8000
+2020/05/01 00:48:22    Arduino server is connected att port: 9000
+2020/05/01 00:48:33    h is connected to the server
+2020/05/01 00:51:16    Main server is connected at port: 8000
+2020/05/01 00:51:16    Arduino server is connected att port: 9000
+2020/05/01 00:51:25    h is connected to the server
+2020/05/01 00:57:06    Main server is connected at port: 8000
+2020/05/01 00:57:06    Arduino server is connected att port: 9000
+2020/05/01 00:57:34    h is connected to the server
+2020/05/01 00:58:42    h is connected to the server
+2020/05/01 01:02:52    Main server is connected at port: 8000
+2020/05/01 01:02:52    Arduino server is connected att port: 9000
+2020/05/01 01:03:28    hh is connected to the server
+2020/05/01 01:05:04    h is connected to the server
+2020/05/01 01:11:15    Main server is connected at port: 8000
+2020/05/01 01:11:15    Arduino server is connected att port: 9000
+2020/05/01 01:11:26    h is connected to the server
+2020/05/01 01:12:26    Main server is connected at port: 8000
+2020/05/01 01:12:26    Arduino server is connected att port: 9000
+2020/05/01 01:12:36    h is connected to the server
+2020/05/01 01:12:40    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 00:00:00}
+2020/05/01 01:13:21    {startSchedule= 2020-01-01 00:00:00, endSchedule= 2020-01-01 00:00:00}
+2020/05/01 01:13:29    Client want to get consumption with results: 0.0
+2020/05/01 01:13:34    Client want to get consumption with results: 0.0
+2020/05/01 01:13:37    Client want to get consumption with results: 0.0
+2020/05/01 01:13:47    Client want to get consumption with results: 915.4000000000001
+2020/05/01 01:16:02    hh is connected to the server
+2020/05/01 01:16:53    h is connected to the server
+2020/05/01 01:17:44    hh is connected to the server
+2020/05/01 01:21:03    hhh is connected to the server
+2020/05/01 01:22:50    hhh is connected to the server
+2020/05/01 01:22:52    {startSchedule= From: 2020-01-01 00:00:00, endSchedule= UP}

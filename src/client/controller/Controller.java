@@ -91,27 +91,15 @@ public class Controller {
                 //AGON
             case curtain_up:
                 client.sendRequest("up");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            CButtonup();
                 break;
             case curtain_down:
                 client.sendRequest("down");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+               CButtondown();
                 break;
             case curtain_stop:
                 client.sendRequest("stop");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+               CButtonstop();
                 break;
             case curtain_schedule:
                 CSchedule();
@@ -134,16 +122,19 @@ public class Controller {
     public void CSchedule() {
         mainFrame.getMainPanel().getCurtainGui().setCurtainschedulefrom();
         mainFrame.getMainPanel().getCurtainGui().setCurtainscheduleto();
-        System.out.println(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom());
-       // CurtainSchedule Cschedulee = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
-        //mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto());
-        //client.sendCurtainSchedule(Cschedulee);
+        mainFrame.getMainPanel().getCurtainGui().setCheckbox();
+        System.out.println("From: " + mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom() + "\nTo: " +
+                mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto() + "\nDirection: " + mainFrame.getMainPanel().getCurtainGui().getCheckbox());
+        //Cschedule = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
+        //mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
+        //client.sendCurtainSchedule(Cschedule);
     }
 
     public void CTempSchedule(){
         mainFrame.getMainPanel().getCurtainGui().setTempschedule();
-        //TempSchedule Tschedule = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch());
-        //client.sendTempSchedule();
+        System.out.println(mainFrame.getMainPanel().getCurtainGui().getTempsch());
+        //Tschedule = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch());
+        //client.sendTempSchedule(Tschedule);
     }
 
     public void sendUpdate(String str) {
