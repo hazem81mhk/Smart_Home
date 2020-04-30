@@ -17,6 +17,7 @@ public class MainPanel extends JPanel {
     private Controller controller;
     //private LightPanel lightPanel;
     private GUI gui;
+    private CurtainGui cgui;
     private BorderLayout layout;
 
     public MainPanel(Controller controller) {
@@ -32,14 +33,19 @@ public class MainPanel extends JPanel {
         setBorder(new CompoundBorder(border, margin));
         //lightPanel = new LightPanel(controller);
         gui=new GUI(controller);
-
+        cgui = new CurtainGui(controller);
         //add(lightPanel, BorderLayout.NORTH);
         add(gui);
+        add(cgui);
         //add(curtainPanel, BorderLayout.CENTER);
         //add(lockPanel, BorderLayout.SOUTH);
     }
 
     public GUI getGui(){
         return gui;
+    }
+
+    public CurtainGui getCurtainGui(){
+        return cgui;
     }
 }
