@@ -3,6 +3,7 @@ package client.controller;
 import client.model.Client;
 import client.view.*;
 import server.model.MainServer.ConsumptionCounter;
+import server.model.MainServer.CurtainSchedule;
 import server.model.MainServer.TempSchedule;
 
 /**
@@ -16,8 +17,8 @@ public class Controller {
     private ClientLogin clientLogin;
     private Client client;
     private Schedule schedule;
-    private CurtainSchedul Cschedule;
-    private TempSchedul Tschedul;
+    private CurtainSchedule Cschedule;
+    private TempSchedule Tschedul;
 
     public Controller() {
         clientLogin = new ClientLogin(this);
@@ -124,7 +125,7 @@ public class Controller {
         mainFrame.getMainPanel().getCurtainGui().setCheckbox();
         //System.out.println("From: " + mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom() + "\nTo: " +
           //      mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto() + "\nDirection: " + mainFrame.getMainPanel().getCurtainGui().getCheckbox());
-        Cschedule = new CurtainSchedul(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
+        Cschedule = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
         mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
         client.sendCurtainSchedule(Cschedule);
     }
@@ -132,7 +133,7 @@ public class Controller {
     public void CTempSchedule(){
         mainFrame.getMainPanel().getCurtainGui().setTempschedule();
         System.out.println(mainFrame.getMainPanel().getCurtainGui().getTempsch());
-        Tschedul = new TempSchedul(mainFrame.getMainPanel().getCurtainGui().getTempsch());
+        Tschedul = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch1(),mainFrame.getMainPanel().getCurtainGui().getTempsch2());
         client.sendTempSchedule(Tschedul);
     }
 

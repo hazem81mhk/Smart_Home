@@ -3,6 +3,7 @@ package server.model.MainServer;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Date;
@@ -20,7 +21,7 @@ import java.util.Calendar;
  * @Mohammed Amayri and Moahmmed Hazem Kudaimi
  */
 
-public class CurtainSchedule  extends TimerTask {
+public class CurtainSchedule  extends TimerTask implements Serializable{
     private String start;
     private String end;
     private boolean flag = true;

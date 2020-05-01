@@ -51,6 +51,8 @@ public class CurtainGui extends JPanel{
     DefaultListModel<String> lmmonth = new DefaultListModel<String>();
     DefaultListModel<String> lmday = new DefaultListModel<>();
     DefaultListModel<String> lmtime = new DefaultListModel<String>();
+	private double tempschedule1=0;
+	private double tempschedule2=0;
 
     public CurtainGui(Controller controller){
         this.controller=controller;
@@ -271,11 +273,19 @@ public class CurtainGui extends JPanel{
         double High,Low;
         High = jsl1.getValue();
         Low = jsl2.getValue();
-        this.Tempschedule = "Higher than " + High + " to roll down\n" + "Lower than " + Low + " to roll up";
+        this.tempschedule1 = High;
+        this.tempschedule2 = Low;
     }
 
-    public String getTempsch(){
-        return Tempschedule;
+    public double getTempsch1(){
+        return tempschedule1;
+    }
+    public double getTempsch(){
+    	String str=("Between "+getTempsch1()+" And "+getTempsch2());
+        return tempschedule1;
+    }
+    public double getTempsch2(){
+        return tempschedule2;
     }
 
     public void setCheckbox(){

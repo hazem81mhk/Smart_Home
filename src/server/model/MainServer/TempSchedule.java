@@ -1,9 +1,10 @@
 package server.model.MainServer;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TempSchedule extends TimerTask {
+public class TempSchedule extends TimerTask implements Serializable{
 	private double rollUpTemp;
 	private double rollDownTemp;
 	private Server server;

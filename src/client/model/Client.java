@@ -164,7 +164,7 @@ public class Client extends Thread {
         }
     }
 
-    public void sendCurtainSchedule(CurtainSchedul cschedule) {
+    public void sendCurtainSchedule(CurtainSchedule cschedule) {
         try {
             System.out.println("Curtain schedule sent to the server: " +cschedule);
             ous.writeObject(cschedule);
@@ -174,10 +174,10 @@ public class Client extends Thread {
         }
     }
 
-    public void sendTempSchedule(TempSchedul tempschedule) {
+    public void sendTempSchedule(TempSchedule tschedul) {
         try {
-            System.out.println("Temperature schedule sent to the server: " + tempschedule);
-            ous.writeObject(tempschedule);
+            System.out.println("Temperature schedule sent to the server: " + tschedul);
+            ous.writeObject(tschedul);
             ous.flush();
         } catch (IOException e) {
             System.out.println("Theres a problem sending the Temperature schedule");
