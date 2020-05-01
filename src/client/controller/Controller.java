@@ -3,7 +3,6 @@ package client.controller;
 import client.model.Client;
 import client.view.*;
 import server.model.MainServer.ConsumptionCounter;
-import server.model.MainServer.CurtainSchedule;
 import server.model.MainServer.TempSchedule;
 
 /**
@@ -17,8 +16,8 @@ public class Controller {
     private ClientLogin clientLogin;
     private Client client;
     private Schedule schedule;
-    private CurtainSchedule Cschedule;
-    private TempSchedule Tschedule;
+    private CurtainSchedul Cschedule;
+    private TempSchedul Tschedul;
 
     public Controller() {
         clientLogin = new ClientLogin(this);
@@ -123,18 +122,18 @@ public class Controller {
         mainFrame.getMainPanel().getCurtainGui().setCurtainschedulefrom();
         mainFrame.getMainPanel().getCurtainGui().setCurtainscheduleto();
         mainFrame.getMainPanel().getCurtainGui().setCheckbox();
-        System.out.println("From: " + mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom() + "\nTo: " +
-                mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto() + "\nDirection: " + mainFrame.getMainPanel().getCurtainGui().getCheckbox());
-        //Cschedule = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
-        //mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
-        //client.sendCurtainSchedule(Cschedule);
+        //System.out.println("From: " + mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom() + "\nTo: " +
+          //      mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto() + "\nDirection: " + mainFrame.getMainPanel().getCurtainGui().getCheckbox());
+        Cschedule = new CurtainSchedul(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
+        mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
+        client.sendCurtainSchedule(Cschedule);
     }
 
     public void CTempSchedule(){
         mainFrame.getMainPanel().getCurtainGui().setTempschedule();
         System.out.println(mainFrame.getMainPanel().getCurtainGui().getTempsch());
-        //Tschedule = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch());
-        //client.sendTempSchedule(Tschedule);
+        Tschedul = new TempSchedul(mainFrame.getMainPanel().getCurtainGui().getTempsch());
+        client.sendTempSchedule(Tschedul);
     }
 
     public void sendUpdate(String str) {

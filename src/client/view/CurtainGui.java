@@ -249,7 +249,7 @@ public class CurtainGui extends JPanel{
         String FTime = listschedulestartT.getSelectedValue();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
         String currentDate = sdf.format(Calendar.getInstance().getTime());
-        this.Curtainschedulefrom ="From: "+ currentDate + FMonth + "-" + FDay + " " + FTime + ":00";
+        this.Curtainschedulefrom = currentDate + FMonth + "-" + FDay + " " + FTime + ":00";
     }
     public void setCurtainscheduleto(){
         String TMonth = listscheduletoM.getSelectedValue();
@@ -257,7 +257,7 @@ public class CurtainGui extends JPanel{
         String TTime = listscheduletoT.getSelectedValue();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
         String currentDate = sdf.format(Calendar.getInstance().getTime());
-        this.Curtainscheduleto ="To: " + currentDate + TMonth + "-" + TDay + " " + TTime + ":00";
+        this.Curtainscheduleto = currentDate + TMonth + "-" + TDay + " " + TTime + ":00";
     }
 
     public String getCurtainschedulefrom(){

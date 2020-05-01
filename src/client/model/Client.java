@@ -1,7 +1,9 @@
 package client.model;
 
 import client.controller.Controller;
+import client.view.CurtainSchedul;
 import client.view.Schedule;
+import client.view.TempSchedul;
 import server.model.MainServer.*;
 
 import javax.swing.*;
@@ -162,7 +164,7 @@ public class Client extends Thread {
         }
     }
 
-    public void sendCurtainSchedule(CurtainSchedule cschedule) {
+    public void sendCurtainSchedule(CurtainSchedul cschedule) {
         try {
             System.out.println("Curtain schedule sent to the server: " +cschedule);
             ous.writeObject(cschedule);
@@ -172,7 +174,7 @@ public class Client extends Thread {
         }
     }
 
-    public void sendTempSchedule(TempSchedule tempschedule) {
+    public void sendTempSchedule(TempSchedul tempschedule) {
         try {
             System.out.println("Temperature schedule sent to the server: " + tempschedule);
             ous.writeObject(tempschedule);
