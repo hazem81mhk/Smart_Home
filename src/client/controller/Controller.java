@@ -39,6 +39,7 @@ public class Controller {
         schedule = new Schedule(mainFrame.getMainPanel().getGui().getStarttime(),
                 mainFrame.getMainPanel().getGui().getTotime());
         client.sendSchedule(schedule);
+        
     }
 
     public void getConsumption (){
@@ -91,15 +92,15 @@ public class Controller {
                 //AGON
             case curtain_up:
                 client.sendRequest("up");
-            CButtonup();
+                
                 break;
             case curtain_down:
                 client.sendRequest("down");
-               CButtondown();
+               
                 break;
             case curtain_stop:
                 client.sendRequest("stop");
-               CButtonstop();
+              
                 break;
             case curtain_schedule:
                 CSchedule();
@@ -128,6 +129,7 @@ public class Controller {
         Cschedule = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
         mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
         client.sendCurtainSchedule(Cschedule);
+       
     }
 
     public void CTempSchedule(){
@@ -135,6 +137,7 @@ public class Controller {
         System.out.println(mainFrame.getMainPanel().getCurtainGui().getTempsch());
         Tschedul = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch1(),mainFrame.getMainPanel().getCurtainGui().getTempsch2());
         client.sendTempSchedule(Tschedul);
+        System.out.println("LOOK WHAT WE GOT!"+mainFrame.getMainPanel().getCurtainGui().getTempsch1()+""+mainFrame.getMainPanel().getCurtainGui().getTempsch2());
     }
 
     public void sendUpdate(String str) {

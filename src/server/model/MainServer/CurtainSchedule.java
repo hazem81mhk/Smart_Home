@@ -36,9 +36,11 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
         this.order=order;
         
     }
+   
     public void setServer(Server server)
     {
     	this.server=server;
+    	System.out.println("WHOOOOPI VI HAR EN SERVER!");
     }
    
     public void startTimer()
@@ -111,12 +113,13 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
                 
                     try {
 						if (checkDate(start, end))
-						{
+						{System.out.println("ACTUALLY REMMEBER THIS DATE");
 							server.sendRequest(order);
 							server.setScheduleState(true);
 						}
 						else
-						{	if(server.getCurtainState())
+						{	
+							if(server.getCurtainState())
 						{
 							server.sendRequest(antiOrder());
 							server.setScheduleState(false);

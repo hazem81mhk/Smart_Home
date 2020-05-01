@@ -98,6 +98,9 @@ public class Client extends Thread {
                 controller.CButtonstop();
                 controller.sendUpdate("Curtain has stopped rolling");
             }
+            if (stateTxt.toLowerCase().contains("err")) {
+                JOptionPane.showConfirmDialog(null, "SHIT HIT THE FAN DUDE");
+            }
         /* if (object instanceof Statee) {
             stateHandler((Statee) object);
         }*/
@@ -166,7 +169,7 @@ public class Client extends Thread {
 
     public void sendCurtainSchedule(CurtainSchedule cschedule) {
         try {
-            System.out.println("Curtain schedule sent to the server: " +cschedule);
+            System.out.println("Curtain schedule sent to the server: ");
             ous.writeObject(cschedule);
             ous.flush();
         } catch (IOException e) {

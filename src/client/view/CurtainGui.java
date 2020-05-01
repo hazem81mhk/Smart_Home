@@ -82,7 +82,7 @@ public class CurtainGui extends JPanel{
         jbup.addActionListener(new ButtonActionListen());
         jbdown.addActionListener(new ButtonActionListen());
         jbstop.addActionListener(new ButtonActionListen());
-        jbstop.setEnabled(false);
+        jbstop.setEnabled(true);
     }
 
     public void CurtainSchedule(){
@@ -304,6 +304,20 @@ public class CurtainGui extends JPanel{
         jbdown.setEnabled(true);
         jbstop.setEnabled(true);
     }
+    public void setAllButtons() {
+        jbup.setEnabled(true);
+        jbdown.setEnabled(true);
+        jbstop.setEnabled(true);
+    }
+    public void ButtonUPEnable() {
+        jbup.setEnabled(true);
+       
+    }
+    public void setCurtainButtonDownEnable() {
+       
+        jbdown.setEnabled(true);
+       
+    }
 
     public void setCurtainButtonDOWN() {
         jbup.setEnabled(true);
@@ -321,6 +335,16 @@ public class CurtainGui extends JPanel{
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == jbup) {
                 controller.buttonPressed(ButtonType.curtain_up);
+                try {
+                
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                jbdown.setEnabled(false);
+                
+                
                 //jbup.setEnabled(false);
                 //jbdown.setEnabled(true);
                 //jbstop.setEnabled(true);
@@ -332,9 +356,27 @@ public class CurtainGui extends JPanel{
                 //jbup.setEnabled(true);
                 //jbstop.setEnabled(true);
                 //System.out.println("The curtains are rolling down!");
+                try { 
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					
+            }
+                jbup.setEnabled(false);
             }
             else if (e.getSource()== jbstop){
                 controller.buttonPressed(ButtonType.curtain_stop);
+                try { 
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					
+            }
+                ButtonUPEnable();
+                setCurtainButtonDownEnable();
+                
                 //jbup.setEnabled(true);
                 //jbdown.setEnabled(true);
                 //jbstop.setEnabled(false);

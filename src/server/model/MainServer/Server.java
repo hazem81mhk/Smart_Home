@@ -49,6 +49,7 @@ public class Server extends Thread {
 	private boolean tempScheduleState=false;
 	private boolean canRollUp=true;
 	private boolean canRollDown=true;
+	private Server server=this;
 
 	public Server(int port, Controller controller) throws IOException {
 		this.controller = controller;
@@ -308,13 +309,29 @@ public class Server extends Thread {
 	}
 	public void setCurtainSchedule(CurtainSchedule curtainSchedule1) {
 		if (schema == null) {
+			System.out.println("WORKING IT FROM SCTACH");
 			curtainSchedule = curtainSchedule1;
+			
 			curtainSchedule.setServer(this);
+			try {
+				sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			curtainSchedule.startTimer();
 		} else {
+			System.out.println("REBULDING IT");
 			curtainSchedule.stopTimer();
+			curtainSchedule = null;
 			curtainSchedule = curtainSchedule1;
 			curtainSchedule.setServer(this);
+			try {
+				sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			curtainSchedule.startTimer();
 		}
 	}

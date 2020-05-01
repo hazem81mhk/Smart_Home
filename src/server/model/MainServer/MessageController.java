@@ -82,6 +82,7 @@ public class MessageController extends Thread {
     }
 
     private void curtainHandler(CurtainSchedule object) {
+    	System.out.println("WE GOT HOT STUFF");
 		server.setCurtainSchedule(object);
 		
 	}
