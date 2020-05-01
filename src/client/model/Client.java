@@ -1,9 +1,7 @@
 package client.model;
 
 import client.controller.Controller;
-import client.view.CurtainSchedul;
 import client.view.Schedule;
-import client.view.TempSchedul;
 import server.model.MainServer.*;
 
 import javax.swing.*;
@@ -120,10 +118,7 @@ public class Client extends Thread {
         }
     */
     private void consumptionHandler(ConsumptionCounter object) {
-        //String str = ("From" + object.getDateStart() + " To: " + object.getDateEnd() + " You have spent :" + object.getCost() + " On the lamp");
         String str = String.format(" You have spent :%1.2fkr On the lamp", object.getCost() );
-        System.out.println(str);
-        //JOptionPane.showMessageDialog(null, str);
         controller.sendUpdate(str);
     }
 

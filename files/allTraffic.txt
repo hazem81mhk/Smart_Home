@@ -2105,24 +2105,3 @@ The lampa was on for 7
 2020/05/01 00:24:41    Arduino is Cnnected
 2020/05/01 00:33:21    srfd is connected to the server
 2020/05/01 00:33:43    bvc is connected to the server
-2020/05/01 19:55:12    Main server is connected at port: 8000
-2020/05/01 19:55:12    Arduino server is connected att port: 9000
-2020/05/01 19:55:54    mado is connected to the server
-2020/05/01 19:59:34    hello is connected to the server
-2020/05/01 20:00:36    mado is connected to the server
-2020/05/01 20:02:06    mado3 is connected to the server
-2020/05/01 20:03:02    mido is connected to the server
-2020/05/01 20:07:36    modo is connected to the server
-2020/05/01 20:11:01    mido is connected to the server
-2020/05/01 20:28:29    mohammed is connected to the server
-2020/05/01 20:30:00    mado is connected to the server
-2020/05/01 20:31:51    mido is connected to the server
-2020/05/01 20:34:33    mido is connected to the server
-2020/05/01 20:45:53    moh is connected to the server
-2020/05/01 20:51:11    hello is connected to the server
-2020/05/01 20:54:42    modi is connected to the server
-2020/05/01 20:59:08    Main server is connected at port: 8000
-2020/05/01 20:59:08    Arduino server is connected att port: 9000
-2020/05/01 20:59:39    mido is connected to the server
-2020/05/01 21:04:16    wo is connected to the server
-2020/05/01 21:07:23    mado is connected to the server

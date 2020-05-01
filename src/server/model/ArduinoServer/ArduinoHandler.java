@@ -104,7 +104,7 @@ public class ArduinoHandler extends Thread {
                 sendStatus("Arduino is now disconnected");
                 break;
             default:
-                //System.out.print("Arduino said: " + inputMessage);
+                sendStatus("Arduino said: "+inputMessage);
         }
     }
 

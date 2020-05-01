@@ -168,7 +168,13 @@ public class MessageController extends Thread {
         if (stateTxt.toLowerCase().contains("temp")) {
             server.setTemp(stateTxt.substring(5, stateTxt.length()));
         }
-        Request requestToClient = new Request("State update:" + stateTxt);
+        if (stateTxt.toLowerCase().contains("up")) {
+            server.sendTrafficMessage(time + "    " + stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("down")) {
+            server.sendTrafficMessage(time + "    " + stateTxt);
+        }
+        Request requestToClient = new Request("New State:" + stateTxt);
         try {
             onlineBroadcast(requestToClient);
         } catch (IOException e) {
