@@ -56,13 +56,26 @@ public class ArduinoHandler extends Thread {
     }
 
     private void requestHandler(String inputMessage) throws IOException {
-        String request;
+        String request = null;
         if (inputMessage.toLowerCase().contains("on")) {
             //System.out.println("SHOULD BE ON");
             request = "lamp1_on";
-        } else {
+        }
+        else if  (inputMessage.toLowerCase().contains("off")) {
             //System.out.println("SHOULD BE OFF");
             request = "lamp1_off";
+        }
+        else if (inputMessage.toLowerCase().contains("up")) {
+            //System.out.println("SHOULD BE OFF");
+            request = "up";
+        }
+        else if (inputMessage.toLowerCase().contains("down")) {
+            //System.out.println("SHOULD BE OFF");
+            request = "down";
+        }
+        else if (inputMessage.toLowerCase().contains("stop")) {
+            //System.out.println("SHOULD BE OFF");
+            request = "stop";
         }
         //System.out.println("this is request" + request);
         Arduino arduinoClient = server.getArduino();
