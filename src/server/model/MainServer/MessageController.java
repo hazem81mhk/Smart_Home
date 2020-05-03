@@ -190,6 +190,11 @@ public class MessageController extends Thread {
         	server.setCurtainState("bottom");
         	System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT"+stateTxt);
         }
+        if (stateTxt.toLowerCase().contains("stoop")) { //when in the bottom
+        	server.sendTrafficMessage(time + "    " + stateTxt);
+        	
+        	System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT"+stateTxt);
+        }
         
        
         Statee stateToClient = new Statee("State update:" + stateTxt);

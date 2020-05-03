@@ -376,7 +376,7 @@ public class CurtainGui extends JPanel {
     public void setCurtainButtonSTOP() {
         jbup.setEnabled(true);
         jbdown.setEnabled(true);
-        jbstop.setEnabled(false);
+        jbstop.setEnabled(true);
     }
     public void curtainOnTop(){
         jbup.setEnabled(false);
@@ -400,7 +400,7 @@ public class CurtainGui extends JPanel {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                jbdown.setEnabled(false);
+                
 
                 //jbup.setEnabled(false);
                 //jbdown.setEnabled(true);
@@ -419,7 +419,7 @@ public class CurtainGui extends JPanel {
                     e1.printStackTrace();
 
                 }
-                jbup.setEnabled(false);
+                
             } else if (e.getSource() == jbstop) {
                 controller.buttonPressed(ButtonType.curtain_stop);
                 try {
@@ -429,8 +429,7 @@ public class CurtainGui extends JPanel {
                     e1.printStackTrace();
 
                 }
-                ButtonUPEnable();
-                setCurtainButtonDownEnable();
+              
 
                 //jbup.setEnabled(true);
                 //jbdown.setEnabled(true);

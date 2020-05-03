@@ -54,6 +54,11 @@ public class ArduinoCard {
                     	String str=JOptionPane.showInputDialog(null,"HOW HOT IS IT?");
                     	respond("temp:"+str);
                     }
+                    
+                    if(inputMessage.toLowerCase().contains("stop"))
+                    {	sleep(4000);
+                    	respond("stoop");
+                    }
                     System.out.println("Received message: " + inputMessage);
                 } catch (Exception e) {
                     try {

@@ -94,7 +94,7 @@ public class Client extends Thread {
 				controller.CButtondown();
 				controller.sendUpdate("Curtain is rolling down");
 			}
-			if (stateTxt.toLowerCase().contains("stop")) {
+			if (stateTxt.toLowerCase().contains("stoop")) {
 				System.out.println("Message receive from the server: Now, The curtain has stopped rolling");
 				controller.CButtonstop();
 				controller.sendUpdate("Curtain has stopped rolling");
