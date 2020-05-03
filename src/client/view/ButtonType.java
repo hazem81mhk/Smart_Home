@@ -15,5 +15,5 @@ public enum ButtonType {
     curtain_down,
     curtain_stop,
     curtain_schedule,
-    temp_curtain
+    temp_curtain, disable
 }

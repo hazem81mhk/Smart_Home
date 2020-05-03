@@ -2126,3 +2126,211 @@ The lampa was on for 7
 2020/05/01 20:59:39    mido is connected to the server
 2020/05/01 21:04:16    wo is connected to the server
 2020/05/01 21:07:23    mado is connected to the server
+2020/05/02 11:37:04    Main server is connected at port: 8000
+2020/05/02 11:37:04    Arduino server is connected att port: 9000
+2020/05/02 11:49:28    Main server is connected at port: 8000
+2020/05/02 11:49:28    Arduino server is connected att port: 9000
+2020/05/02 11:50:31    Arduino is Cnnected
+2020/05/02 11:51:18    mdio is connected to the server
+2020/05/02 11:53:50    Main server is connected at port: 8000
+2020/05/02 11:53:50    Arduino server is connected att port: 9000
+2020/05/02 11:53:56    Arduino is Cnnected
+2020/05/02 11:54:16    mido is connected to the server
+2020/05/02 11:59:15    Main server is connected at port: 8000
+2020/05/02 11:59:15    Arduino server is connected att port: 9000
+2020/05/02 12:03:36    Main server is connected at port: 8000
+2020/05/02 12:03:36    Arduino server is connected att port: 9000
+2020/05/02 12:03:51    Arduino is Cnnected
+2020/05/02 12:05:47    Main server is connected at port: 8000
+2020/05/02 12:05:47    Arduino server is connected att port: 9000
+2020/05/02 12:05:53    Arduino is Cnnected
+2020/05/02 12:06:15    mohammed is connected to the server
+2020/05/02 12:08:01    Main server is connected at port: 8000
+2020/05/02 12:08:01    Arduino server is connected att port: 9000
+2020/05/02 12:08:36    Arduino is Cnnected
+2020/05/02 12:08:55    mohamme is connected to the server
+2020/05/02 12:10:56    Main server is connected at port: 8000
+2020/05/02 12:10:56    Arduino server is connected att port: 9000
+2020/05/02 12:12:51    Arduino is Cnnected
+2020/05/02 12:13:20    mido is connected to the server
+2020/05/02 12:20:07    Main server is connected at port: 8000
+2020/05/02 12:20:07    Arduino server is connected att port: 9000
+2020/05/02 12:20:21    Arduino is Cnnected
+2020/05/02 12:21:03    mido is connected to the server
+2020/05/02 12:27:03    Main server is connected at port: 8000
+2020/05/02 12:27:03    Arduino server is connected att port: 9000
+2020/05/02 12:27:20    Arduino is Cnnected
+2020/05/02 12:27:47    mido is connected to the server
+2020/05/02 12:29:17    Main server is connected at port: 8000
+2020/05/02 12:29:17    Arduino server is connected att port: 9000
+2020/05/02 12:29:31    Arduino is Cnnected
+2020/05/02 12:29:47    midoo is connected to the server
+2020/05/02 12:30:48    Main server is connected at port: 8000
+2020/05/02 12:30:48    Arduino server is connected att port: 9000
+2020/05/02 12:33:39    Arduino is Cnnected
+2020/05/02 12:34:11    hello is connected to the server
+2020/05/02 12:36:53    Main server is connected at port: 8000
+2020/05/02 12:36:53    Arduino server is connected att port: 9000
+2020/05/02 12:37:03    Arduino is Cnnected
+2020/05/02 12:37:30    mido is connected to the server
+2020/05/02 12:41:13    Main server is connected at port: 8000
+2020/05/02 12:41:13    Arduino server is connected att port: 9000
+2020/05/02 12:42:34    Main server is connected at port: 8000
+2020/05/02 12:42:34    Arduino server is connected att port: 9000
+2020/05/02 12:42:40    Arduino is Cnnected
+2020/05/02 12:42:59    mido is connected to the server
+2020/05/02 12:45:39    Main server is connected at port: 8000
+2020/05/02 12:45:39    Arduino server is connected att port: 9000
+2020/05/02 12:45:50    Arduino is Cnnected
+2020/05/02 12:46:16    hallo is connected to the server
+2020/05/02 12:47:32    Main server is connected at port: 8000
+2020/05/02 12:47:32    Arduino server is connected att port: 9000
+2020/05/02 12:47:40    Arduino is Cnnected
+2020/05/02 12:47:57    mido is connected to the server
+2020/05/02 12:50:19    Main server is connected at port: 8000
+2020/05/02 12:50:19    Arduino server is connected att port: 9000
+2020/05/02 12:51:13    mado is connected to the server
+2020/05/02 13:24:38    Main server is connected at port: 8000
+2020/05/02 13:24:38    Arduino server is connected att port: 9000
+2020/05/02 13:25:11    modi is connected to the server
+2020/05/02 13:37:15    Main server is connected at port: 8000
+2020/05/02 13:37:15    Arduino server is connected att port: 9000
+2020/05/02 13:37:22    Arduino is Cnnected
+2020/05/02 13:37:47    hello is connected to the server
+2020/05/02 13:44:33    Main server is connected at port: 8000
+2020/05/02 13:44:33    Arduino server is connected att port: 9000
+2020/05/02 13:44:41    Arduino is Cnnected
+2020/05/02 13:45:00    mido is connected to the server
+2020/05/02 13:45:00    mido is connected to the server
+2020/05/02 13:47:22    Main server is connected at port: 8000
+2020/05/02 13:47:22    Arduino server is connected att port: 9000
+2020/05/02 13:47:35    Arduino is Cnnected
+2020/05/02 13:47:51    hello is connected to the server
+2020/05/02 14:07:14    Main server is connected at port: 8000
+2020/05/02 14:07:14    Arduino server is connected att port: 9000
+2020/05/02 14:07:23    Arduino is Cnnected
+2020/05/02 14:07:40    mido is connected to the server
+2020/05/02 14:13:27    Main server is connected at port: 8000
+2020/05/02 14:13:27    Arduino server is connected att port: 9000
+2020/05/02 14:13:55    Arduino is Cnnected
+2020/05/02 14:14:38    mido is connected to the server
+2020/05/02 14:24:07    Main server is connected at port: 8000
+2020/05/02 14:24:07    Arduino server is connected att port: 9000
+2020/05/02 14:24:38    Arduino is Cnnected
+2020/05/02 14:25:02    mido is connected to the server
+2020/05/02 14:46:21    Main server is connected at port: 8000
+2020/05/02 14:46:21    Arduino server is connected att port: 9000
+2020/05/02 14:46:58    Arduino is Cnnected
+2020/05/02 14:48:14    moha is connected to the server
+2020/05/02 14:52:52    Main server is connected at port: 8000
+2020/05/02 14:52:52    Arduino server is connected att port: 9000
+2020/05/02 14:53:13    Arduino is Cnnected
+2020/05/02 14:53:38    mido is connected to the server
+2020/05/02 15:58:38    Main server is connected at port: 8000
+2020/05/02 15:58:38    Arduino server is connected att port: 9000
+2020/05/02 15:58:47    Arduino is Cnnected
+2020/05/02 15:59:08    mohammed is connected to the server
+2020/05/02 16:29:51    Main server is connected at port: 8000
+2020/05/02 16:29:51    Arduino server is connected att port: 9000
+2020/05/02 16:30:01    Arduino is Cnnected
+2020/05/02 16:30:31    mohammed is connected to the server
+2020/05/02 16:39:32    Main server is connected at port: 8000
+2020/05/02 16:39:32    Arduino server is connected att port: 9000
+2020/05/02 16:39:42    Arduino is Cnnected
+2020/05/02 16:39:59    Sami is connected to the server
+2020/05/03 07:51:56    Main server is connected at port: 8000
+2020/05/03 07:51:56    Arduino server is connected att port: 9000
+2020/05/03 07:54:05    Arduino is Cnnected
+2020/05/03 07:54:22    mido is connected to the server
+2020/05/03 08:05:45    Main server is connected at port: 8000
+2020/05/03 08:05:45    Arduino server is connected att port: 9000
+2020/05/03 08:20:51    Main server is connected at port: 8000
+2020/05/03 08:20:51    Arduino server is connected att port: 9000
+2020/05/03 08:20:58    Arduino is Cnnected
+2020/05/03 08:21:24    mido is connected to the server
+2020/05/03 08:24:26    Main server is connected at port: 8000
+2020/05/03 08:24:26    Arduino server is connected att port: 9000
+2020/05/03 08:24:44    Arduino is Cnnected
+2020/05/03 08:25:16    admin is connected to the server
+2020/05/03 08:37:45    Main server is connected at port: 8000
+2020/05/03 08:37:45    Arduino server is connected att port: 9000
+2020/05/03 08:37:56    Arduino is Cnnected
+2020/05/03 08:38:18    mido is connected to the server
+2020/05/03 08:45:22    Main server is connected at port: 8000
+2020/05/03 08:45:22    Arduino server is connected att port: 9000
+2020/05/03 08:45:32    Arduino is Cnnected
+2020/05/03 08:45:51    mido is connected to the server
+2020/05/03 08:52:19    Main server is connected at port: 8000
+2020/05/03 08:52:19    Arduino server is connected att port: 9000
+2020/05/03 08:54:57    Main server is connected at port: 8000
+2020/05/03 08:54:57    Arduino server is connected att port: 9000
+2020/05/03 08:55:10    Arduino is Cnnected
+2020/05/03 08:55:25    mido is connected to the server
+2020/05/03 09:47:39    Main server is connected at port: 8000
+2020/05/03 09:47:39    Arduino server is connected att port: 9000
+2020/05/03 09:47:46    Arduino is Cnnected
+2020/05/03 09:48:06    MIDO is connected to the server
+2020/05/03 09:51:57    Main server is connected at port: 8000
+2020/05/03 09:51:57    Arduino server is connected att port: 9000
+2020/05/03 09:52:24    Arduino is Cnnected
+2020/05/03 09:52:58    mido is connected to the server
+2020/05/03 11:09:32    Main server is connected at port: 8000
+2020/05/03 11:09:32    Arduino server is connected att port: 9000
+2020/05/03 11:10:44    Arduino is Cnnected
+2020/05/03 11:11:09    mido is connected to the server
+2020/05/03 11:38:51    Main server is connected at port: 8000
+2020/05/03 11:38:51    Arduino server is connected att port: 9000
+2020/05/03 12:07:07    Arduino is Cnnected
+2020/05/03 12:07:22    modi is connected to the server
+2020/05/03 12:19:33    Main server is connected at port: 8000
+2020/05/03 12:19:33    Arduino server is connected att port: 9000
+2020/05/03 12:19:41    Arduino is Cnnected
+2020/05/03 12:20:29    mido is connected to the server
+2020/05/03 12:32:26    Main server is connected at port: 8000
+2020/05/03 12:32:26    Arduino server is connected att port: 9000
+2020/05/03 12:32:49    Arduino is Cnnected
+2020/05/03 12:33:28    admin is connected to the server
+2020/05/03 12:53:12    Main server is connected at port: 8000
+2020/05/03 12:53:12    Arduino server is connected att port: 9000
+2020/05/03 12:53:33    Arduino is Cnnected
+2020/05/03 12:53:50    Modi is connected to the server
+2020/05/03 13:05:55    Main server is connected at port: 8000
+2020/05/03 13:05:55    Arduino server is connected att port: 9000
+2020/05/03 13:06:04    Arduino is Cnnected
+2020/05/03 13:06:23    mido is connected to the server
+2020/05/03 13:15:51    Main server is connected at port: 8000
+2020/05/03 13:15:51    Arduino server is connected att port: 9000
+2020/05/03 13:15:59    Arduino is Cnnected
+2020/05/03 13:16:15    mido is connected to the server
+2020/05/03 13:21:11    Main server is connected at port: 8000
+2020/05/03 13:21:11    Arduino server is connected att port: 9000
+2020/05/03 13:21:23    Arduino is Cnnected
+2020/05/03 13:21:37    mido is connected to the server
+2020/05/03 13:38:34    Main server is connected at port: 8000
+2020/05/03 13:38:34    Arduino server is connected att port: 9000
+2020/05/03 13:38:52    Arduino is Cnnected
+2020/05/03 13:40:01    mado is connected to the server
+2020/05/03 13:47:45    Main server is connected at port: 8000
+2020/05/03 13:47:45    Arduino server is connected att port: 9000
+2020/05/03 13:48:35    Arduino is Cnnected
+2020/05/03 13:48:54    hazem is connected to the server
+2020/05/03 14:15:18    Main server is connected at port: 8000
+2020/05/03 14:15:18    Arduino server is connected att port: 9000
+2020/05/03 14:15:32    Arduino is Cnnected
+2020/05/03 14:15:53    mido is connected to the server
+2020/05/03 14:26:00    Main server is connected at port: 8000
+2020/05/03 14:26:00    Arduino server is connected att port: 9000
+2020/05/03 14:26:16    Arduino is Cnnected
+2020/05/03 14:26:39    hammodi is connected to the server
+2020/05/03 14:35:19    Main server is connected at port: 8000
+2020/05/03 14:35:19    Arduino server is connected att port: 9000
+2020/05/03 14:35:24    Arduino is Cnnected
+2020/05/03 14:35:44    Mido is connected to the server
+2020/05/03 14:44:01    Main server is connected at port: 8000
+2020/05/03 14:44:01    Arduino server is connected att port: 9000
+2020/05/03 14:44:21    Arduino is Cnnected
+2020/05/03 14:44:46    mido is connected to the server
+2020/05/03 15:25:03    Main server is connected at port: 8000
+2020/05/03 15:25:03    Arduino server is connected att port: 9000
+2020/05/03 15:25:08    Arduino is Cnnected
+2020/05/03 15:25:30    mido is connected to the server

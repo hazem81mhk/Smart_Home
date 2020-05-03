@@ -330,6 +330,16 @@ public class CurtainGui extends JPanel{
         jbdown.setEnabled(true);
         jbstop.setEnabled(false);
     }
+    public void curtainOnTop(){
+        jbup.setEnabled(false);
+        jbdown.setEnabled(true);
+        jbstop.setEnabled(false);
+    }
+    public void curtainBottom(){
+        jbup.setEnabled(true);
+        jbdown.setEnabled(false);
+        jbstop.setEnabled(false);
+    }
 
     class ButtonActionListen implements ActionListener {
         public void actionPerformed(ActionEvent e) {

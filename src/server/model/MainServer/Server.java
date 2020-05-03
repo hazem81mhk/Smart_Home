@@ -50,6 +50,7 @@ public class Server extends Thread {
 	private boolean canRollUp=true;
 	private boolean canRollDown=true;
 	private Server server=this;
+	private String curtainState="";
 
 	public Server(int port, Controller controller) throws IOException {
 		this.controller = controller;
@@ -166,7 +167,7 @@ public class Server extends Thread {
 		int result = readAndSort(startDate, endDate);
 		return result;
 	}
-
+//ADD A NEW CLASS
 
 	int readAndSort(String startDate, String endDate) {
 
@@ -184,7 +185,7 @@ public class Server extends Thread {
 				lineDate = line.substring(0, 19);
 				if (checkDate(startDate, endDate, lineDate)) {
 					int lineNumb = Integer.parseInt(line.substring(20, line.length()));
-					minutesForCost += lineNumb;
+					minutesForCost += lineNumb; //serverVariable
 
 				}
 				line = br.readLine();
@@ -252,6 +253,7 @@ public class Server extends Thread {
 		String submitedTime = str.substring(11, str.length());
 		return submitedTime;
 	}
+	//END OF CLASS
 
 	public void setSchedule(String startDate, String endDate) {
 		if (schema == null) {
@@ -310,8 +312,8 @@ public class Server extends Thread {
 	public void setCurtainSchedule(CurtainSchedule curtainSchedule1) {
 		if (schema == null) {
 			System.out.println("WORKING IT FROM SCTACH");
-			curtainSchedule = curtainSchedule1;
-			
+			this.curtainSchedule = curtainSchedule1;
+
 			curtainSchedule.setServer(this);
 			try {
 				sleep(200);
@@ -339,7 +341,7 @@ public class Server extends Thread {
 	{
 		this.scheduleState=state;
 	}
-	public boolean getCurtainState()
+	public boolean getCurtainSchState()
 	{
 		return scheduleState;
 	}
@@ -354,9 +356,18 @@ public class Server extends Thread {
 	}
 
 	public void cancelSchedule() {
-		try {
+		try {if(curtainSchedule!=null)
+
+		{
 			curtainSchedule.cancel();
+			setScheduleState(false);
+		}
+		if(tempSchedule!=null)
+		{
 			tempSchedule.cancel();
+			setTempScheduleState(false);
+		}
+
 		}
 		catch(NullPointerException  e)
 		{
@@ -377,7 +388,14 @@ public class Server extends Thread {
 	{
 		return canRollDown;
 	}
-
+	public void setCurtainState(String str)
+	{
+		this.curtainState=str;
+	}
+	public String getCurtainState()
+	{
+		return curtainState;
+	}
 }
 
 

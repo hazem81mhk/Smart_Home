@@ -82,7 +82,7 @@ public class MessageController extends Thread {
     }
 
     private void curtainHandler(CurtainSchedule object) {
-    	System.out.println("WE GOT HOT STUFF");
+    	
 		server.setCurtainSchedule(object);
 		
 	}
@@ -115,23 +115,27 @@ public class MessageController extends Thread {
             {
             	curtainHandler(request);
             }
-        	
+            else if(request.toLowerCase().contains("cancel"))
+            {	
+            	server.cancelSchedule();
+            	Statee state=new Statee("canceled");
+            	onlineBroadcast(state);
+            }
+       else {
+    	   	System.out.println("MSG_CTRLer: RequestHandler:"+request);
             server.sendRequest(request);
+            }
         }
     
 
     private void curtainHandler(String request) {
-    	if(request.toLowerCase().contains("anyway"))
-    	{
-    		server.cancelSchedule();
-    		server.sendRequest(request.replace("anyway", ""));
-    	}
-    	else {
+    	
+    		System.out.println("Curtain_schema is :"+server.getCurtainState());
+    		System.out.println("Temp_schema is :"+server.getCurtainTempState());
     		
-    	if(server.getCurtainState()||server.getCurtainTempState())
-    	{
-    		
-    		Request errReq=new Request("ERR");
+    	if(server.getCurtainSchState()||server.getCurtainTempState())
+    	{	System.out.println("MSG Handler: TIME TO SEND THE ERR");
+    		Statee errReq=new Statee("ERR");
     		try {
 				oosm.writeObject(errReq);
 			} catch (IOException e) {
@@ -140,14 +144,14 @@ public class MessageController extends Thread {
 			}
     		
     	}
-    	else
-    	{
-    		server.sendRequest(request);
-    	}
+    	if(!server.getCurtainSchState()&&!server.getCurtainTempState())
+	    	{	System.out.println("MSG_CTRL :curtainHandler:Sending "+request);
+	    		server.sendRequest(request);
+	    	}
     	}
 		
 		
-	}
+	
 
 	private synchronized void stateHandler(Statee state) {
         String stateTxt = state.getState();
@@ -168,9 +172,29 @@ public class MessageController extends Thread {
         if (stateTxt.toLowerCase().contains("temp")) {
             server.setTemp(stateTxt.substring(5, stateTxt.length()));
         }
-        Request requestToClient = new Request("State update:" + stateTxt);
+        if (stateTxt.toLowerCase().contains("up")) {//when on Top
+        	server.sendTrafficMessage(time + "    " + stateTxt);
+        	System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT"+stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("down")) { //when in the bottom
+        	server.sendTrafficMessage(time + "    " + stateTxt);
+        	System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT"+stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("top")) { //when in the bottom
+        	server.sendTrafficMessage(time + "    " + stateTxt);
+        	server.setCurtainState("top");
+        	System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT"+stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("bottom")) { //when in the bottom
+        	server.sendTrafficMessage(time + "    " + stateTxt);
+        	server.setCurtainState("bottom");
+        	System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT"+stateTxt);
+        }
+        
+       
+        Statee stateToClient = new Statee("State update:" + stateTxt);
         try {
-            onlineBroadcast(requestToClient);
+            onlineBroadcast(stateToClient);
         } catch (IOException e) {
             System.out.println("We have a problem with broadcasting the message");
         }
@@ -217,13 +241,13 @@ public class MessageController extends Thread {
         server.sendTrafficMessage(time + "    " + schedule);
     }
 
-    public synchronized void onlineBroadcast(Request cmdHandler) throws IOException {
+    public synchronized void onlineBroadcast(Statee stateToClient) throws IOException {
         User us;
         onlineUser = server.getOnlineList();
         for (int i = 0; i < onlineUser.size(); i++) {
             us = new User(onlineUser.get(i));
             ObjectOutputStream socketToSendTo = getReciverSocket(us);
-            socketToSendTo.writeObject(cmdHandler);
+            socketToSendTo.writeObject(stateToClient);
             socketToSendTo.flush();
         }
     }

@@ -16,6 +16,8 @@ public class ArduinoHandler extends Thread {
     private BufferedReader inPut;
     private BufferedWriter outPut;
     private ArduinoServer server;
+    private Socket clientSocket;
+    private ObjectOutputStream ous;
 
     public ArduinoHandler(Socket socket, ArduinoServer server) throws IOException {
         this.socket = socket;
@@ -77,13 +79,17 @@ public class ArduinoHandler extends Thread {
             //System.out.println("SHOULD BE OFF");
             request = "stop";
         }
+        else if (inputMessage.toLowerCase().contains("temp")) {
+            //System.out.println("SHOULD BE OFF");
+            request = "temp";
+        }
         //System.out.println("this is request" + request);
         Arduino arduinoClient = server.getArduino();
         arduinoClient.sendToArduino(request);
     }
 
     private void StatusUpdate(String inputMessage) {
-        //System.out.println("Our input Message is :" + inputMessage);
+        System.out.println("Our input Message is :" + inputMessage);
         switch (inputMessage) {
             case "Cnnected":
                 sendStatus("Arduino is Cnnected");
@@ -103,21 +109,31 @@ public class ArduinoHandler extends Thread {
             case "disconnected":
                 sendStatus("Arduino is now disconnected");
                 break;
+            case "up":
+                sendStatus("up");
+                System.out.println("ARDUINO HANDLER: up");
+                break;
+            case "down":
+                sendStatus("down");
+                System.out.println("ARDUINO HANDLER: down");
+                break;
+            case "top":
+                sendStatus("top");
+                System.out.println("ARDUINO HANDLER: top");
+                break;
+            case "bottom":
+                sendStatus("bottom");
+                System.out.println("ARDUINO HANDLER: bottom");
+                break;
+                
             default:
-                //System.out.print("Arduino said: " + inputMessage);
+            	sendStatus(inputMessage);
+                System.out.println("Arduino said: " + inputMessage);
         }
     }
 
     private void sendStatus(String status) {
         Statee state = new Statee(status);
-        try {
-            //System.out.println("We are trying to send this status:" + state.getState());
-            Socket clientSocket = new Socket(InetAddress.getLocalHost(), 8000);
-            ObjectOutputStream ous = new ObjectOutputStream(clientSocket.getOutputStream());
-            ous.writeObject(state);
-            clientSocket.close();
-        } catch (IOException o) {
-            System.out.println("we have a problem connecting to Server");
-        }
+        server.sendToServer(state);
     }
 }

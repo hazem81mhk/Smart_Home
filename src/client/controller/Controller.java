@@ -100,7 +100,9 @@ public class Controller {
                 break;
             case curtain_stop:
                 client.sendRequest("stop");
-              
+                break;
+            case disable:
+                client.sendRequest("cancel_Schedule");  
                 break;
             case curtain_schedule:
                 CSchedule();
@@ -119,7 +121,10 @@ public class Controller {
 
     public void CButtonstop() {
         mainFrame.getMainPanel().getCurtainGui().setCurtainButtonSTOP();}
-
+    public void CButtonTop() {
+        mainFrame.getMainPanel().getCurtainGui().curtainOnTop();}
+    public void CButtonBotoom() {
+        mainFrame.getMainPanel().getCurtainGui().curtainBottom();}
     public void CSchedule() {
         mainFrame.getMainPanel().getCurtainGui().setCurtainschedulefrom();
         mainFrame.getMainPanel().getCurtainGui().setCurtainscheduleto();

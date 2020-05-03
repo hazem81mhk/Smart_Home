@@ -28,12 +28,19 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
     private Server server;
     private String order;
     private Timer timer;
+    
 
     public CurtainSchedule(String start, String end,String order) {
         this.start = start;
         this.end = end;
-        
         this.order=order;
+        
+    }
+    public CurtainSchedule(String start, String end,String order,Server server) {
+        this.start = start;
+        this.end = end;
+        this.order=order;
+        this.server=server;
         
     }
    
@@ -46,7 +53,7 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
     public void startTimer()
     {
     	 timer = new Timer();
- 		timer.schedule(new CurtainSchedule(start,end,order), 0, 300000);
+ 		timer.schedule(new CurtainSchedule(start,end,order,server), 0, 60000);
     }
 
     public boolean checkDate(String start, String end) throws ParseException {
@@ -109,17 +116,22 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
 
     public void run() {
         
-            while (true) {
+            
                 
                     try {
 						if (checkDate(start, end))
 						{System.out.println("ACTUALLY REMMEBER THIS DATE");
+							//server.printForSure();
+						if(checkState(order))
+						{
 							server.sendRequest(order);
 							server.setScheduleState(true);
 						}
+							
+						}
 						else
 						{	
-							if(server.getCurtainState())
+							if(server.getCurtainSchState())
 						{
 							server.sendRequest(antiOrder());
 							server.setScheduleState(false);
@@ -132,7 +144,7 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
 					}
               
             }
-        }
+        
     
     private String antiOrder() {
 		String antiOrder;
@@ -147,9 +159,43 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
 		return antiOrder;
 	}
 	public void stopTimer()
-	{
-		timer.cancel();
+	{	server.setScheduleState(false);
+		this.timer.cancel();
 		
+	}
+	public boolean checkState(String str)
+	{ boolean result=false;
+	if(server.getCurtainState().equals(""))
+	{
+		result=true;
+	}
+	else
+	{
+		if(str.equals("up"))
+		{
+			if(server.getCurtainState().equals("top"))
+			{
+				result=false;
+			}
+			else
+			{
+				result=true;
+			}
+		}
+		if(str.equals("down"))
+		{
+			if(server.getCurtainState().equals("bottom"))
+			{
+				result=false;
+			}
+			else
+			{
+				result=true;
+			}
+		}
+		
+	}
+	return result;
 	}
 
 }
