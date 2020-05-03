@@ -2,6 +2,7 @@ package client.view;
 
 
 import client.controller.Controller;
+import javafx.scene.layout.Background;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -11,24 +12,32 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class CurtainGui extends JPanel{
+public class CurtainGui extends JPanel {
     private Controller controller;
-    String Curtainschedulefrom, Curtainscheduleto, Tempschedule,Checkbox;
+    String Curtainschedulefrom, Curtainscheduleto, Tempschedule, Checkbox;
     JPanel jpmain = new JPanel();
     JPanel jp1 = new JPanel();
     JPanel jp2 = new JPanel();
     JPanel jp3 = new JPanel();
+    JPanel jp4 = new JPanel();
+
 
     JButton jbup = new JButton("UP ⤊");
     JButton jbdown = new JButton("DOWN ⤋");
     JButton jbstop = new JButton("STOP");
-    JButton jbapply1 = new JButton("APPLY");
-    JButton jbapply2 = new JButton("APPLY");
+    JButton jbenable1 = new JButton("ENABLE");
+    JButton jbdisable1 = new JButton("DISABLE");
+    JButton jbenable2 = new JButton("ENABLE");
+    JButton jbdisable2 = new JButton("DISABLE");
+    JButton jbmm = new JButton("Main Menu");
 
     JLabel jlf = new JLabel("From: ");
     JLabel jlt = new JLabel("To: ");
-    JLabel jlhr = new JLabel("Higher than ____ to roll down");
-    JLabel jllr = new JLabel("Lower than ____ to roll up");
+    JLabel jlrollup = new JLabel("Roll up when the temperature is higher than:");
+    JLabel jlrolldown = new JLabel("The curtain is going to roll down otherwise");
+    JLabel jlps = new JLabel("*Note: If the Temperature schedule and the Curtain conflict, ");
+    JLabel jlps2 = new JLabel("then the CurtainSchedule will be followed  ");
+    JLabel jlspace = new JLabel("");
 
     ButtonGroup ButtonG = new ButtonGroup();
     JCheckBox jcbup = new JCheckBox("UP");
@@ -39,7 +48,6 @@ public class CurtainGui extends JPanel{
     static final int SLAUTO = 0;
 
     JSlider jsl1 = new JSlider(JSlider.HORIZONTAL, SLMIN, SLMAX, SLAUTO);
-    JSlider jsl2 = new JSlider(JSlider.HORIZONTAL, SLMIN, SLMAX, SLAUTO);
 
     private JList<String> listschedulestartM;
     private JList<String> listschedulestartD;
@@ -51,27 +59,31 @@ public class CurtainGui extends JPanel{
     DefaultListModel<String> lmmonth = new DefaultListModel<String>();
     DefaultListModel<String> lmday = new DefaultListModel<>();
     DefaultListModel<String> lmtime = new DefaultListModel<String>();
-	private double tempschedule1=0;
-	private double tempschedule2=0;
+    private double tempschedule1 = 0;
+    private double tempschedule2 = 0;
 
-    public CurtainGui(Controller controller){
-        this.controller=controller;
-        JFrame jf = new JFrame();
+    JFrame jf = new JFrame();
+
+    Dimension db = new Dimension(120, 30);
+
+    public CurtainGui(Controller controller) {
+        this.controller = controller;
         jf.add(jpmain);
         Buttons();
         CurtainSchedule();
         TemperatureSchedule();
+        MainMenu();
 
-        jf.setPreferredSize(new Dimension(360, 580));
+        jf.setPreferredSize(new Dimension(360, 670));
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setTitle("SmartHome Application");
         jf.pack();
         jf.setVisible(true);
-
     }
-    public void Buttons(){
+
+    public void Buttons() {
         jp1.setPreferredSize(new Dimension(360, 120));
-        Dimension d = new Dimension(140,50);
+        Dimension d = new Dimension(140, 50);
         jbup.setPreferredSize(d);
         jbdown.setPreferredSize(d);
         jbstop.setPreferredSize(d);
@@ -85,18 +97,21 @@ public class CurtainGui extends JPanel{
         jbstop.setEnabled(true);
     }
 
-    public void CurtainSchedule(){
-        jp2.setBorder(BorderFactory.createTitledBorder(null,"CurtainSchedule: ",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,new Font("Arial",Font.PLAIN,15),Color.BLACK));
-        jp2.setPreferredSize(new Dimension(330,180));
+    public void CurtainSchedule() {
+        jp2.setBorder(BorderFactory.createTitledBorder(null, "CurtainSchedule: ",
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER, new Font("Arial", Font.PLAIN, 15), Color.BLACK));
+        jp2.setPreferredSize(new Dimension(330, 180));
 
-        Dimension djl = new Dimension(80,25);
-        Dimension dcb = new Dimension(100,40);
+        Dimension djl = new Dimension(80, 25);
+        Dimension dcb = new Dimension(100, 40);
         jlf.setPreferredSize(djl);
         jlt.setPreferredSize(djl);
         jcbup.setPreferredSize(dcb);
         jcbdwn.setPreferredSize(dcb);
-        jbapply1.setPreferredSize(new Dimension(120,30));
+        jbenable1.setPreferredSize(db);
+        jbenable2.setPreferredSize(db);
+        jbdisable1.setPreferredSize(db);
+        jbdisable2.setPreferredSize(db);
         jpmain.add(jp2);
         ButtonG.add(jcbup);
         ButtonG.add(jcbdwn);
@@ -107,18 +122,18 @@ public class CurtainGui extends JPanel{
         String minute;
         String day;
         String month;
-        for (int m = 1; m<13; m++){
-            if (m<10){
-                month = ("0" + m);}
-            else {
+        for (int m = 1; m < 13; m++) {
+            if (m < 10) {
+                month = ("0" + m);
+            } else {
                 month = String.valueOf(m);
             }
             lmmonth.addElement(month);
         }
-        for (int z = 1; z<32; z++){
-            if (z<10){
-                day = ("0" + z);}
-            else {
+        for (int z = 1; z < 32; z++) {
+            if (z < 10) {
+                day = ("0" + z);
+            } else {
                 day = String.valueOf(z);
             }
             lmday.addElement(day);
@@ -127,15 +142,13 @@ public class CurtainGui extends JPanel{
             while (y != 60) {
                 if (x < 10) {
                     hour = ("0" + x);
-                }
-                else {
+                } else {
                     hour = String.valueOf(x);
                 }
 
                 if (y < 10) {
                     minute = ("0" + y);
-                }
-                else {
+                } else {
                     minute = String.valueOf(y);
                 }
                 y += 5;
@@ -195,12 +208,12 @@ public class CurtainGui extends JPanel{
         JScrollPane Day2 = new JScrollPane(listscheduletoD);
 
         JScrollPane Day = new JScrollPane(listschedulestartD);
-        Month.setPreferredSize(new Dimension(40,25));
-        Day.setPreferredSize(new Dimension(40,25));
-        Time.setPreferredSize(new Dimension(60,25));
-        Month2.setPreferredSize(new Dimension(40,25));
-        Day2.setPreferredSize(new Dimension(40,25));
-        Time2.setPreferredSize(new Dimension(60,25));
+        Month.setPreferredSize(new Dimension(40, 25));
+        Day.setPreferredSize(new Dimension(40, 25));
+        Time.setPreferredSize(new Dimension(60, 25));
+        Month2.setPreferredSize(new Dimension(40, 25));
+        Day2.setPreferredSize(new Dimension(40, 25));
+        Time2.setPreferredSize(new Dimension(60, 25));
 
         jp2.add(jlf);
         jp2.add(Month);
@@ -213,39 +226,68 @@ public class CurtainGui extends JPanel{
 
         jp2.add(jcbup, BorderLayout.CENTER);
         jp2.add(jcbdwn, BorderLayout.CENTER);
-        jp2.add(jbapply1);
-        jbapply1.addActionListener(new CurtainScheduleActionListen());
+        jp2.add(jbenable1);
+        jp2.add(jbdisable1);
+        jbenable1.addActionListener(new CurtainScheduleActionListen());
+        jbdisable1.addActionListener(new CurtainScheduleActionListen());
     }
-    public void TemperatureSchedule(){
-        jsl2.setMajorTickSpacing(10);
-        jsl2.setMinorTickSpacing(1);
-        jsl2.setPaintTicks(true);
-        jsl2.setPaintLabels(true);
 
+    public void TemperatureSchedule() {
         jsl1.setMajorTickSpacing(10);
         jsl1.setMinorTickSpacing(1);
         jsl1.setPaintTicks(true);
         jsl1.setPaintLabels(true);
 
-        jp3.setBorder(BorderFactory.createTitledBorder(null,"TemperatureSchedule: ",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Arial",Font.PLAIN,15),Color.BLACK));
-        jp3.setPreferredSize(new Dimension(330,218));
+        jp3.setBorder(BorderFactory.createTitledBorder(null, "TemperatureSchedule: ",
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                new Font("Arial", Font.PLAIN, 15), Color.BLACK));
+        jp3.setPreferredSize(new Dimension(330, 245));
 
-        Dimension dslide = new Dimension(250,50);
-        jbapply2.setPreferredSize(new Dimension(120,30));
+        Dimension dslide = new Dimension(250, 50);
+        jbenable2.setPreferredSize(db);
         jsl1.setPreferredSize(dslide);
-        jsl2.setPreferredSize(dslide);
+        jlrollup.setPreferredSize(new Dimension(265, 25));
+        jlrolldown.setPreferredSize(new Dimension(255, 30));
+
+        Dimension dps = new Dimension(270, 10);
+        Font fps = new Font("Arial", Font.PLAIN, 10);
+        jlps.setPreferredSize(dps);
+        jlps.setFont(fps);
+        jlps2.setPreferredSize(dps);
+        jlps2.setFont(fps);
+        jlps.setForeground(Color.RED);
+        jlps2.setForeground(Color.RED);
+
+
+        jlspace.setPreferredSize(new Dimension(360, 15));
 
         jpmain.add(jp3);
-        jp3.add(jlhr);
+        jp3.add(jlrollup);
         jp3.add(jsl1);
-        jp3.add(jllr);
-        jp3.add(jsl2);
-        jp3.add(jbapply2);
-        jbapply2.addActionListener(new TemperatureScheduleActionListen());
+        jp3.add(jlrolldown);
+        jp3.add(jbenable2);
+        jp3.add(jbdisable2);
+        jp3.add(jlspace);
+        jp3.add(jlps);
+        jp3.add(jlps2);
+        jbenable2.addActionListener(new TemperatureScheduleActionListen());
+        jbdisable2.addActionListener(new TemperatureScheduleActionListen());
     }
-    public void setCurtainschedulefrom(){
+
+    public void MainMenu() {
+        jp4.setBorder(BorderFactory.createTitledBorder(null, null,
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                new Font("Arial", Font.PLAIN, 15), Color.BLACK));
+        jp4.setPreferredSize(new Dimension(330, 55));
+        jpmain.add(jp4);
+        jbmm.setPreferredSize(new Dimension(280, 40));
+        jp4.add(jbmm);
+        jbmm.addActionListener(new MainMenuActionListen());
+
+    }
+
+
+    public void setCurtainschedulefrom() {
         String FMonth = listschedulestartM.getSelectedValue();
         String FDay = listschedulestartD.getSelectedValue();
         String FTime = listschedulestartT.getSelectedValue();
@@ -253,7 +295,8 @@ public class CurtainGui extends JPanel{
         String currentDate = sdf.format(Calendar.getInstance().getTime());
         this.Curtainschedulefrom = currentDate + FMonth + "-" + FDay + " " + FTime + ":00";
     }
-    public void setCurtainscheduleto(){
+
+    public void setCurtainscheduleto() {
         String TMonth = listscheduletoM.getSelectedValue();
         String TDay = listscheduletoD.getSelectedValue();
         String TTime = listscheduletoT.getSelectedValue();
@@ -262,41 +305,43 @@ public class CurtainGui extends JPanel{
         this.Curtainscheduleto = currentDate + TMonth + "-" + TDay + " " + TTime + ":00";
     }
 
-    public String getCurtainschedulefrom(){
-        return  Curtainschedulefrom;
-    }
-    public String getCurtainscheduleto(){
-        return  Curtainscheduleto;
+    public String getCurtainschedulefrom() {
+        return Curtainschedulefrom;
     }
 
-    public void setTempschedule(){
-        double High,Low;
+    public String getCurtainscheduleto() {
+        return Curtainscheduleto;
+    }
+
+    public void setTempschedule() {
+        double High, Low;
         High = jsl1.getValue();
-        Low = jsl2.getValue();
         this.tempschedule1 = High;
-        this.tempschedule2 = Low;
     }
 
-    public double getTempsch1(){
+    public double getTempsch1() {
         return tempschedule1;
     }
-    public double getTempsch(){
-    	String str=("Between "+getTempsch1()+" And "+getTempsch2());
+
+    public double getTempsch() {
+        String str = ("Between " + getTempsch1() + " And " + getTempsch2());
         return tempschedule1;
     }
-    public double getTempsch2(){
+
+    public double getTempsch2() {
         return tempschedule2;
     }
 
-    public void setCheckbox(){
-        if (jcbup.isSelected()){
+    public void setCheckbox() {
+        if (jcbup.isSelected()) {
             this.Checkbox = "UP";
-        } else{
+        } else {
             this.Checkbox = "DOWN";
         }
     }
-    public String getCheckbox(){
-    return Checkbox;
+
+    public String getCheckbox() {
+        return Checkbox;
     }
 
     public void setCurtainButtonUP() {
@@ -304,19 +349,22 @@ public class CurtainGui extends JPanel{
         jbdown.setEnabled(true);
         jbstop.setEnabled(true);
     }
+
     public void setAllButtons() {
         jbup.setEnabled(true);
         jbdown.setEnabled(true);
         jbstop.setEnabled(true);
     }
+
     public void ButtonUPEnable() {
         jbup.setEnabled(true);
-       
+
     }
+
     public void setCurtainButtonDownEnable() {
-       
+
         jbdown.setEnabled(true);
-       
+
     }
 
     public void setCurtainButtonDOWN() {
@@ -325,7 +373,7 @@ public class CurtainGui extends JPanel{
         jbstop.setEnabled(true);
     }
 
-    public void setCurtainButtonSTOP(){
+    public void setCurtainButtonSTOP() {
         jbup.setEnabled(true);
         jbdown.setEnabled(true);
         jbstop.setEnabled(false);
@@ -346,47 +394,44 @@ public class CurtainGui extends JPanel{
             if (e.getSource() == jbup) {
                 controller.buttonPressed(ButtonType.curtain_up);
                 try {
-                
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 jbdown.setEnabled(false);
-                
-                
+
                 //jbup.setEnabled(false);
                 //jbdown.setEnabled(true);
                 //jbstop.setEnabled(true);
                 //System.out.println("The curtains are rolling up!");
-            }
-            else if (e.getSource() == jbdown) {
+            } else if (e.getSource() == jbdown) {
                 controller.buttonPressed(ButtonType.curtain_down);
                 //jbdown.setEnabled(false);
                 //jbup.setEnabled(true);
                 //jbstop.setEnabled(true);
                 //System.out.println("The curtains are rolling down!");
-                try { 
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					
-            }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+
+                }
                 jbup.setEnabled(false);
-            }
-            else if (e.getSource()== jbstop){
+            } else if (e.getSource() == jbstop) {
                 controller.buttonPressed(ButtonType.curtain_stop);
-                try { 
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					
-            }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+
+                }
                 ButtonUPEnable();
                 setCurtainButtonDownEnable();
-                
+
                 //jbup.setEnabled(true);
                 //jbdown.setEnabled(true);
                 //jbstop.setEnabled(false);
@@ -398,8 +443,9 @@ public class CurtainGui extends JPanel{
     class CurtainScheduleActionListen implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            if (!jcbup.isSelected() && !jcbdwn.isSelected()){
-                JOptionPane.showMessageDialog(null, "Pick the direction of the curtain"); }
+            if (!jcbup.isSelected() && !jcbdwn.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Pick the direction of the curtain");
+            }
             /*else if (jcbup.isSelected()){
                 controller.buttonPressed(ButtonType.curtain_schedule);
                 System.out.println("Curtain goes UP. From: "  + listschedulestartM.getSelectedValue() +", "+
@@ -407,22 +453,36 @@ public class CurtainGui extends JPanel{
                         listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
                         ", " + listscheduletoT.getSelectedValue());
             }*/
-            else {
+            else if(jbenable1.isSelected()){
                 controller.buttonPressed(ButtonType.curtain_schedule);
                 /**
-                System.out.println("Curtain goes DOWN. From: " + listschedulestartM.getSelectedValue() +", "+
-                        listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: "+
-                        listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
-                        ", " + listscheduletoT.getSelectedValue());
-                **/
+                 System.out.println("Curtain goes DOWN. From: " + listschedulestartM.getSelectedValue() +", "+
+                 listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: "+
+                 listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
+                 ", " + listscheduletoT.getSelectedValue());
+                 **/
+            }
+            else{
+                controller.buttonPressed(ButtonType.disable);
             }
         }
     }
 
     class TemperatureScheduleActionListen implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-           controller.buttonPressed(ButtonType.temp_curtain);
-           // System.out.println("Higher than " + jsl1.getValue() + " to roll down\n" + "Lower than " + jsl2.getValue() + " to roll up");
+            if (jbenable2.isSelected()){
+            controller.buttonPressed(ButtonType.temp_curtain);
+            // System.out.println("Higher than " + jsl1.getValue() + " to roll down\n" + "Lower than " + jsl2.getValue() + " to roll up");
         }
+        else {controller.buttonPressed(ButtonType.disable);}
+        }
+    }
+
+    class MainMenuActionListen implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == jbmm){
+            controller.buttonPressed(ButtonType.main_menu);
+            jf.dispose();
+        }}
     }
 }

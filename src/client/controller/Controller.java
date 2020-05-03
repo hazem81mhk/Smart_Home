@@ -14,6 +14,7 @@ import server.model.MainServer.TempSchedule;
 
 public class Controller {
     private MainFrame mainFrame;
+    private MainListGUI mainListGui;
     private ClientLogin clientLogin;
     private Client client;
     private Schedule schedule;
@@ -110,6 +111,9 @@ public class Controller {
             case temp_curtain:
                 CTempSchedule();
                 break;
+            case main_menu:
+                MainMenu();
+                break;
         }
     }
 
@@ -144,6 +148,11 @@ public class Controller {
         Tschedul = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch1(),mainFrame.getMainPanel().getCurtainGui().getTempsch2());
         client.sendTempSchedule(Tschedul);
         System.out.println("LOOK WHAT WE GOT!"+mainFrame.getMainPanel().getCurtainGui().getTempsch1()+""+mainFrame.getMainPanel().getCurtainGui().getTempsch2());
+    }
+
+
+    public void MainMenu() {
+        MainListGUI mainListGUI = new MainListGUI(null);
     }
 
     public void sendUpdate(String str) {
