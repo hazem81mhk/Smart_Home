@@ -117,7 +117,8 @@ public class Controller {
         mainFrame.getMainPanel().getCurtainGui().setCurtainButtonUP();}
 
     public void CButtondown() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonDOWN();}
+        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonDOWN();
+    }
 
     public void CButtonstop() {
         mainFrame.getMainPanel().getCurtainGui().setCurtainButtonSTOP();}

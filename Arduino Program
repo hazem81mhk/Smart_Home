@@ -1,0 +1,194 @@
+/*
+  TCP_WIFI program for Arduino and Arduino WIFI shield.
+  This program is made to connect Smart Home server and does several tasks. 
+
+  The circuit:
+  - LED from pin 9
+  - Magnetic sensor pins 2,3 
+
+  created 10-04-2020
+  by Mohammed Hazem Kudaimi and Mohammed Amayi
+
+*/
+
+#include <WiFi.h>
+#include <Servo.h>
+
+Servo servoo;
+WiFiClient client;                                                //Use WiFiClient class to create TCP connection.
+
+int sensor_up = 2;                                                //The Upper magnetic sensor.
+int sensor_down = 3;                                              //The lower magnatic sensor.
+int lamp_1 = 9;                                                   //The lamp 1.
+
+boolean magnetic_Sensor_Up = true;
+boolean magnetic_Sensor_Down = true;
+boolean stoop = false;
+
+
+#ifndef localRouterName                                           //Tests if this word is not defined. 
+#define localRouterName "                "                        //Network name.
+#define localRouterPassword  "        "                           //Network key.
+#endif                                                            //End if statement.
+
+const char* LRNANE     = localRouterName;
+const char* LRPassword = localRouterPassword;
+
+const char* serverIP = "192.168.1.9";
+const uint16_t serverPort = 9000;
+
+
+
+
+void setup() {
+  pinMode(9, OUTPUT);
+  pinMode(3, INPUT);
+  pinMode(sensor_up, INPUT);
+
+  servoo.attach(8);
+
+  delay(200);
+  Serial.begin(115200);                                            //Open serial port and set data rate to 115200 bps.
+  delay(200);
+  Serial.print("");
+  Serial.print("Wait for WiFi...");
+
+  WiFi.begin(LRNANE, LRPassword);                                  //Initialize the WiFi network settings and provide the current status.
+
+  connectToWiFi();                                                 //Connect to the WIFI.
+  writeIPAddress();                                                //Write the WIFI IP address.
+  connectToServer();                                               //Connect to the server
+  writeConnectionInfo();                                           //Write the connection information with the server
+  sendMessage("Cnnected");                                         //Send a message to the server to make sure that everything is well.
+}
+
+
+void loop() {
+  sendAndReceiveData();                                            //Send and receice data between WIFI and Arduino.
+  if (!client.connected()) {                                       //Check the connection with the server.
+    Serial.println("disconnected with the server.");
+    client.stop();                                                 //Disconnect the client from the server.
+    for (;;);
+  }
+}
+
+void connectToWiFi() {
+  while (WiFi.status() != WL_CONNECTED) {                          //Attempt to connect to Wifi network.
+    Serial.print(".");
+    delay(1000);                                                   //Wait 1 seconds for connection.
+  }
+}
+
+void writeIPAddress() {
+  Serial.println("");
+  Serial.print("WiFi is connected. The IP address is: ");
+  Serial.println(WiFi.localIP());                                  //Get the Arduino WiFi shield IP address.
+  delay(500);
+}
+
+void connectToServer() {
+  while (!client.connect(serverIP, serverPort)) {                  //Check the connection to the server with  this IP address and port number.
+    Serial.println("connection with server is failed.");
+    Serial.println("wait 5 sec... and try again");
+    delay(2000);
+  }
+}
+
+void writeConnectionInfo() {
+  Serial.print("connecting to server: ");                          //Write the connection information with the server.
+  Serial.print(serverIP);
+  Serial.print(" . Server port number: ");
+  Serial.println(serverPort);
+}
+
+void sendMessage(String str) {                                     // Send Message to the server.
+  Serial.print("Arduino is connected is send to the server.");
+  client.println(str);
+}
+
+void sendAndReceiveData() {
+  while (client.connected()) {                                        
+    if (client.available()) {
+      String strFromServer = client.readStringUntil('\r');            //Reading the data received from the Server.
+      Serial.print("Request from the server send: " + strFromServer); //Write the message in the serial monitor.
+      order(strFromServer);                                           //Send the message to sort.
+      delay(10);
+    }
+  }
+}
+
+void order(String str) {                                              //Sort the coming message.
+  if (str == "lamp1_on") {
+    digitalWrite(lamp_1, HIGH);
+    client.println(str);
+    Serial.print("State is send to the server: " + str);
+  }
+  else if (str == "lamp1_off") {
+    digitalWrite(lamp_1, LOW);
+    client.println(str);
+    Serial.print("State is send to the server: " + str);
+  }
+  else if (str == "up") {
+    client.println(str);
+    Serial.print("State is send to the server: " + str);
+    magnetic_Sensor_Up = true;
+    stoop = false;
+    while (magnetic_Sensor_Up_Detected()) {
+      servoo.write(110);
+      String strFromServer = client.readStringUntil('\r');     
+      Serial.print(strFromServer);                                 
+      order(strFromServer);
+      if (stoop) {
+        break;
+      }
+    }
+    servoo.write(90);
+    client.println("magnetic_Sensor_Up_Detected");
+    Serial.print("State is send to the server: magnetic_Sensor_Up_Detected");
+  }
+  else if (str == "down") {
+    client.println(str);
+    Serial.print("State is send to the server: " + str);
+    magnetic_Sensor_Down = true;
+    stoop = false;
+    while (magnetic_Sensor_Down_Detected()) {
+      servoo.write(70);
+      String strFromServer = client.readStringUntil('\r');         
+      Serial.print(strFromServer);                                
+      order(strFromServer);
+      if (stoop) {
+        break;
+      }
+      servoo.write(90);
+      client.println("magnetic_Sensor_Down_Detected");
+      Serial.print("State is send to the server: magnetic_Sensor_Down_Detected");
+    }
+  }
+  else if (str == "stop") {
+    stoop = true;
+    servoo.write(90);
+    client.println(str);
+    Serial.print("State is send to the server: " + str);
+  }
+  delay(10);
+}
+
+
+boolean magnetic_Sensor_Up_Detected() {
+  if (digitalRead(sensor_up) == LOW) {
+    magnetic_Sensor_Up == true;
+  } else {
+    magnetic_Sensor_Up = false;
+  }
+  return magnetic_Sensor_Up;
+}
+
+
+boolean magnetic_Sensor_Down_Detected() {
+  if (digitalRead(sensor_down) == HIGH) {
+    magnetic_Sensor_Down == true;
+  } else {
+    magnetic_Sensor_Down = false;
+  }
+  return magnetic_Sensor_Down;
+}

@@ -2105,6 +2105,7 @@ The lampa was on for 7
 2020/05/01 00:24:41    Arduino is Cnnected
 2020/05/01 00:33:21    srfd is connected to the server
 2020/05/01 00:33:43    bvc is connected to the server
+<<<<<<< HEAD
 2020/05/01 19:55:12    Main server is connected at port: 8000
 2020/05/01 19:55:12    Arduino server is connected att port: 9000
 2020/05/01 19:55:54    mado is connected to the server
@@ -2334,3 +2335,5 @@ The lampa was on for 7
 2020/05/03 15:25:03    Arduino server is connected att port: 9000
 2020/05/03 15:25:08    Arduino is Cnnected
 2020/05/03 15:25:30    mido is connected to the server
+=======
+>>>>>>> branch 'master' of https://github.com/hazem81mhk/Smart_Home.git
