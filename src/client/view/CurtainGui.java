@@ -2,7 +2,7 @@ package client.view;
 
 
 import client.controller.Controller;
-import javafx.scene.layout.Background;
+//import javafx.scene.layout.Background;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

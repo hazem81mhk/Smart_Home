@@ -125,6 +125,10 @@ public class ArduinoHandler extends Thread {
                 sendStatus("bottom");
                 System.out.println("ARDUINO HANDLER: bottom");
                 break;
+            case "stoop":
+                sendStatus("stoop");
+                System.out.println("ARDUINO HANDLER: STOP");
+                break;
                 
             default:
             	sendStatus(inputMessage);

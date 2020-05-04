@@ -84,12 +84,12 @@ public class Client extends Thread {
 				//System.out.println(request.getTextMessage());
 			}
 			//AGON
-			if (stateTxt.toLowerCase().contains("up")) {
-				System.out.println("Message receive from the server: Now, The curtain is rolling up");
+			if (stateTxt.toLowerCase().contains("up")&&!stateTxt.toLowerCase().contains("stoop")&&!stateTxt.toLowerCase().contains("down")) { //CHECK IT OUT!
+				System.out.println("Message receive from the server: Now, The curtain is rolling ups");
 				controller.CButtonup();
 				controller.sendUpdate("Curtain is rolling up");
 			}
-			if (stateTxt.toLowerCase().contains("down")) {
+			if (stateTxt.toLowerCase().contains("down")&&!stateTxt.toLowerCase().contains("stoop")) {
 				System.out.println("Message receive from the server: Now, The curtain is rolling down");
 				controller.CButtondown();
 				controller.sendUpdate("Curtain is rolling down");
@@ -122,7 +122,7 @@ public class Client extends Thread {
 				controller.sendUpdate("Curtain is on top");
 			}
 			if (stateTxt.toLowerCase().contains("bottom")) {
-				System.out.println("Message receive from the server: Now, The curtain reached the bottom");
+				System.out.println("Message receiveThe curtain is rolling up from the server: Now, The curtain reached the bottom");
 				controller.CButtonBotoom();
 				controller.sendUpdate("Curtain reached the bottom");
 			}
