@@ -2152,3 +2152,10 @@ The lampa was on for 7
 2020/05/03 22:00:04    up
 2020/05/03 22:00:23    down
 2020/05/03 22:00:30    stoop
+2020/05/04 14:17:02    Main server is connected at port: 8000
+2020/05/04 14:17:02    Arduino server is connected att port: 9000
+2020/05/04 14:17:11    Arduino is Cnnected
+2020/05/04 14:17:37    modi is connected to the server
+2020/05/04 14:18:00    up
+2020/05/04 14:18:14    stoop
+2020/05/04 14:18:31    down
