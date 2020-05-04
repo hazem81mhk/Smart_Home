@@ -2,7 +2,7 @@ package client.view;
 
 
 import client.controller.Controller;
-import javafx.scene.layout.Background;
+//import javafx.scene.layout.Background;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -228,8 +228,9 @@ public class CurtainGui extends JPanel {
         jp2.add(jcbdwn, BorderLayout.CENTER);
         jp2.add(jbenable1);
         jp2.add(jbdisable1);
-        jbenable1.addActionListener(new CurtainScheduleActionListen());
-        jbdisable1.addActionListener(new CurtainScheduleActionListen());
+        CurtainScheduleActionListen curtainScheduleActionListen = new CurtainScheduleActionListen();
+        jbenable1.addActionListener(curtainScheduleActionListen);
+        jbdisable1.addActionListener(curtainScheduleActionListen);
     }
 
     public void TemperatureSchedule() {
@@ -378,12 +379,14 @@ public class CurtainGui extends JPanel {
         jbdown.setEnabled(true);
         jbstop.setEnabled(true);
     }
-    public void curtainOnTop(){
+
+    public void curtainOnTop() {
         jbup.setEnabled(false);
         jbdown.setEnabled(true);
         jbstop.setEnabled(false);
     }
-    public void curtainBottom(){
+
+    public void curtainBottom() {
         jbup.setEnabled(true);
         jbdown.setEnabled(false);
         jbstop.setEnabled(false);
@@ -400,7 +403,7 @@ public class CurtainGui extends JPanel {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                
+
 
                 //jbup.setEnabled(false);
                 //jbdown.setEnabled(true);
@@ -419,7 +422,7 @@ public class CurtainGui extends JPanel {
                     e1.printStackTrace();
 
                 }
-                
+
             } else if (e.getSource() == jbstop) {
                 controller.buttonPressed(ButtonType.curtain_stop);
                 try {
@@ -429,7 +432,7 @@ public class CurtainGui extends JPanel {
                     e1.printStackTrace();
 
                 }
-              
+
 
                 //jbup.setEnabled(true);
                 //jbdown.setEnabled(true);
@@ -452,36 +455,42 @@ public class CurtainGui extends JPanel {
                         listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
                         ", " + listscheduletoT.getSelectedValue());
             }*/
-            else if(jbenable1.isSelected()){
-                controller.buttonPressed(ButtonType.curtain_schedule);
-                /**
-                 System.out.println("Curtain goes DOWN. From: " + listschedulestartM.getSelectedValue() +", "+
-                 listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: "+
-                 listscheduletoM.getSelectedValue() +", "+ listscheduletoD.getSelectedValue() +
-                 ", " + listscheduletoT.getSelectedValue());
-                 **/
-            }
-            else{
-                controller.buttonPressed(ButtonType.disable);
+            else {
+                if (e.getSource() == jbenable1) {
+                    controller.buttonPressed(ButtonType.curtain_schedule);
+
+/*
+                    System.out.println("Curtain goes DOWN. From: " + listschedulestartM.getSelectedValue() + ", " +
+                            listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: " +
+                            listscheduletoM.getSelectedValue() + ", " + listscheduletoD.getSelectedValue() +
+                            ", " + listscheduletoT.getSelectedValue());
+*/
+                } else if (e.getSource() == jbdisable1) {
+                    controller.buttonPressed(ButtonType.disable);
+                    //System.out.println("Disable curtain");
+                }
             }
         }
     }
 
     class TemperatureScheduleActionListen implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if (jbenable2.isSelected()){
-            controller.buttonPressed(ButtonType.temp_curtain);
-            // System.out.println("Higher than " + jsl1.getValue() + " to roll down\n" + "Lower than " + jsl2.getValue() + " to roll up");
-        }
-        else {controller.buttonPressed(ButtonType.disable);}
+            if (e.getSource() == jbenable2) {
+                controller.buttonPressed(ButtonType.temp_curtain);
+                System.out.println("Higher than " + jsl1.getValue());
+            } else if (e.getSource() == jbdisable2) {
+                controller.buttonPressed(ButtonType.disable);
+                System.out.println("Disable temp");
+            }
         }
     }
 
     class MainMenuActionListen implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == jbmm){
-            controller.buttonPressed(ButtonType.main_menu);
-            jf.dispose();
-        }}
+            if (e.getSource() == jbmm) {
+                controller.buttonPressed(ButtonType.main_menu);
+                jf.dispose();
+            }
+        }
     }
 }
