@@ -36,6 +36,7 @@ public class Client extends Thread {
 		this.user = new User(userName);
 		this.controller = controller;
 		start();
+		
 	}
 
 	@Override
@@ -45,6 +46,7 @@ public class Client extends Thread {
 			clientSocket = new Socket(ip, port);
 			ous = new ObjectOutputStream(clientSocket.getOutputStream());
 			sendUser(user);
+			checkCurtainState();
 			controller.startClientGui();
 			ois = new ObjectInputStream(clientSocket.getInputStream());
 			try {
@@ -62,6 +64,10 @@ public class Client extends Thread {
 			JOptionPane.showMessageDialog(null, "You have a problem connecting to the server" +
 					"\n Please make sure that the server is running ");
 		}
+	}
+
+	private void checkCurtainState() {
+		sendRequest("initiate");
 	}
 
 	private void sort(Object object) {

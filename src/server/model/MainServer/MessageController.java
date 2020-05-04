@@ -111,7 +111,7 @@ public class MessageController extends Thread {
 
     public synchronized void requestHandler(Request msg) throws IOException {
         String request = msg.getTextMessage();
-            if(request.toLowerCase().contains("up")||request.toLowerCase().contains("down"))
+            if(request.toLowerCase().contains("up")||request.toLowerCase().contains("down")||request.toLowerCase().contains("stop"))
             {
             	curtainHandler(request);
             }
@@ -197,7 +197,7 @@ public class MessageController extends Thread {
         }
         
        
-        Statee stateToClient = new Statee("State update:" + stateTxt);
+        Statee stateToClient = new Statee("State:" + stateTxt);
         try {
             onlineBroadcast(stateToClient);
         } catch (IOException e) {

@@ -83,6 +83,10 @@ public class ArduinoHandler extends Thread {
             //System.out.println("SHOULD BE OFF");
             request = "temp";
         }
+        else if (inputMessage.toLowerCase().contains("initiate")) {
+            //System.out.println("SHOULD BE OFF");
+            request = "initiate";
+        }
         //System.out.println("this is request" + request);
         Arduino arduinoClient = server.getArduino();
         arduinoClient.sendToArduino(request);

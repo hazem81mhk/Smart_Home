@@ -359,12 +359,12 @@ public class Server extends Thread {
 		try {if(curtainSchedule!=null)
 
 		{
-			curtainSchedule.cancel();
+			curtainSchedule.stopTimer();
 			setScheduleState(false);
 		}
 		if(tempSchedule!=null)
 		{
-			tempSchedule.cancel();
+			tempSchedule.stopTimer();
 			setTempScheduleState(false);
 		}
 
