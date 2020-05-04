@@ -2118,3 +2118,37 @@ The lampa was on for 7
 2020/05/03 20:41:52    Main server is connected at port: 8000
 2020/05/03 20:41:52    Arduino server is connected att port: 9000
 2020/05/03 20:42:09    aho is connected to the server
+2020/05/03 21:16:57    Main server is connected at port: 8000
+2020/05/03 21:16:57    Arduino server is connected att port: 9000
+2020/05/03 21:17:19    Arduino is Cnnected
+2020/05/03 21:20:34    mohammed is connected to the server
+2020/05/03 21:20:45    up
+2020/05/03 21:21:17    down
+2020/05/03 21:24:32    up
+2020/05/03 21:35:01    Main server is connected at port: 8000
+2020/05/03 21:35:01    Arduino server is connected att port: 9000
+2020/05/03 21:35:48    Arduino is Cnnected
+2020/05/03 21:36:04    mido is connected to the server
+2020/05/03 21:36:18    up
+2020/05/03 21:37:29    down
+2020/05/03 21:40:13    up
+2020/05/03 21:41:21    down
+2020/05/03 21:43:59    Main server is connected at port: 8000
+2020/05/03 21:43:59    Arduino server is connected att port: 9000
+2020/05/03 21:45:34    Arduino is Cnnected
+2020/05/03 21:45:58    moda is connected to the server
+2020/05/03 21:46:08    up
+2020/05/03 21:46:25    down
+2020/05/03 21:47:04    up
+2020/05/03 21:48:42    Main server is connected at port: 8000
+2020/05/03 21:48:42    Arduino server is connected att port: 9000
+2020/05/03 21:48:49    Arduino is Cnnected
+2020/05/03 21:49:15    mido is connected to the server
+2020/05/03 21:49:23    up
+2020/05/03 21:59:24    Main server is connected at port: 8000
+2020/05/03 21:59:24    Arduino server is connected att port: 9000
+2020/05/03 21:59:34    Arduino is Cnnected
+2020/05/03 21:59:53    mido is connected to the server
+2020/05/03 22:00:04    up
+2020/05/03 22:00:23    down
+2020/05/03 22:00:30    stoop

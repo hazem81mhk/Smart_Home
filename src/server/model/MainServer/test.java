@@ -3,19 +3,22 @@ package server.model.MainServer;
 public class test {
 	public static void main(String[]args)
 	{
-		int x=10;
-		if(x==10)
+		String str="stoop";
+		if(str.toLowerCase().contains("stoop"))
 		{
-			System.out.println("ITS TEN");
+			System.out.println("it's the same");
 		}
-		else if(x!=10)
+		if(str.toLowerCase().contains("up"))
 		{
-			System.out.println("ITS NOT TEN");
+			System.out.println("it's up");
 		}
-		else
+		
+		if(str.toLowerCase().contains("down"))
 		{
-			System.out.println("ITS SMTH ELSE");
+			System.out.println("it's down");
 		}
+		
+		
 	}
 
 }
