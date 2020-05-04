@@ -18,11 +18,11 @@ import java.awt.event.KeyEvent;
 
 public class ClientLogin extends JPanel{
     private Controller controller;
-    private JTextField jtfusr = new JTextField();
-    private JTextField jtfip = new JTextField("192.168.1.9");
+    private JTextField jtfusr = new JTextField("Hazem");
+    private JTextField jtfip = new JTextField("192.168.0.13");
     private JTextField jtfport = new JTextField("8000");
 
-    private JPasswordField jtfPassWord = new JPasswordField();
+    private JPasswordField jtfPassWord = new JPasswordField("123");
     private JToggleButton jbd = new JToggleButton("Display password");
     private JFrame jf;
 
