@@ -36,7 +36,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 		
 	}
 	public void startTimer() {
-		 timer = new Timer();
+		 this.timer = new Timer();
 		timer.schedule(new TempSchedule(rollUpTemp, rollDownTemp,server), 0, 60000);
 		
 	}
