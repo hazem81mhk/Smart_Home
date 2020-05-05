@@ -37,11 +37,12 @@ public class TempSchedule extends TimerTask implements Serializable{
 	}
 	public void startTimer() {
 		 this.timer = new Timer();
-		timer.schedule(new TempSchedule(rollUpTemp, rollDownTemp,server), 0, 60000);
+		timer.schedule(this, 0, 60000);
 		
 	}
 	@Override
 	public void run() {
+		System.out.println("TEMPSCHED: trying to run and the other Schema is"+server.getCurtainSchState());
 		if(!server.getCurtainSchState())
 		{
 			double tempo=checkTemp();

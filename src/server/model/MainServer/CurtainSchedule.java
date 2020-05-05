@@ -42,6 +42,7 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
         this.order=order;
         this.server=server;
         
+        
     }
    
     public void setServer(Server server)
@@ -49,14 +50,18 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
     	this.server=server;
     	//System.out.println("WHOOOOPI VI HAR EN SERVER!");
     }
+    
    
     public void startTimer()
     {
     	 this.timer = new Timer();
- 		timer.schedule(new CurtainSchedule(start,end,order,server), 0, 60000);
+ 		timer.schedule(this, 0, 60000);
+ 		
     }
 
-    public boolean checkDate(String start, String end) throws ParseException {
+    
+    
+	public boolean checkDate(String start, String end) throws ParseException {
         boolean result = false;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -94,8 +99,9 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
                               }
                             if (current_Time.isAfter(endTime)){
                                
-
-                                //this.isInterrupted();
+                            	server.sendRequest(antiOrder());
+                            	this.stopTimer();
+                            	
                             }
                         }
                     }
@@ -154,7 +160,16 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
 	}
 	public void stopTimer()
 	{	server.setScheduleState(false);
-		this.timer.cancel();
+	System.out.println(server.getCurtainSchState());
+		if(this.timer!=null)
+		{
+		
+			this.timer.cancel();
+		}
+		else
+		{
+			System.out.println("TIMER IS NULL");
+		}
 		
 	}
 	public boolean checkState(String str)
