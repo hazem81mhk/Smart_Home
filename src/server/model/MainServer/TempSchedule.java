@@ -36,7 +36,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 		
 	}
 	public void startTimer() {
-		 timer = new Timer();
+		 this.timer = new Timer();
 		timer.schedule(new TempSchedule(rollUpTemp, rollDownTemp,server), 0, 60000);
 		
 	}
@@ -45,16 +45,27 @@ public class TempSchedule extends TimerTask implements Serializable{
 		if(!server.getCurtainSchState())
 		{
 			double tempo=checkTemp();
-		if(tempo<=rollUpTemp)
+		if(tempo<rollUpTemp)
 		{	if( checkState("up"))
-		{	System.out.println("TEMP SCHED: RUN : SENDING UP");
+		{	//System.out.println("TEMP SCHED: RUN : SENDING UP");
+			try {
+				Thread.sleep(2000) ;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			server.sendRequest("up");
+
 			server.setTempScheduleState(true);
 		}
 		}
 		if(tempo>=rollUpTemp)
 		{ if( checkState("down"))
-		{	System.out.println("TEMP SCHED: RUN : SENDING DOWN");
+		{	//System.out.println("TEMP SCHED: RUN : SENDING DOWN");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			server.sendRequest("down");
 			server.setTempScheduleState(true);
 		}
@@ -81,7 +92,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 			}
 		}
 		 temp=server.getTemp();
-		System.out.println("TempSche:"+temp);
+		//System.out.println("TempSche:"+temp);
 		return temp;
 		
 	}
@@ -89,7 +100,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 	{	server.setTempScheduleState(false);
 		this.timer.cancel();
 	
-		System.out.println("TempSched:timer is canceled");
+		////System.out.println("TempSched:timer is canceled");
 		
 	}
 	public boolean checkState(String str)

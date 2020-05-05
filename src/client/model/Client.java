@@ -1,9 +1,7 @@
 package client.model;
 
 import client.controller.Controller;
-import client.view.CurtainSchedul;
 import client.view.Schedule;
-import client.view.TempSchedul;
 import server.model.ArduinoServer.Statee;
 import server.model.MainServer.*;
 
