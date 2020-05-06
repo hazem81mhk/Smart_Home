@@ -2586,3 +2586,68 @@ The lampa was on for 7
 2020/05/05 23:02:13    down
 2020/05/05 23:03:06    down
 2020/05/05 23:04:10    down
+2020/05/05 23:43:21    Main server is connected at port: 8000
+2020/05/05 23:43:21    Arduino server is connected att port: 9000
+2020/05/05 23:43:25    Arduino is Cnnected
+2020/05/05 23:43:39    Hazem is connected to the server
+2020/05/05 23:43:53    down
+2020/05/05 23:44:53    down
+2020/05/05 23:45:09    up
+2020/05/05 23:46:55    down
+2020/05/05 23:47:14    up
+2020/05/05 23:48:14    down
+2020/05/06 11:20:47    Main server is connected at port: 8000
+2020/05/06 11:20:47    Arduino server is connected att port: 9000
+2020/05/06 11:20:56    Arduino is Cnnected
+2020/05/06 11:21:07    Hazem is connected to the server
+2020/05/06 11:21:22    down
+2020/05/06 11:22:12    up
+2020/05/06 11:23:12    down
+2020/05/06 11:28:12    Main server is connected at port: 8000
+2020/05/06 11:28:12    Arduino server is connected att port: 9000
+2020/05/06 11:28:22    Arduino is Cnnected
+2020/05/06 11:28:36    Hazem is connected to the server
+2020/05/06 11:28:44TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 11:28:55    down
+2020/05/06 11:29:44TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 11:32:03    up
+2020/05/06 11:33:03    down
+2020/05/06 11:58:31    Main server is connected at port: 8000
+2020/05/06 11:58:31    Arduino server is connected att port: 9000
+2020/05/06 11:58:46    Arduino is Cnnected
+2020/05/06 11:58:58    Hazem is connected to the server
+2020/05/06 11:59:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 11:59:13    down
+2020/05/06 12:00:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:00:12    down
+2020/05/06 12:01:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:01:13    down
+2020/05/06 12:02:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:02:12    down
+2020/05/06 12:02:21    up
+2020/05/06 12:03:03TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:03:21    down
+2020/05/06 12:04:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:04:15    down
+2020/05/06 12:05:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:05:13    down
+2020/05/06 12:06:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:06:14    down
+2020/05/06 12:06:55    up
+2020/05/06 12:07:03TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:07:55    up
+2020/05/06 12:08:04TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:08:56    down
+2020/05/06 12:09:04TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:10:53    Main server is connected at port: 8000
+2020/05/06 12:10:53    Arduino server is connected att port: 9000
+2020/05/06 12:11:15    Arduino is Cnnected
+2020/05/06 12:11:27    Hazem is connected to the server
+2020/05/06 12:11:34TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:11:45    down
+2020/05/06 12:12:12    up
+2020/05/06 12:12:34TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:13:12    down
+2020/05/06 12:13:34TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:13:48    down
+2020/05/06 12:14:35TEMPSCHED: trying to run and the other Schema isfalse
