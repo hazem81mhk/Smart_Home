@@ -156,4 +156,8 @@ public class ClientLogin extends JPanel{
                 controller.buttonPressed(ButtonType.login);
             }}
     }
+
+    public static void main(String[] args) {
+        ClientLogin clientLogin=new ClientLogin(null);
+    }
 }

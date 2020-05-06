@@ -124,13 +124,15 @@ public class MessageController extends Thread {
     }
 
 
-    private void curtainHandler(String request) {
+    private synchronized void curtainHandler(String request)  {
 
-        ////System.out.println("Curtain_schema is :"+server.getCurtainState());
-        ////System.out.println("Temp_schema is :"+server.getCurtainTempState());
+        ////System.out.println("Curtain_schema is :"+server.getCurtainState())
+
+        System.out.println("Temp_schema is :"+server.getCurtainTempState());
 
         if (server.getCurtainSchState() || server.getCurtainTempState()) {
             ////System.out.println("MSG Handler: TIME TO SEND THE ERR");
+            System.out.println("Temp_HANDLER we have a problem :"+ request);
             Statee errReq = new Statee("ERR");
             try {
                 oosm.writeObject(errReq);

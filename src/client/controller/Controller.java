@@ -14,8 +14,8 @@ import server.model.MainServer.TempSchedule;
 
 public class Controller {
     private MainFrame mainFrame;
-    private MainListGUI mainListGui;
     private ClientLogin clientLogin;
+    private MainListGUI mainListGui;
     private Client client;
     private Schedule schedule;
     private CurtainSchedule Cschedule;
