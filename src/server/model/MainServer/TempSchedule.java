@@ -1,6 +1,8 @@
 package server.model.MainServer;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,6 +12,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 	private Server server;
 	private Timer timer;
 	private double temp=0;
+	
 	public TempSchedule(double rollUpTemp,double rollDownTemp)
 	{
 		this.rollDownTemp=rollDownTemp;
@@ -42,7 +45,10 @@ public class TempSchedule extends TimerTask implements Serializable{
 	}
 	@Override
 	public void run() {
-		System.out.println("TEMPSCHED: trying to run and the other Schema is"+server.getCurtainSchState());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 String time = sdf.format(new Date());
+		 server.sendTrafficMessage(time + "TEMPSCHED: trying to run and the other Schema is"+server.getCurtainSchState());
+		
 		if(!server.getCurtainSchState())
 		{
 			double tempo=checkTemp();

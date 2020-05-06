@@ -56,7 +56,6 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
     {
     	 this.timer = new Timer();
  		timer.schedule(this, 0, 60000);
- 		
     }
 
     
