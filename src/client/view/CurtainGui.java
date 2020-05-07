@@ -151,7 +151,7 @@ public class CurtainGui extends JPanel {
                 } else {
                     minute = String.valueOf(y);
                 }
-                y += 5;
+                y += 1;
                 lmtime.addElement(hour + ":" + minute);
             }
             y = 0;
@@ -492,5 +492,9 @@ public class CurtainGui extends JPanel {
                 jf.dispose();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        CurtainGui curtainGui=new CurtainGui(null);
     }
 }

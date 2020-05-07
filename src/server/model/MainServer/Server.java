@@ -67,7 +67,7 @@ public class Server extends Thread {
 				messageControllerList.add(msgController);
 				msgController.start();
 			} catch (IOException e) {
-				//System.out.println("We have a problem in our sever socket");
+				////System.out.println("We have a problem in our sever socket");
 				try {
 					serverSocket.close();
 				} catch (IOException ex) {
@@ -80,9 +80,9 @@ public class Server extends Thread {
 			public void run() {
 				try {
 					serverSocket.close();
-					System.out.println("The server is shut down!");
+					//System.out.println("The server is shut down!");
 				} catch (IOException e) {
-					System.out.println("The server is still running ");
+					//System.out.println("The server is still running ");
 				}
 			}
 		});
@@ -192,7 +192,7 @@ public class Server extends Thread {
 				x++;
 			}
 		} catch (NumberFormatException | ParseException | IOException e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
 		return minutesForCost;
 
@@ -215,11 +215,11 @@ public class Server extends Thread {
 		LocalTime endTime = LocalTime.parse(getTime(end));
 
 		LocalDateTime localDateTime = LocalDateTime.now();
-		//System.out.println(localDateTime);
+		////System.out.println(localDateTime);
 
 		if (todaysDate.after(startDate) || todaysDate.equals(startDate)) {
 			if (todaysDate.before(endDate) || todaysDate.equals(endDate)) {
-				//System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
+				////System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
 				if (!todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
 					result = true;
 
@@ -243,7 +243,7 @@ public class Server extends Thread {
 				}
 			}
 		} else {
-			System.out.println("NO YOUR DATE IS WRONG");
+			//System.out.println("NO YOUR DATE IS WRONG");
 			result = false;
 		}
 		return result;
@@ -255,7 +255,7 @@ public class Server extends Thread {
 	}
 	//END OF CLASS
 
-	public void setSchedule(String startDate, String endDate) {
+	public synchronized void setSchedule(String startDate, String endDate) {
 		if (schema == null) {
 			schema = new Schema(startDate, endDate, this);
 		} else {
@@ -297,7 +297,7 @@ public class Server extends Thread {
 	{
 		return temp;
 	}
-	public void setTempSchedule(TempSchedule tempSchedule1) {
+	public  void setTempSchedule(TempSchedule tempSchedule1) {
 		if (tempSchedule == null) {
 			tempSchedule = tempSchedule1;
 			tempSchedule1.setServer(this);
@@ -310,8 +310,8 @@ public class Server extends Thread {
 		}
 	}
 	public void setCurtainSchedule(CurtainSchedule curtainSchedule1) {
-		if (schema == null) {
-			System.out.println("WORKING IT FROM SCTACH");
+		if (curtainSchedule== null) {
+			//System.out.println("WORKING IT FROM SCTACH");
 			this.curtainSchedule = curtainSchedule1;
 
 			curtainSchedule.setServer(this);
@@ -323,7 +323,7 @@ public class Server extends Thread {
 			}
 			curtainSchedule.startTimer();
 		} else {
-			System.out.println("REBULDING IT");
+			//System.out.println("REBULDING IT");
 			curtainSchedule.stopTimer();
 			curtainSchedule = null;
 			curtainSchedule = curtainSchedule1;
@@ -341,12 +341,12 @@ public class Server extends Thread {
 	{
 		this.scheduleState=state;
 	}
-	public boolean getCurtainSchState()
+	public synchronized boolean getCurtainSchState()
 	{
 		return scheduleState;
 	}
 
-	public void setTempScheduleState(boolean state)
+	public synchronized void setTempScheduleState(boolean state)
 	{
 		this.tempScheduleState=state;
 	}
@@ -371,7 +371,7 @@ public class Server extends Thread {
 		}
 		catch(NullPointerException  e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
 		}
 
 	}

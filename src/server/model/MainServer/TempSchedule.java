@@ -1,6 +1,8 @@
 package server.model.MainServer;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,6 +12,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 	private Server server;
 	private Timer timer;
 	private double temp=0;
+	
 	public TempSchedule(double rollUpTemp,double rollDownTemp)
 	{
 		this.rollDownTemp=rollDownTemp;
@@ -36,25 +39,46 @@ public class TempSchedule extends TimerTask implements Serializable{
 		
 	}
 	public void startTimer() {
-		 timer = new Timer();
-		timer.schedule(new TempSchedule(rollUpTemp, rollDownTemp,server), 0, 60000);
+		 this.timer = new Timer();
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		server.setTempScheduleState(true);
+		timer.schedule(this, 0, 60000);
 		
 	}
 	@Override
 	public void run() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 String time = sdf.format(new Date());
+		 server.sendTrafficMessage(time + "TEMPSCHED: trying to run and the other Schema is"+server.getCurtainSchState());
+		
 		if(!server.getCurtainSchState())
 		{
 			double tempo=checkTemp();
-		if(tempo<=rollUpTemp)
+		if(tempo<rollUpTemp)
 		{	if( checkState("up"))
-		{	System.out.println("TEMP SCHED: RUN : SENDING UP");
+		{	//System.out.println("TEMP SCHED: RUN : SENDING UP");
+			try {
+				Thread.sleep(2000) ;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			server.sendRequest("up");
+
 			server.setTempScheduleState(true);
 		}
 		}
-		if(tempo>=rollUpTemp)
+		else if(tempo>=rollUpTemp)
 		{ if( checkState("down"))
-		{	System.out.println("TEMP SCHED: RUN : SENDING DOWN");
+		{	//System.out.println("TEMP SCHED: RUN : SENDING DOWN");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			server.sendRequest("down");
 			server.setTempScheduleState(true);
 		}
@@ -81,15 +105,15 @@ public class TempSchedule extends TimerTask implements Serializable{
 			}
 		}
 		 temp=server.getTemp();
-		System.out.println("TempSche:"+temp);
+		//System.out.println("TempSche:"+temp);
 		return temp;
 		
 	}
-	public void stopTimer()
+	public synchronized void stopTimer()
 	{	server.setTempScheduleState(false);
 		this.timer.cancel();
 	
-		System.out.println("TempSched:timer is canceled");
+		////System.out.println("TempSched:timer is canceled");
 		
 	}
 	public boolean checkState(String str)

@@ -33,7 +33,7 @@ public class ArduinoHandler extends Thread {
                 try {
                     String inputMessage = inPut.readLine();
                     sort(inputMessage);
-                    //System.out.println("Received message: " + inputMessage);
+                    ////System.out.println("Received message: " + inputMessage);
                 } catch (Exception e) {
                     try {
                         socket.close();
@@ -47,10 +47,10 @@ public class ArduinoHandler extends Thread {
     private void sort(String inputMessage) {
         if (inputMessage.toLowerCase().contains("server")) {
             try {
-                //System.out.println("we gor a new request");
+                ////System.out.println("we gor a new request");
                 requestHandler(inputMessage);
             } catch (IOException e) {
-                System.out.println("We have a problem sending the message to arduino");
+                //System.out.println("We have a problem sending the message to arduino");
             }
         } else {
             StatusUpdate(inputMessage);
@@ -60,40 +60,40 @@ public class ArduinoHandler extends Thread {
     private void requestHandler(String inputMessage) throws IOException {
         String request = null;
         if (inputMessage.toLowerCase().contains("on")) {
-            //System.out.println("SHOULD BE ON");
+            ////System.out.println("SHOULD BE ON");
             request = "lamp1_on";
         }
         else if  (inputMessage.toLowerCase().contains("off")) {
-            //System.out.println("SHOULD BE OFF");
+            ////System.out.println("SHOULD BE OFF");
             request = "lamp1_off";
         }
         else if (inputMessage.toLowerCase().contains("up")) {
-            //System.out.println("SHOULD BE OFF");
+            ////System.out.println("SHOULD BE OFF");
             request = "up";
         }
         else if (inputMessage.toLowerCase().contains("down")) {
-            //System.out.println("SHOULD BE OFF");
+            ////System.out.println("SHOULD BE OFF");
             request = "down";
         }
         else if (inputMessage.toLowerCase().contains("stop")) {
-            //System.out.println("SHOULD BE OFF");
+            ////System.out.println("SHOULD BE OFF");
             request = "stop";
         }
         else if (inputMessage.toLowerCase().contains("temp")) {
-            //System.out.println("SHOULD BE OFF");
+            ////System.out.println("SHOULD BE OFF");
             request = "temp";
         }
         else if (inputMessage.toLowerCase().contains("initiate")) {
-            //System.out.println("SHOULD BE OFF");
+            ////System.out.println("SHOULD BE OFF");
             request = "initiate";
         }
-        //System.out.println("this is request" + request);
+        ////System.out.println("this is request" + request);
         Arduino arduinoClient = server.getArduino();
         arduinoClient.sendToArduino(request);
     }
 
     private void StatusUpdate(String inputMessage) {
-        System.out.println("Our input Message is :" + inputMessage);
+        //System.out.println("Our input Message is :" + inputMessage);
         switch (inputMessage) {
             case "Cnnected":
                 sendStatus("Arduino is Cnnected");
@@ -101,7 +101,7 @@ public class ArduinoHandler extends Thread {
                     Arduino arduino = new Arduino(socket.getOutputStream());
                     server.setArduino(arduino);
                 } catch (IOException e) {
-                    System.out.println("Cant create a new arduino");
+                    //System.out.println("Cant create a new arduino");
                 }
                 break;
             case "lamp1_on":
@@ -115,28 +115,28 @@ public class ArduinoHandler extends Thread {
                 break;
             case "up":
                 sendStatus("up");
-                System.out.println("ARDUINO HANDLER: up");
+                //System.out.println("ARDUINO HANDLER: up");
                 break;
             case "down":
                 sendStatus("down");
-                System.out.println("ARDUINO HANDLER: down");
+                //System.out.println("ARDUINO HANDLER: down");
                 break;
             case "top":
                 sendStatus("top");
-                System.out.println("ARDUINO HANDLER: top");
+                //System.out.println("ARDUINO HANDLER: top");
                 break;
             case "bottom":
                 sendStatus("bottom");
-                System.out.println("ARDUINO HANDLER: bottom");
+                //System.out.println("ARDUINO HANDLER: bottom");
                 break;
             case "stoop":
                 sendStatus("stoop");
-                System.out.println("ARDUINO HANDLER: STOP");
+                //System.out.println("ARDUINO HANDLER: STOP");
                 break;
                 
             default:
             	sendStatus(inputMessage);
-                System.out.println("Arduino said: " + inputMessage);
+                //System.out.println("Arduino said: " + inputMessage);
         }
     }
 

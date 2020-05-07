@@ -18,8 +18,10 @@ import java.util.Calendar;
 
 public class GUI extends JPanel {
     private Controller controller;
-    private int width = 320;
-    private int height = 800;
+    private int width = 340;
+    private int height = 740;
+    private JFrame jf = new JFrame();
+    private JPanel jpmain = new JPanel();
 
     private String kwkr, kw, cost, strttime, totime, consfr, consto;
     //JPanel
@@ -87,8 +89,11 @@ public class GUI extends JPanel {
 
     public GUI(Controller controller) {
         this.controller = controller;
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(width, height));
+        jf.add(jpmain);
+
+
+        //setLayout(new BorderLayout());
+        //setPreferredSize(new Dimension(width, height));
 
         Lamp();
         Lampstate();
@@ -101,6 +106,12 @@ public class GUI extends JPanel {
         jboff.addActionListener(listener);
         jbsch.addActionListener(listener);
         jbcons.addActionListener(listener);
+
+        jf.setPreferredSize(new Dimension(width, height));
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setTitle("SmartHome Application");
+        jf.pack();
+        jf.setVisible(true);
     }
 
     public void Lamp() {
@@ -109,11 +120,12 @@ public class GUI extends JPanel {
         jplmp.setBorder(BorderFactory.createTitledBorder(null, "Lamp 1:",
                 TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 new Font("Arial", Font.PLAIN, 15), Color.BLACK));
+        jpmain.add(jplmp);
         jplmp.add(jplampst, BorderLayout.NORTH);
         jplmp.add(jpsch, BorderLayout.CENTER);
         jplmp.add(jpcons, BorderLayout.SOUTH);
         jplmp.add(jptextArra,BorderLayout.SOUTH);
-        add(jplmp, BorderLayout.CENTER);
+       // add(jplmp, BorderLayout.CENTER);
     }
 
     public void textArea(){
@@ -123,6 +135,7 @@ public class GUI extends JPanel {
                 new Font("Arial", Font.PLAIN, 15), Color.BLACK));
         textArea=new JTextArea(3,27);
         textArea.setEditable(false);
+        jpmain.add(jptextArra);
         //JScrollPane Scroll = new JScrollPane(textArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         JScrollPane Scroll=new JScrollPane(textArea);
         Scroll.setHorizontalScrollBar(null);
@@ -140,6 +153,7 @@ public class GUI extends JPanel {
                 F1, Color.BLUE));
         //JButton on&off i Lampstate panelen
         Dimension dimb = new Dimension(120, 28);
+        jpmain.add(jplampst);
         jbon.setPreferredSize(dimb);
         jboff.setPreferredSize(dimb);
         jplampst.add(jbon);
@@ -253,6 +267,7 @@ public class GUI extends JPanel {
         jpto.setBorder(BorderFactory.createTitledBorder(null, "To:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F2, Color.BLACK));
 
+        jpmain.add(jpsch);
         jpsch.add(jpstart, BorderLayout.NORTH);
         jpsch.add(jpto, BorderLayout.SOUTH);
         jpsch.add(jbsch);
@@ -307,7 +322,7 @@ public class GUI extends JPanel {
         jpcons.setPreferredSize(new Dimension(300, 270));
         jpcons.setBorder(BorderFactory.createTitledBorder(null, "Consumption", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
                 F1, Color.BLUE));
-
+        jpmain.add(jpcons);
         jpcons.add(jpconsfr);
         jpcons.add(jpconsto);
         //Jpanel from i consumption
@@ -412,6 +427,7 @@ public class GUI extends JPanel {
         //jpcon1.add(jlcst);
         //jpcon1.add(jtcst);
         jpcons.add(jbcons);
+
     }
 
 
@@ -547,5 +563,9 @@ public class GUI extends JPanel {
                 //System.out.println("Gui: get consumption");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        GUI gui=new GUI(null);
     }
 }

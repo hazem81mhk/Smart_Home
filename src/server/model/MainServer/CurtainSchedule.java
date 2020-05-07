@@ -42,21 +42,25 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
         this.order=order;
         this.server=server;
         
+        
     }
    
     public void setServer(Server server)
     {
     	this.server=server;
-    	System.out.println("WHOOOOPI VI HAR EN SERVER!");
+    	//System.out.println("WHOOOOPI VI HAR EN SERVER!");
     }
+    
    
     public void startTimer()
     {
-    	 timer = new Timer();
- 		timer.schedule(new CurtainSchedule(start,end,order,server), 0, 60000);
+    	 this.timer = new Timer();
+ 		timer.schedule(this, 0, 60000);
     }
 
-    public boolean checkDate(String start, String end) throws ParseException {
+    
+    
+	public boolean checkDate(String start, String end) throws ParseException {
         boolean result = false;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,11 +75,11 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
         LocalTime endTime = LocalTime.parse(getTime(end));
 
         LocalDateTime localDateTime = LocalDateTime.now();
-        //System.out.println(localDateTime);
+        ////System.out.println(localDateTime);
 
         if (todaysDate.after(startDate) || todaysDate.equals(startDate)) {
             if (todaysDate.before(endDate) || todaysDate.equals(endDate)) {
-                //System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
+                ////System.out.println(sdf.format(todaysDate) + " is actually between  " + sdf.format(startDate) + " and " + sdf.format(endDate));
                 if (!todaysDate.equals(startDate) && !todaysDate.equals(endDate)) {
                     result = true;
                 } else {
@@ -94,15 +98,16 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
                               }
                             if (current_Time.isAfter(endTime)){
                                
-
-                                //this.isInterrupted();
+                            	server.sendRequest(antiOrder());
+                            	this.stopTimer();
+                            	
                             }
                         }
                     }
                 }
             }
         } else {
-            System.out.println("NO YOUR DATE IS WRONG");
+            //System.out.println("NO YOUR DATE IS WRONG");
             result = false;
         }
         return result;
@@ -110,7 +115,7 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
 
     public String getTime(String str) {
         String submitedTime = str.substring(11, str.length());
-        //System.out.println(submitedTime);
+        ////System.out.println(submitedTime);
         return submitedTime;
     }
 
@@ -120,24 +125,18 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
                 
                     try {
 						if (checkDate(start, end))
-						{System.out.println("ACTUALLY REMMEBER THIS DATE");
+						{//System.out.println("ACTUALLY REMMEBER THIS DATE");
 							//server.printForSure();
-						if(checkState(order))
+
 						{
 							server.sendRequest(order);
 							server.setScheduleState(true);
 						}
 							
 						}
-						else
-						{	
-							if(server.getCurtainSchState())
-						{
-							server.sendRequest(antiOrder());
-							server.setScheduleState(false);
-						}
+
 							
-						}
+
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -160,7 +159,16 @@ public class CurtainSchedule  extends TimerTask implements Serializable{
 	}
 	public void stopTimer()
 	{	server.setScheduleState(false);
-		this.timer.cancel();
+	System.out.println(server.getCurtainSchState());
+		if(this.timer!=null)
+		{
+		
+			this.timer.cancel();
+		}
+		else
+		{
+			System.out.println("TIMER IS NULL");
+		}
 		
 	}
 	public boolean checkState(String str)
