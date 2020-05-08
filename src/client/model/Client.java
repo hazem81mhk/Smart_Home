@@ -130,6 +130,24 @@ public class Client extends Thread {
 				controller.CButtonBotoom();
 				controller.sendUpdate("Curtain reached the bottom");
 			}
+			if (stateTxt.toLowerCase().contains("open")) {
+				System.out.println("Message receive from the server: Now, The door is opened");
+				controller.setOpenButtonOff();
+				controller.sendUpdate("door is opened");
+			}
+			if (stateTxt.toLowerCase().contains("close")) {
+				System.out.println("Message receive from the server: Now, The door is closed");
+				controller.setCloseButtonOff();
+				controller.sendUpdate("door is closed");
+			}
+			if (stateTxt.toLowerCase().contains("guest")) {
+				System.out.println("Message receive from the server: Now, We have a guest");
+				int x=JOptionPane.showConfirmDialog(null, "A Guest Is Standing Out Side, would You Like to Let Them In?", "ERROR ", JOptionPane.YES_NO_OPTION);
+				if(x==JOptionPane.YES_OPTION)
+				{
+					sendRequest("open");
+				}
+			}
 
 
 		}

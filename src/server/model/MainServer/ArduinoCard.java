@@ -49,17 +49,24 @@ public class ArduinoCard {
                     {	sleep(4000);
                     	respond(inputMessage);
                     }
-                    if(inputMessage.toLowerCase().contains("temp"))
+                    else if(inputMessage.toLowerCase().contains("temp"))
                     {	
                     	String str=JOptionPane.showInputDialog(null,"HOW HOT IS IT?");
                     	respond("temp:"+str);
                     }
                     
-                    if(inputMessage.toLowerCase().contains("stop"))
+                    else if(inputMessage.toLowerCase().contains("stop"))
                     {	sleep(4000);
                     	respond("stoop");
                     }
-                    System.out.println("Received message: " + inputMessage);
+                    if(inputMessage.toLowerCase().contains("open")||inputMessage.toLowerCase().contains("close"))
+                    {
+                    	System.out.println("ARDUINO GOT:"+inputMessage);
+                    	respond(inputMessage);
+                    	String str=JOptionPane.showInputDialog(null,"what would you like to say");
+                    	respond(str);
+                    }
+                    //System.out.println("Received message: " + inputMessage);
                 } catch (Exception e) {
                     try {
                         socket.close();
