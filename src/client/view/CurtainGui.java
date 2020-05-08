@@ -493,4 +493,8 @@ public class CurtainGui extends JPanel {
             }
         }
     }
+
+    public static void main(String[] args) {
+        CurtainGui curtainGui=new CurtainGui(null);
+    }
 }

@@ -255,7 +255,7 @@ public class Server extends Thread {
 	}
 	//END OF CLASS
 
-	public void setSchedule(String startDate, String endDate) {
+	public synchronized void setSchedule(String startDate, String endDate) {
 		if (schema == null) {
 			schema = new Schema(startDate, endDate, this);
 		} else {
@@ -297,7 +297,7 @@ public class Server extends Thread {
 	{
 		return temp;
 	}
-	public void setTempSchedule(TempSchedule tempSchedule1) {
+	public  void setTempSchedule(TempSchedule tempSchedule1) {
 		if (tempSchedule == null) {
 			tempSchedule = tempSchedule1;
 			tempSchedule1.setServer(this);
@@ -341,12 +341,12 @@ public class Server extends Thread {
 	{
 		this.scheduleState=state;
 	}
-	public boolean getCurtainSchState()
+	public synchronized boolean getCurtainSchState()
 	{
 		return scheduleState;
 	}
 
-	public void setTempScheduleState(boolean state)
+	public synchronized void setTempScheduleState(boolean state)
 	{
 		this.tempScheduleState=state;
 	}

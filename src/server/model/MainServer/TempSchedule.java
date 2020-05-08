@@ -40,6 +40,12 @@ public class TempSchedule extends TimerTask implements Serializable{
 	}
 	public void startTimer() {
 		 this.timer = new Timer();
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		server.setTempScheduleState(true);
 		timer.schedule(this, 0, 60000);
 		
 	}
@@ -65,7 +71,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 			server.setTempScheduleState(true);
 		}
 		}
-		if(tempo>=rollUpTemp)
+		else if(tempo>=rollUpTemp)
 		{ if( checkState("down"))
 		{	//System.out.println("TEMP SCHED: RUN : SENDING DOWN");
 			try {
@@ -103,7 +109,7 @@ public class TempSchedule extends TimerTask implements Serializable{
 		return temp;
 		
 	}
-	public void stopTimer()
+	public synchronized void stopTimer()
 	{	server.setTempScheduleState(false);
 		this.timer.cancel();
 	

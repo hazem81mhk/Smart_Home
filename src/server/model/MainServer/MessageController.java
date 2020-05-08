@@ -124,14 +124,24 @@ public class MessageController extends Thread {
     }
 
 
-    private void curtainHandler(String request) {
+    private synchronized void curtainHandler(String request)  {
 
+<<<<<<< HEAD
         ////System.out.println("Curtain_schema is :"+server.getCurtainState());
         //System.out.println("Temp_HANDLER is :"+ request);
+=======
+        ////System.out.println("Curtain_schema is :"+server.getCurtainState())
+
+        System.out.println("Temp_schema is :"+server.getCurtainTempState());
+>>>>>>> branch 'master' of https://github.com/hazem81mhk/Smart_Home.git
 
         if (server.getCurtainSchState() || server.getCurtainTempState()) {
             ////System.out.println("MSG Handler: TIME TO SEND THE ERR");
+<<<<<<< HEAD
         	System.out.println("Temp_HANDLER we have a problem :"+ request);
+=======
+            System.out.println("Temp_HANDLER we have a problem :"+ request);
+>>>>>>> branch 'master' of https://github.com/hazem81mhk/Smart_Home.git
             Statee errReq = new Statee("ERR");
             try {
                 oosm.writeObject(errReq);
