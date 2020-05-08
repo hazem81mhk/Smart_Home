@@ -118,7 +118,7 @@ public class MessageController extends Thread {
             Statee state = new Statee("canceled");
             onlineBroadcast(state);
         } else {
-            //System.out.println("MSG_CTRLer: RequestHandler:" + request);
+            System.out.println("MSG_CTRLer: RequestHandler:" + request);
             server.sendRequest(request);
         }
     }
@@ -126,13 +126,22 @@ public class MessageController extends Thread {
 
     private synchronized void curtainHandler(String request)  {
 
+<<<<<<< HEAD
+        ////System.out.println("Curtain_schema is :"+server.getCurtainState());
+        //System.out.println("Temp_HANDLER is :"+ request);
+=======
         ////System.out.println("Curtain_schema is :"+server.getCurtainState())
 
         System.out.println("Temp_schema is :"+server.getCurtainTempState());
+>>>>>>> branch 'master' of https://github.com/hazem81mhk/Smart_Home.git
 
         if (server.getCurtainSchState() || server.getCurtainTempState()) {
             ////System.out.println("MSG Handler: TIME TO SEND THE ERR");
+<<<<<<< HEAD
+        	System.out.println("Temp_HANDLER we have a problem :"+ request);
+=======
             System.out.println("Temp_HANDLER we have a problem :"+ request);
+>>>>>>> branch 'master' of https://github.com/hazem81mhk/Smart_Home.git
             Statee errReq = new Statee("ERR");
             try {
                 oosm.writeObject(errReq);
@@ -187,6 +196,21 @@ public class MessageController extends Thread {
             //System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT" + stateTxt);
         }
         if (stateTxt.toLowerCase().contains("stoop")) { //when in the bottom
+            server.sendTrafficMessage(time + "    " + stateTxt);
+
+            //System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT" + stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("guest")) { //when in the bottom
+            server.sendTrafficMessage(time + "    " + stateTxt);
+
+            //System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT" + stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("open")) { //when in the bottom
+            server.sendTrafficMessage(time + "    " + stateTxt);
+
+            //System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT" + stateTxt);
+        }
+        if (stateTxt.toLowerCase().contains("close")) { //when in the bottom
             server.sendTrafficMessage(time + "    " + stateTxt);
 
             //System.out.println("MSG CONTROLLER :YOOOOOOO WHAS DAT" + stateTxt);

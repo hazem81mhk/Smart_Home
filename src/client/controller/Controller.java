@@ -111,6 +111,12 @@ public class Controller {
             case temp_curtain:
                 CTempSchedule();
                 break;
+            case open:
+            	 client.sendRequest("open");
+                break;
+            case close:
+           	 	client.sendRequest("close");
+               break;
             case main_menu:
                 MainMenu();
                 break;
@@ -158,4 +164,16 @@ public class Controller {
     public void sendUpdate(String str) {
         mainFrame.getMainPanel().getGui().appendLog(str);
     }
+
+	public void setOpenButtonOff() {
+		// TODO Auto-generated method stub
+		System.out.println("TURNING OPEN BUTTON OFF");
+		
+	}
+
+	public void setCloseButtonOff() {
+		// TODO Auto-generated method stub
+		System.out.println("TURNING CLOSE BUTTON OFF");
+		
+	}
 }

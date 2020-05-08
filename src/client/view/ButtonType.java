@@ -17,5 +17,5 @@ public enum ButtonType {
     curtain_schedule,
     temp_curtain,
     main_menu,
-    disable
+    disable,close, open
 }

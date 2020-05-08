@@ -87,6 +87,14 @@ public class ArduinoHandler extends Thread {
             ////System.out.println("SHOULD BE OFF");
             request = "initiate";
         }
+        else if (inputMessage.toLowerCase().contains("open")) {
+            ////System.out.println("SHOULD BE OFF");
+            request = "open";
+        }
+        else if (inputMessage.toLowerCase().contains("close")) {
+            ////System.out.println("SHOULD BE OFF");
+            request = "close";
+        }
         ////System.out.println("this is request" + request);
         Arduino arduinoClient = server.getArduino();
         arduinoClient.sendToArduino(request);
@@ -133,6 +141,15 @@ public class ArduinoHandler extends Thread {
                 sendStatus("stoop");
                 //System.out.println("ARDUINO HANDLER: STOP");
                 break;
+            case "close":
+                sendStatus("close");
+                //System.out.println("ARDUINO HANDLER: STOP");
+                break;
+            case "open":
+                sendStatus("open");
+                //System.out.println("ARDUINO HANDLER: STOP");
+                break;
+           
                 
             default:
             	sendStatus(inputMessage);

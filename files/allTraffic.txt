@@ -2403,6 +2403,298 @@ The lampa was on for 7
 2020/05/04 14:36:32    Arduino server is connected att port: 9000
 2020/05/04 14:36:53    Arduino is Cnnected
 2020/05/04 14:37:04    Hazem is connected to the server
+<<<<<<< HEAD
+2020/05/04 19:22:23    Main server is connected at port: 8000
+2020/05/04 19:22:23    Arduino server is connected att port: 9000
+2020/05/04 19:22:30    Arduino is Cnnected
+2020/05/04 19:22:41    Hazem is connected to the server
+2020/05/04 19:29:57    Main server is connected at port: 8000
+2020/05/04 19:29:57    Arduino server is connected att port: 9000
+2020/05/04 19:30:05    Arduino is Cnnected
+2020/05/04 19:30:20    Hazem is connected to the server
+2020/05/04 19:30:38    up
+2020/05/04 19:30:42    down
+2020/05/04 19:30:51    stoop
+2020/05/04 19:31:29    up
+2020/05/04 19:31:36    down
+2020/05/04 19:31:42    stoop
+2020/05/04 19:36:51    Main server is connected at port: 8000
+2020/05/04 19:36:51    Arduino server is connected att port: 9000
+2020/05/04 19:37:02    Arduino is Cnnected
+2020/05/04 19:37:16    Hazem is connected to the server
+2020/05/04 19:37:29    down
+2020/05/04 19:39:28    Main server is connected at port: 8000
+2020/05/04 19:39:28    Arduino server is connected att port: 9000
+2020/05/04 19:39:39    Arduino is Cnnected
+2020/05/04 19:39:54    Hazem is connected to the server
+2020/05/04 19:40:37    down
+2020/05/04 19:41:06    down
+2020/05/04 19:41:31    stoop
+2020/05/04 19:44:23    Main server is connected at port: 8000
+2020/05/04 19:44:23    Arduino server is connected att port: 9000
+2020/05/04 19:44:41    Arduino is Cnnected
+2020/05/04 19:45:01    Hazem is connected to the server
+2020/05/04 19:48:47    up
+2020/05/04 19:49:24    down
+2020/05/04 20:20:37    Main server is connected at port: 8000
+2020/05/04 20:20:37    Arduino server is connected att port: 9000
+2020/05/04 20:21:02    Arduino is Cnnected
+2020/05/04 20:21:53    Hazem is connected to the server
+2020/05/04 20:22:05    stoop
+2020/05/05 19:55:04    Main server is connected at port: 8000
+2020/05/05 19:55:04    Arduino server is connected att port: 9000
+2020/05/05 19:55:16    Arduino is Cnnected
+2020/05/05 19:55:34    Hazem is connected to the server
+2020/05/05 19:55:55    down
+2020/05/05 19:56:57    down
+2020/05/05 19:57:21    up
+2020/05/05 19:58:21    up
+2020/05/05 19:59:21    up
+2020/05/05 20:12:34    Main server is connected at port: 8000
+2020/05/05 20:12:34    Arduino server is connected att port: 9000
+2020/05/05 20:13:19    Arduino is Cnnected
+2020/05/05 20:13:47    Hazem is connected to the server
+2020/05/05 20:14:31    down
+2020/05/05 20:14:39    down
+2020/05/05 20:15:02    up
+2020/05/05 20:16:02    up
+2020/05/05 20:17:02    up
+2020/05/05 20:18:03    up
+2020/05/05 20:19:03    up
+2020/05/05 20:20:03    up
+2020/05/05 20:21:03    down
+2020/05/05 21:04:58    Main server is connected at port: 8000
+2020/05/05 21:04:58    Arduino server is connected att port: 9000
+2020/05/05 21:05:02    Arduino is Cnnected
+2020/05/05 21:05:13    Hazem is connected to the server
+2020/05/05 21:05:56    down
+2020/05/05 21:06:48    Main server is connected at port: 8000
+2020/05/05 21:06:48    Arduino server is connected att port: 9000
+2020/05/05 21:06:57    Arduino is Cnnected
+2020/05/05 21:07:35    Hazem is connected to the server
+2020/05/05 21:07:51    down
+2020/05/05 21:08:25    up
+2020/05/05 21:09:25    up
+2020/05/05 21:10:25    up
+2020/05/05 21:11:25    up
+2020/05/05 21:11:55    up
+2020/05/05 21:12:55    up
+2020/05/05 21:13:55    up
+2020/05/05 21:14:55    up
+2020/05/05 21:15:55    down
+2020/05/05 21:16:56    down
+2020/05/05 21:17:52    up
+2020/05/05 21:18:53    down
+2020/05/05 21:19:26    Main server is connected at port: 8000
+2020/05/05 21:19:26    Arduino server is connected att port: 9000
+2020/05/05 21:19:30    Arduino is Cnnected
+2020/05/05 21:19:40    Hazem is connected to the server
+2020/05/05 21:23:31    down
+2020/05/05 21:23:49    up
+2020/05/05 21:24:49    up
+2020/05/05 21:25:49    down
+2020/05/05 21:26:37    down
+2020/05/05 21:26:49    down
+2020/05/05 21:27:28    down
+2020/05/05 21:27:49    down
+2020/05/05 21:40:12    Main server is connected at port: 8000
+2020/05/05 21:40:12    Arduino server is connected att port: 9000
+2020/05/05 21:40:15    Arduino is Cnnected
+2020/05/05 21:40:42    Hazem is connected to the server
+2020/05/05 21:41:29    down
+2020/05/05 21:41:35    up
+2020/05/05 21:42:35    up
+2020/05/05 21:43:35    down
+2020/05/05 21:45:02    Main server is connected at port: 8000
+2020/05/05 21:45:02    Arduino server is connected att port: 9000
+2020/05/05 21:45:08    Arduino is Cnnected
+2020/05/05 21:45:21    Hazem is connected to the server
+2020/05/05 21:45:55    up
+2020/05/05 21:46:55    down
+2020/05/05 21:47:55    down
+2020/05/05 21:48:14    Main server is connected at port: 8000
+2020/05/05 21:48:14    Arduino server is connected att port: 9000
+2020/05/05 21:48:26    Arduino is Cnnected
+2020/05/05 21:48:45    Hazem is connected to the server
+2020/05/05 21:49:27    up
+2020/05/05 21:50:27    down
+2020/05/05 21:51:27    down
+2020/05/05 21:52:27    down
+2020/05/05 21:55:11    Main server is connected at port: 8000
+2020/05/05 21:55:11    Arduino server is connected att port: 9000
+2020/05/05 21:55:29    Arduino is Cnnected
+2020/05/05 21:55:45    Hazem is connected to the server
+2020/05/05 21:56:50    down
+2020/05/05 21:57:16    down
+2020/05/05 21:57:25    down
+2020/05/05 21:57:53    down
+2020/05/05 21:58:02    up
+2020/05/05 21:59:02    down
+2020/05/05 22:00:03    down
+2020/05/05 22:02:06    Main server is connected at port: 8000
+2020/05/05 22:02:06    Arduino server is connected att port: 9000
+2020/05/05 22:02:16    Arduino is Cnnected
+2020/05/05 22:02:29    Hazem is connected to the server
+2020/05/05 22:03:17    down
+2020/05/05 22:03:36    up
+2020/05/05 22:04:36    down
+2020/05/05 22:05:31    up
+2020/05/05 22:06:31    down
+2020/05/05 22:07:45    down
+2020/05/05 22:09:48    Main server is connected at port: 8000
+2020/05/05 22:09:48    Arduino server is connected att port: 9000
+2020/05/05 22:10:24    Arduino is Cnnected
+2020/05/05 22:10:40    Hazem is connected to the server
+2020/05/05 22:11:30    down
+2020/05/05 22:12:36    up
+2020/05/05 22:13:36    down
+2020/05/05 22:16:35    Main server is connected at port: 8000
+2020/05/05 22:16:35    Arduino server is connected att port: 9000
+2020/05/05 22:16:42    Arduino is Cnnected
+2020/05/05 22:16:52    Hazem is connected to the server
+2020/05/05 22:17:38    down
+2020/05/05 22:18:44    up
+2020/05/05 22:19:44    down
+2020/05/05 22:24:41    Main server is connected at port: 8000
+2020/05/05 22:24:41    Arduino server is connected att port: 9000
+2020/05/05 22:25:13    Arduino is Cnnected
+2020/05/05 22:25:41    Hazem is connected to the server
+2020/05/05 22:26:31    down
+2020/05/05 22:27:37    up
+2020/05/05 22:28:37    down
+2020/05/05 22:31:58    Main server is connected at port: 8000
+2020/05/05 22:31:58    Arduino server is connected att port: 9000
+2020/05/05 22:32:12    Arduino is Cnnected
+2020/05/05 22:32:24    Hazem is connected to the server
+2020/05/05 22:33:11    down
+2020/05/05 22:34:18    up
+2020/05/05 22:35:18    down
+2020/05/05 22:48:58    Main server is connected at port: 8000
+2020/05/05 22:48:58    Arduino server is connected att port: 9000
+2020/05/05 22:49:09    Arduino is Cnnected
+2020/05/05 22:49:24    Hazem is connected to the server
+2020/05/05 22:50:59    down
+2020/05/05 22:51:57    down
+2020/05/05 22:52:14    up
+2020/05/05 22:53:14    down
+2020/05/05 22:58:11    down
+2020/05/05 22:58:59    Main server is connected at port: 8000
+2020/05/05 22:58:59    Arduino server is connected att port: 9000
+2020/05/05 22:59:13    Arduino is Cnnected
+2020/05/05 22:59:50    Hazem is connected to the server
+2020/05/05 23:01:04    down
+2020/05/05 23:01:13    up
+2020/05/05 23:02:13    down
+2020/05/05 23:03:06    down
+2020/05/05 23:04:10    down
+2020/05/05 23:43:21    Main server is connected at port: 8000
+2020/05/05 23:43:21    Arduino server is connected att port: 9000
+2020/05/05 23:43:25    Arduino is Cnnected
+2020/05/05 23:43:39    Hazem is connected to the server
+2020/05/05 23:43:53    down
+2020/05/05 23:44:53    down
+2020/05/05 23:45:09    up
+2020/05/05 23:46:55    down
+2020/05/05 23:47:14    up
+2020/05/05 23:48:14    down
+2020/05/06 11:20:47    Main server is connected at port: 8000
+2020/05/06 11:20:47    Arduino server is connected att port: 9000
+2020/05/06 11:20:56    Arduino is Cnnected
+2020/05/06 11:21:07    Hazem is connected to the server
+2020/05/06 11:21:22    down
+2020/05/06 11:22:12    up
+2020/05/06 11:23:12    down
+2020/05/06 11:28:12    Main server is connected at port: 8000
+2020/05/06 11:28:12    Arduino server is connected att port: 9000
+2020/05/06 11:28:22    Arduino is Cnnected
+2020/05/06 11:28:36    Hazem is connected to the server
+2020/05/06 11:28:44TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 11:28:55    down
+2020/05/06 11:29:44TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 11:32:03    up
+2020/05/06 11:33:03    down
+2020/05/06 11:58:31    Main server is connected at port: 8000
+2020/05/06 11:58:31    Arduino server is connected att port: 9000
+2020/05/06 11:58:46    Arduino is Cnnected
+2020/05/06 11:58:58    Hazem is connected to the server
+2020/05/06 11:59:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 11:59:13    down
+2020/05/06 12:00:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:00:12    down
+2020/05/06 12:01:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:01:13    down
+2020/05/06 12:02:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:02:12    down
+2020/05/06 12:02:21    up
+2020/05/06 12:03:03TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:03:21    down
+2020/05/06 12:04:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:04:15    down
+2020/05/06 12:05:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:05:13    down
+2020/05/06 12:06:03TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:06:14    down
+2020/05/06 12:06:55    up
+2020/05/06 12:07:03TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:07:55    up
+2020/05/06 12:08:04TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:08:56    down
+2020/05/06 12:09:04TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:10:53    Main server is connected at port: 8000
+2020/05/06 12:10:53    Arduino server is connected att port: 9000
+2020/05/06 12:11:15    Arduino is Cnnected
+2020/05/06 12:11:27    Hazem is connected to the server
+2020/05/06 12:11:34TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:11:45    down
+2020/05/06 12:12:12    up
+2020/05/06 12:12:34TEMPSCHED: trying to run and the other Schema istrue
+2020/05/06 12:13:12    down
+2020/05/06 12:13:34TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/06 12:13:48    down
+2020/05/06 12:14:35TEMPSCHED: trying to run and the other Schema isfalse
+2020/05/07 22:08:02    Main server is connected at port: 8000
+2020/05/07 22:08:02    Arduino server is connected att port: 9000
+2020/05/07 22:08:13    Hazem is connected to the server
+2020/05/08 00:49:48    Main server is connected at port: 8000
+2020/05/08 00:49:48    Arduino server is connected att port: 9000
+2020/05/08 00:50:03    Arduino is Cnnected
+2020/05/08 00:50:11    Hazem is connected to the server
+2020/05/08 00:53:12    Main server is connected at port: 8000
+2020/05/08 00:53:12    Arduino server is connected att port: 9000
+2020/05/08 00:53:15    Arduino is Cnnected
+2020/05/08 00:53:30    Hazem is connected to the server
+2020/05/08 00:55:10    Main server is connected at port: 8000
+2020/05/08 00:55:10    Arduino server is connected att port: 9000
+2020/05/08 00:55:33    Arduino is Cnnected
+2020/05/08 00:55:46    Hazem is connected to the server
+2020/05/08 00:56:36    Arduino is Cnnected
+2020/05/08 01:11:37    Main server is connected at port: 8000
+2020/05/08 01:11:37    Arduino server is connected att port: 9000
+2020/05/08 01:11:42    Arduino is Cnnected
+2020/05/08 01:11:53    Hazem is connected to the server
+2020/05/08 01:12:57    Main server is connected at port: 8000
+2020/05/08 01:12:57    Arduino server is connected att port: 9000
+2020/05/08 01:13:09    Arduino is Cnnected
+2020/05/08 01:13:23    Hazem is connected to the server
+2020/05/08 01:16:15    Main server is connected at port: 8000
+2020/05/08 01:16:15    Arduino server is connected att port: 9000
+2020/05/08 01:16:21    Arduino is Cnnected
+2020/05/08 01:16:39    Hazem is connected to the server
+2020/05/08 01:16:42    open
+2020/05/08 01:19:01    Main server is connected at port: 8000
+2020/05/08 01:19:01    Arduino server is connected att port: 9000
+2020/05/08 01:19:28    Arduino is Cnnected
+2020/05/08 01:19:40    Hazem is connected to the server
+2020/05/08 01:19:42    open
+2020/05/08 01:19:50    close
+2020/05/08 01:21:16    Main server is connected at port: 8000
+2020/05/08 01:21:16    Arduino server is connected att port: 9000
+2020/05/08 01:21:26    Arduino is Cnnected
+2020/05/08 01:21:37    Hazem is connected to the server
+2020/05/08 01:21:42    open
+2020/05/08 01:21:56    guest
+2020/05/08 01:22:01    open
+=======
 2020/05/04 15:31:48    Main server is connected at port: 8000
 2020/05/04 15:31:48    Arduino server is connected att port: 9000
 2020/05/04 15:32:30    Arduino is Cnnected
@@ -3156,3 +3448,4 @@ The lampa was on for 7
 2020/05/06 16:08:33    Arduino server is connected att port: 9000
 2020/05/06 16:08:50    Hazem is connected to the server
 2020/05/06 16:08:53    Arduino is Cnnected
+>>>>>>> branch 'master' of https://github.com/hazem81mhk/Smart_Home.git
