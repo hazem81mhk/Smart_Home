@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
 public class ClientLogin extends JPanel{
     private Controller controller;
     private JTextField jtfusr = new JTextField("Hazem");
-    private JTextField jtfip = new JTextField("192.168.1.9");
+    private JTextField jtfip = new JTextField("192.168.38.163");
     private JTextField jtfport = new JTextField("8000");
 
     private JPasswordField jtfPassWord = new JPasswordField("123");

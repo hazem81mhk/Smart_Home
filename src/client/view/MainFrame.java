@@ -6,33 +6,41 @@ package client.view;
  */
 
 import client.controller.Controller;
+import javafx.geometry.HorizontalDirection;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame {
-    private int width=400;
-    private int height=0;
+public class MainFrame extends JFrame{
+    private int width = 750;
+    private int height = 700;
 
     private Controller controller;
-    private MainPanel mainPanel;
+    private MainPanel mainPanel = new MainPanel(controller);
+    private JFrame jf = new JFrame();
+    private GUI gui = new GUI(controller);
 
     public MainFrame(Controller controller){
-        this.controller= controller;
+        this.controller = controller;
         setupFrame();
     }
 
     private void setupFrame() {
-        final int offsetX = width;
-        final int offsetY = height;
-        setSize(width, height);
-        setTitle("                  <<<< Smart Home >>>>");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocation(offsetX, offsetY);
-        mainPanel = new MainPanel(controller);
-        setContentPane(mainPanel);
-        pack();
-        setVisible(true);
+        jf.setPreferredSize(new Dimension(width, height));
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setTitle("SmartHome Application");
+        jf.pack();
+        jf.setVisible(true);
+        jf.getContentPane().setLayout(new BoxLayout(jf.getContentPane(), BoxLayout.Y_AXIS));
+        jf.getContentPane().add(mainPanel);
     }
+    class ButtonActionListeners implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            //if (mainPanel.){}
+        }}
+
 
     public MainPanel getMainPanel(){
         return mainPanel;

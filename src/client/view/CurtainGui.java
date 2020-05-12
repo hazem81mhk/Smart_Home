@@ -62,23 +62,17 @@ public class CurtainGui extends JPanel {
     private double tempschedule1 = 0;
     private double tempschedule2 = 0;
 
-    JFrame jf = new JFrame();
 
     Dimension db = new Dimension(120, 30);
 
     public CurtainGui(Controller controller) {
         this.controller = controller;
-        jf.add(jpmain);
+        jpmain.setLayout(new BoxLayout(jpmain, BoxLayout.Y_AXIS));
+        add(jpmain);
         Buttons();
         CurtainSchedule();
         TemperatureSchedule();
         MainMenu();
-
-        jf.setPreferredSize(new Dimension(360, 670));
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jf.setTitle("SmartHome Application");
-        jf.pack();
-        jf.setVisible(true);
     }
 
     public void Buttons() {
@@ -102,8 +96,8 @@ public class CurtainGui extends JPanel {
                 TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER, new Font("Arial", Font.PLAIN, 15), Color.BLACK));
         jp2.setPreferredSize(new Dimension(330, 180));
 
-        Dimension djl = new Dimension(80, 25);
-        Dimension dcb = new Dimension(100, 40);
+        Dimension djl = new Dimension(100, 25);
+        Dimension dcb = new Dimension(120, 40);
         jlf.setPreferredSize(djl);
         jlt.setPreferredSize(djl);
         jcbup.setPreferredSize(dcb);
@@ -458,7 +452,6 @@ public class CurtainGui extends JPanel {
             else {
                 if (e.getSource() == jbenable1) {
                     controller.buttonPressed(ButtonType.curtain_schedule);
-
 /*
                     System.out.println("Curtain goes DOWN. From: " + listschedulestartM.getSelectedValue() + ", " +
                             listschedulestartD.getSelectedValue() + ", " + listschedulestartT.getSelectedValue() + ", To: " +
@@ -489,7 +482,6 @@ public class CurtainGui extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == jbmm) {
                 controller.buttonPressed(ButtonType.main_menu);
-                jf.dispose();
             }
         }
     }

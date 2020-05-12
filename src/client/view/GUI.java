@@ -89,29 +89,22 @@ public class GUI extends JPanel {
 
     public GUI(Controller controller) {
         this.controller = controller;
-        jf.add(jpmain);
-
-
         //setLayout(new BorderLayout());
         //setPreferredSize(new Dimension(width, height));
+        jpmain.setLayout(new BoxLayout(jpmain, BoxLayout.Y_AXIS));
+        add(jpmain);
 
-        Lamp();
         Lampstate();
         Schedule();
         Consumption();
         textArea();
-
+        Lamp();
         ActionListener listener = new ButtonActionListeners();
         jbon.addActionListener(listener);
         jboff.addActionListener(listener);
         jbsch.addActionListener(listener);
         jbcons.addActionListener(listener);
 
-        jf.setPreferredSize(new Dimension(width, height));
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jf.setTitle("SmartHome Application");
-        jf.pack();
-        jf.setVisible(true);
     }
 
     public void Lamp() {

@@ -11,8 +11,7 @@ import java.awt.event.ActionListener;
 
 public class MainListGUI extends JPanel {
     private Controller controller;
-    private JFrame jFrame;
-    private JPanel jPanelMain;
+    private JPanel jPanelMain = new JPanel();
     private JButton jButtonLight;
     private JButton jButtonCurtain;
     private JButton jButtonLock;
@@ -20,29 +19,14 @@ public class MainListGUI extends JPanel {
     private Dimension panelDimention= new Dimension(360, 70);
     private Dimension buttonDimension= new Dimension(340, 60);
 
-
     public MainListGUI(Controller controller) {
         this.controller = controller;
-        setjFrame();
+        jPanelMain.setLayout(new BoxLayout(jPanelMain, BoxLayout.Y_AXIS));
+        add(jPanelMain);
         lightPanel();
         curtainPanel();
         lockPanel();
-        setFrame();
         addListener();
-    }
-
-    public void setjFrame(){
-        jFrame = new JFrame();
-        jPanelMain = new JPanel();
-        jFrame.add(jPanelMain);
-    }
-    public void setFrame(){
-        jFrame.setPreferredSize(frameDimention);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setLocation(430, 150);
-        jFrame.setTitle("Main List");
-        jFrame.pack();
-        jFrame.setVisible(true);
     }
 
     public void lightPanel() {
@@ -55,7 +39,7 @@ public class MainListGUI extends JPanel {
         jButtonLight.setPreferredSize(buttonDimension);
         jPanelLight.add(jButtonLight);
         jPanelMain.add(jPanelLight, BorderLayout.NORTH);
-
+        jPanelMain.setVisible(true);
     }
 
     public void curtainPanel() {
@@ -81,10 +65,6 @@ public class MainListGUI extends JPanel {
         jButtonLock.setPreferredSize(buttonDimension);
         jPanelLock.add(jButtonLock);
         jPanelMain.add(jPanelLock, BorderLayout.SOUTH);
-    }
-
-    public void setFramevisiblity(boolean b) {
-        jFrame.setVisible(b);
     }
 
     public void addListener() {

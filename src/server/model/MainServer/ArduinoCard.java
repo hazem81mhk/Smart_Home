@@ -11,14 +11,17 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
+import client.controller.Controller;
 import server.model.ArduinoServer.ArduinoHandler.readMessage;
 
 public class ArduinoCard {
 	private Socket socket;
 	BufferedReader inPut;
 	 BufferedWriter outPut;
-	public  ArduinoCard()
+	 Controller controller;
+	public  ArduinoCard(Controller controller)
 	{
+	    this.controller = controller;
 		connect();
 	}
 
@@ -86,7 +89,7 @@ public class ArduinoCard {
     
     public static void main(String[]args)
     {
-    	ArduinoCard card=new ArduinoCard();
+    	ArduinoCard card=new ArduinoCard(null);
     }
 		
 	}
