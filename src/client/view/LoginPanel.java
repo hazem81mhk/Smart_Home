@@ -16,17 +16,17 @@ import java.awt.event.KeyEvent;
  * @Agon Beqa
  */
 
-public class ClientLogin extends JPanel{
+public class LoginPanel extends JPanel{
     private Controller controller;
     private JTextField jtfusr = new JTextField("Hazem");
-    private JTextField jtfip = new JTextField("192.168.38.163");
+    private JTextField jtfip = new JTextField("192.168.1.9");
     private JTextField jtfport = new JTextField("8000");
 
     private JPasswordField jtfPassWord = new JPasswordField("123");
     private JToggleButton jbd = new JToggleButton("Display password");
     private JFrame jf;
 
-    public ClientLogin(Controller controller) {
+    public LoginPanel(Controller controller) {
         this.controller=controller;
         jf = new JFrame();
         JPanel jpmain = new JPanel();
@@ -119,7 +119,7 @@ public class ClientLogin extends JPanel{
         return jtfusr.getText();
     }
 
-    public void setFramevisiblity(boolean b){
+    public void setFramevisiblity(boolean b) {
         jf.setVisible(b);
     }
 
@@ -155,9 +155,5 @@ public class ClientLogin extends JPanel{
             else{
                 controller.buttonPressed(ButtonType.login);
             }}
-    }
-
-    public static void main(String[] args) {
-        ClientLogin clientLogin=new ClientLogin(null);
     }
 }

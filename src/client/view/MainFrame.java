@@ -6,23 +6,19 @@ package client.view;
  */
 
 import client.controller.Controller;
-import javafx.geometry.HorizontalDirection;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
     private int width = 750;
-    private int height = 700;
+    private int height = 620;
 
     private Controller controller;
-    private MainPanel mainPanel = new MainPanel(controller);
+    private MainPanel mainPanel;
     private JFrame jf = new JFrame();
-    private GUI gui = new GUI(controller);
 
-    public MainFrame(Controller controller){
+    public MainFrame(Controller controller) {
         this.controller = controller;
         setupFrame();
     }
@@ -32,17 +28,22 @@ public class MainFrame extends JFrame{
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setTitle("SmartHome Application");
         jf.pack();
-        jf.setVisible(true);
+        mainPanel = new MainPanel(controller);
+        jf.setLocation(230, 40);
         jf.getContentPane().setLayout(new BoxLayout(jf.getContentPane(), BoxLayout.Y_AXIS));
         jf.getContentPane().add(mainPanel);
+        jf.setVisible(false);
     }
-    class ButtonActionListeners implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            //if (mainPanel.){}
-        }}
 
+    public void setFramevisiblity(boolean b) {
+        jf.setVisible(b);
+    }
 
-    public MainPanel getMainPanel(){
+    public MainPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public static void main(String[] args) {
+        MainFrame mainFrame = new MainFrame(null);
     }
 }

@@ -1,397 +1,482 @@
-/*
 package client.view;
 
 import client.controller.Controller;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-*/
 /**
- * 011/04/2020
+ * 18/04/2020
  *
- * @Mohammed Hazem Kudaimi
- *//*
-
+ * @Agon Beqa
+ */
 
 public class LightPanel extends JPanel {
     private Controller controller;
-    private int width = 400;
-    private int height = 250;
-    private JPanel timePanel1;
-    private JPanel timePanel2;
-    private JButton lamp1_On,lamp1_off, startTimer, stopTimer;
-    private JList list;
-    private DefaultListModel listModel;
-    private JList list1;
-    private DefaultListModel listModel1;
+    private int width = 340;
+    private int height = 740;
+    private JPanel jpmain = new JPanel();
 
-    public LightPanel (Controller controller){
-        this.controller=controller;
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(width, height));
-        lampPanel();
-        timetable();
-        addListeners();
-    }
+    private String kwkr, kw, cost, strttime, totime, consfr, consto;
+    //JPanel
+    private JPanel jplmp;
+    private JPanel jplampst = new JPanel();
+    private JPanel jpsch = new JPanel();
+    private JPanel jpstart = new JPanel();
+    private JPanel jpto = new JPanel();
+    private JPanel jpcons = new JPanel();
+    private JPanel jpconsfr = new JPanel();
+    private JPanel jpconsto = new JPanel();
 
-    public void lampPanel(){
-        Font font = new Font("Ink Free", Font.BOLD, 20);
-        GridLayout layout = new GridLayout(1, 0, 20, 20);
-        JPanel pnlButtons = new JPanel(layout);
-        //pnlButtons.setBackground(Color.LIGHT_GRAY);
-        pnlButtons.setBorder(BorderFactory.createTitledBorder(null,"Lamp 1:",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Ink free",Font.BOLD,20),Color.BLACK));
-        Dimension dim = new Dimension(150, 35);
-        pnlButtons.setPreferredSize(new Dimension(width, height/3));
-        lamp1_On = new JButton("ON");
-        lamp1_On.setPreferredSize(dim);
-        lamp1_On.setFont(font);
-        lamp1_off = new JButton("OFF");
-        lamp1_off.setPreferredSize(dim);
-        lamp1_off.setFont(font);
+    //JButton
+    private JButton jbon = new JButton("ON");
+    private JButton jboff = new JButton("OFF");
+    private JButton jbsch = new JButton("Start Schedule");
+    private JButton jbcons = new JButton("Get consumption");
+    //JLabel
+    private JLabel jlkwkr = new JLabel("KW/Kr");
+    private JLabel jlkw = new JLabel("KW");
+    //private JLabel jlcst = new JLabel("Cost");
 
-        pnlButtons.add(lamp1_On);
-        pnlButtons.add(lamp1_off);
-        lamp1_On.setEnabled(true);
-        lamp1_off.setEnabled(false);
+    private JLabel jlSM = new JLabel("Month");
+    private JLabel jlSD = new JLabel("Day");
+    private JLabel jlST = new JLabel("Time");
 
-        add(pnlButtons, BorderLayout.NORTH);
-    }
+    private JLabel jlStM = new JLabel("Month");
+    private JLabel jlStD = new JLabel("Day");
+    private JLabel jlStT = new JLabel("Time");
 
-    public void timetable(){
-        GridLayout layout = new GridLayout(2, 1, 5, 5);
-        JPanel pnlMain = new JPanel(layout);
-        //pnlMain.setBackground(Color.LIGHT_GRAY);
-        pnlMain.setBorder(BorderFactory.createTitledBorder(null,"Lamp time table",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Ink free",Font.BOLD,20),Color.BLACK));
-        Border border = this.getBorder();
-        Border margin = BorderFactory.createEmptyBorder(0, 0, 6, 0);
-        setBorder(new CompoundBorder(border, margin));
-        //pnlMain.setPreferredSize(new Dimension(width, height));
+    private JLabel jlcfm = new JLabel("Month");
+    private JLabel jlcfd = new JLabel("Day");
+    private JLabel jlcft = new JLabel("Time");
 
-        Dimension dim = new Dimension(50, 35);
-        JLabel timeFrom=new JLabel("  From:");
-        timeFrom.setPreferredSize(dim);
-        JLabel timeTo =new JLabel("  To:");
-        timeTo.setPreferredSize(dim);
+    private JLabel jlctm = new JLabel("Month");
+    private JLabel jlctd = new JLabel("Day");
+    private JLabel jlctt = new JLabel("Time");
+    //JTextfield
+    private JTextField jtkwkr = new JTextField();
+    private JTextField jtkw = new JTextField();
+    //private JTextField jtcst = new JTextField();
+    //JList
+    private JList<String> listschedulestartM;
+    private JList<String> listschedulestartD;
+    private JList<String> listschedulestartT;
+    private JList<String> listscheduletoM;
+    private JList<String> listscheduletoD;
+    private JList<String> listscheduletoT;
+    private JList<String> listconsfromM;
+    private JList<String> listconsfromD;
+    private JList<String> listconsfromT;
+    private JList<String> listconstoM;
+    private JList<String> listconstoD;
+    private JList<String> listconstoT;
 
-        startTimer =new JButton("Turn ON");
-        startTimer.setPreferredSize(new Dimension(125,35));
-        stopTimer =new JButton("Turn OFF");
-        stopTimer.setPreferredSize(new Dimension(125,35));
-
-        timePanel1=new JPanel();
-        timePanel2=new JPanel();
-
-        JPanel north=new JPanel();
-        north.add(timeFrom);
-        north.add(timePanel1);
-        north.add(timeTo);
-        north.add(timePanel2);
-
-        JPanel south=new JPanel();
-        JPanel southleft=new JPanel();
-        JPanel southcent=new JPanel();
-        JPanel southrigh=new JPanel(new GridLayout(3,2));
-
-        southleft.setBorder(BorderFactory.createTitledBorder(null,"From: ",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Ink free",Font.BOLD,20),Color.BLACK));
-        pnlMain.add(north,BorderLayout.NORTH);
-        pnlMain.add(south,BorderLayout.SOUTH);
-
-        add(pnlMain, BorderLayout.SOUTH);
-
-        south.add(southleft, BorderLayout.WEST);
-        south.add(southcent,BorderLayout.CENTER);
-        south.add(southrigh,BorderLayout.EAST);
-        listModel = new DefaultListModel();
-        listModel.addElement("00:00");
-        listModel.addElement("00:15");
-        listModel.addElement("00:30");
-        listModel.addElement("00:45");
-        listModel.addElement("01:00");
-        listModel.addElement("01:15");
-        listModel.addElement("01:30");
-        listModel.addElement("01:45");
-        listModel.addElement("02:00");
-        listModel.addElement("02:15");
-        listModel.addElement("02:30");
-        listModel.addElement("02:45");
-        listModel.addElement("03:00");
-        listModel.addElement("03:15");
-        listModel.addElement("03:30");
-        listModel.addElement("03:45");
-        listModel.addElement("04:00");
-        listModel.addElement("04:15");
-        listModel.addElement("04:30");
-        listModel.addElement("04:45");
-        listModel.addElement("05:00");
-        listModel.addElement("05:15");
-        listModel.addElement("05:30");
-        listModel.addElement("05:45");
-        listModel.addElement("06:00");
-        listModel.addElement("06:15");
-        listModel.addElement("06:30");
-        listModel.addElement("06:45");
-        listModel.addElement("07:00");
-        listModel.addElement("07:15");
-        listModel.addElement("07:30");
-        listModel.addElement("07:45");
-        listModel.addElement("08:00");
-        listModel.addElement("08:15");
-        listModel.addElement("08:30");
-        listModel.addElement("08:45");
-        listModel.addElement("09:00");
-        listModel.addElement("09:15");
-        listModel.addElement("09:30");
-        listModel.addElement("09:45");
-        listModel.addElement("10:00");
-        listModel.addElement("10:15");
-        listModel.addElement("10:30");
-        listModel.addElement("10:45");
-        listModel.addElement("11:00");
-        listModel.addElement("11:15");
-        listModel.addElement("11:30");
-        listModel.addElement("11:45");
-        listModel.addElement("12:00");
-        listModel.addElement("12:15");
-        listModel.addElement("12:30");
-        listModel.addElement("12:45");
-        listModel.addElement("13:00");
-        listModel.addElement("13:15");
-        listModel.addElement("13:30");
-        listModel.addElement("13:45");
-        listModel.addElement("14:00");
-        listModel.addElement("14:15");
-        listModel.addElement("14:30");
-        listModel.addElement("14:45");
-        listModel.addElement("15:00");
-        listModel.addElement("15:15");
-        listModel.addElement("15:30");
-        listModel.addElement("15:45");
-        listModel.addElement("16:00");
-        listModel.addElement("16:15");
-        listModel.addElement("16:30");
-        listModel.addElement("16:45");
-        listModel.addElement("17:00");
-        listModel.addElement("17:15");
-        listModel.addElement("17:30");
-        listModel.addElement("17:45");
-        listModel.addElement("18:00");
-        listModel.addElement("18:15");
-        listModel.addElement("18:30");
-        listModel.addElement("18:45");
-        listModel.addElement("19:00");
-        listModel.addElement("19:15");
-        listModel.addElement("19:30");
-        listModel.addElement("19:45");
-        listModel.addElement("20:00");
-        listModel.addElement("20:15");
-        listModel.addElement("20:30");
-        listModel.addElement("20:45");
-        listModel.addElement("21:00");
-        listModel.addElement("21:15");
-        listModel.addElement("21:30");
-        listModel.addElement("21:45");
-        listModel.addElement("22:00");
-        listModel.addElement("22:15");
-        listModel.addElement("22:30");
-        listModel.addElement("22:45");
-        listModel.addElement("23:00");
-        listModel.addElement("23:15");
-        listModel.addElement("23:30");
-        listModel.addElement("23:45");
-
-        //Create the list and put it in a scroll pane.
-        list = new JList(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
-        list.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(list);
-
-        //Create a panel that uses BoxLayout.
-        JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new BoxLayout(buttonPane,
-                BoxLayout.LINE_AXIS));
-
-        southleft.add(listScrollPane, BorderLayout.SOUTH);
-        southleft.add(buttonPane, BorderLayout.SOUTH);
-
-        southcent.setBorder(BorderFactory.createTitledBorder(null,"Untill: ",
-                TitledBorder.DEFAULT_JUSTIFICATION,TitledBorder.CENTER,
-                new Font("Ink free",Font.BOLD,20),Color.BLACK));
-        listModel1 = new DefaultListModel();
-        listModel1.addElement("00:00");
-        listModel1.addElement("00:15");
-        listModel1.addElement("00:30");
-        listModel1.addElement("00:45");
-        listModel1.addElement("01:00");
-        listModel1.addElement("01:15");
-        listModel1.addElement("01:30");
-        listModel1.addElement("01:45");
-        listModel1.addElement("02:00");
-        listModel1.addElement("02:15");
-        listModel1.addElement("02:30");
-        listModel1.addElement("02:45");
-        listModel1.addElement("03:00");
-        listModel1.addElement("03:15");
-        listModel1.addElement("03:30");
-        listModel1.addElement("03:45");
-        listModel1.addElement("04:00");
-        listModel1.addElement("04:15");
-        listModel1.addElement("04:30");
-        listModel1.addElement("04:45");
-        listModel1.addElement("05:00");
-        listModel1.addElement("05:15");
-        listModel1.addElement("05:30");
-        listModel1.addElement("05:45");
-        listModel1.addElement("06:00");
-        listModel1.addElement("06:15");
-        listModel1.addElement("06:30");
-        listModel1.addElement("06:45");
-        listModel1.addElement("07:00");
-        listModel1.addElement("07:15");
-        listModel1.addElement("07:30");
-        listModel1.addElement("07:45");
-        listModel1.addElement("08:00");
-        listModel1.addElement("08:15");
-        listModel1.addElement("08:30");
-        listModel1.addElement("08:45");
-        listModel1.addElement("09:00");
-        listModel1.addElement("09:15");
-        listModel1.addElement("09:30");
-        listModel1.addElement("09:45");
-        listModel1.addElement("10:00");
-        listModel1.addElement("10:15");
-        listModel1.addElement("10:30");
-        listModel1.addElement("10:45");
-        listModel1.addElement("11:00");
-        listModel1.addElement("11:15");
-        listModel1.addElement("11:30");
-        listModel1.addElement("11:45");
-        listModel1.addElement("12:00");
-        listModel1.addElement("12:15");
-        listModel1.addElement("12:30");
-        listModel1.addElement("12:45");
-        listModel1.addElement("13:00");
-        listModel1.addElement("13:15");
-        listModel1.addElement("13:30");
-        listModel1.addElement("13:45");
-        listModel1.addElement("14:00");
-        listModel1.addElement("14:15");
-        listModel1.addElement("14:30");
-        listModel1.addElement("14:45");
-        listModel1.addElement("15:00");
-        listModel1.addElement("15:15");
-        listModel1.addElement("15:30");
-        listModel1.addElement("15:45");
-        listModel1.addElement("16:00");
-        listModel1.addElement("16:15");
-        listModel1.addElement("16:30");
-        listModel1.addElement("16:45");
-        listModel1.addElement("17:00");
-        listModel1.addElement("17:15");
-        listModel1.addElement("17:30");
-        listModel1.addElement("17:45");
-        listModel1.addElement("18:00");
-        listModel1.addElement("18:15");
-        listModel1.addElement("18:30");
-        listModel1.addElement("18:45");
-        listModel1.addElement("19:00");
-        listModel1.addElement("19:15");
-        listModel1.addElement("19:30");
-        listModel1.addElement("19:45");
-        listModel1.addElement("20:00");
-        listModel1.addElement("20:15");
-        listModel1.addElement("20:30");
-        listModel1.addElement("20:45");
-        listModel1.addElement("21:00");
-        listModel1.addElement("21:15");
-        listModel1.addElement("21:30");
-        listModel1.addElement("21:45");
-        listModel1.addElement("22:00");
-        listModel1.addElement("22:15");
-        listModel1.addElement("22:30");
-        listModel1.addElement("22:45");
-        listModel1.addElement("23:00");
-        listModel1.addElement("23:15");
-        listModel1.addElement("23:30");
-        listModel1.addElement("23:45");
-
-        //Create the list and put it in a scroll pane.
-        list1 = new JList(listModel1);
-        list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list1.setSelectedIndex(0);
-        list1.setVisibleRowCount(5);
-        JScrollPane listScrollPane1 = new JScrollPane(list1);
-
-        //Create a panel that uses BoxLayout.
-        JPanel buttonPane1 = new JPanel();
-        buttonPane1.setLayout(new BoxLayout(buttonPane1,
-                BoxLayout.LINE_AXIS));
+    DefaultListModel<String> lmmonth = new DefaultListModel<String>();
+    DefaultListModel<String> lmday = new DefaultListModel<>();
+    DefaultListModel<String> listModel = new DefaultListModel<String>();
 
 
-        southcent.add(listScrollPane1, BorderLayout.SOUTH);
-        southcent.add(buttonPane1, BorderLayout.SOUTH);
+    Font F1 = new Font("Arial", Font.PLAIN, 15);
+    Font F2 = new Font("Arial", Font.BOLD, 11);
 
-        southrigh.add(startTimer, BorderLayout.NORTH);
-        southrigh.add(stopTimer, BorderLayout.SOUTH);
-    }
+    public LightPanel(Controller controller) {
+        this.controller = controller;
+        jpmain.setLayout(new BoxLayout(jpmain, BoxLayout.Y_AXIS));
+        add(jpmain);
 
-    private void addListeners() {
+        Lampstate();
+        Schedule();
+        Consumption();
+
         ActionListener listener = new ButtonActionListeners();
-        lamp1_On.addActionListener(listener);
-        lamp1_off.addActionListener(listener);
-        startTimer.addActionListener(listener);
-        stopTimer.addActionListener(listener);
+        jbon.addActionListener(listener);
+        jboff.addActionListener(listener);
+        jbsch.addActionListener(listener);
+        jbcons.addActionListener(listener);
     }
 
-    public void setLamp1_On(){
-        lamp1_On.setEnabled(true);
-        lamp1_off.setEnabled(false);
+
+    public void Lampstate() {
+        jplampst.setPreferredSize(new Dimension(300, 60));
+        jplampst.setBorder(BorderFactory.createTitledBorder(null, "Lamp State",
+                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER, F1, Color.BLACK));
+        //JButton on&off i Lampstate panelen
+        Dimension dimb = new Dimension(120, 28);
+        jpmain.add(jplampst);
+        jbon.setPreferredSize(dimb);
+        jboff.setPreferredSize(dimb);
+        jplampst.add(jbon);
+        jplampst.add(jboff);
     }
 
-    public void setLamp1_off(){
-        lamp1_On.setEnabled(false);
-        lamp1_off.setEnabled(true);
+    public void Schedule() {
+        jpsch.setPreferredSize(new Dimension(300, 210));
+        jpsch.setBorder(BorderFactory.createTitledBorder(null, "Schedule", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F1, Color.BLACK));
+        //JList för tiden
+        int y = 0;
+        String mystring;
+        String hour;
+        String minute;
+        for (int x = 0; x < 24; x++) {
+            while (y != 60) {
+                if (x < 10) {
+                    hour = ("0" + x);
+                } else {
+                    hour = String.valueOf(x);
+                }
+                if (y < 10) {
+                    minute = ("0" + y);
+                } else {
+                    minute = String.valueOf(y);
+                }
+                y += 5;
+                listModel.addElement(hour + ":" + minute);
+            }
+            y = 0;
+        }
+
+        listschedulestartT = new JList<String>(listModel);
+        listschedulestartT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listschedulestartT.setSelectedIndex(0);
+        listschedulestartT.setVisibleRowCount(8);
+        JScrollPane Time = new JScrollPane(listschedulestartT);
+
+        //JList för Month
+        lmmonth.addElement("01");
+        lmmonth.addElement("02");
+        lmmonth.addElement("03");
+        lmmonth.addElement("04");
+        lmmonth.addElement("05");
+        lmmonth.addElement("06");
+        lmmonth.addElement("07");
+        lmmonth.addElement("08");
+        lmmonth.addElement("09");
+        lmmonth.addElement("10");
+        lmmonth.addElement("11");
+        lmmonth.addElement("12");
+
+        listschedulestartM = new JList<String>(lmmonth);
+        listschedulestartM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listschedulestartM.setSelectedIndex(0);
+        listschedulestartM.setVisibleRowCount(9);
+        JScrollPane Month = new JScrollPane(listschedulestartM);
+
+        //JList för dagar
+        lmday.addElement("01");
+        lmday.addElement("02");
+        lmday.addElement("03");
+        lmday.addElement("04");
+        lmday.addElement("05");
+        lmday.addElement("06");
+        lmday.addElement("07");
+        lmday.addElement("08");
+        lmday.addElement("09");
+        lmday.addElement("10");
+        lmday.addElement("11");
+        lmday.addElement("12");
+        lmday.addElement("13");
+        lmday.addElement("14");
+        lmday.addElement("15");
+        lmday.addElement("16");
+        lmday.addElement("17");
+        lmday.addElement("18");
+        lmday.addElement("19");
+        lmday.addElement("20");
+        lmday.addElement("21");
+        lmday.addElement("22");
+        lmday.addElement("23");
+        lmday.addElement("24");
+        lmday.addElement("25");
+        lmday.addElement("26");
+        lmday.addElement("27");
+        lmday.addElement("28");
+        lmday.addElement("29");
+        lmday.addElement("30");
+        lmday.addElement("31");
+
+        listschedulestartD = new JList<>(lmday);
+        listschedulestartD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listschedulestartD.setSelectedIndex(0);
+        listschedulestartD.setVisibleRowCount(1);
+
+        JScrollPane Day = new JScrollPane(listschedulestartD);
+        //JPanel start i Schedule panelen
+        jpstart.setPreferredSize(new Dimension(280, 70));
+        jpstart.setBorder(BorderFactory.createTitledBorder(null, "Start lamp from:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F2, Color.BLACK));
+        jpstart.setLayout(new GridLayout(2, 3));
+
+        //JPanel to i schedule panelen
+        jpto.setPreferredSize(new Dimension(280, 70));
+        jpto.setLayout(new GridLayout(2, 3));
+        jpto.setBorder(BorderFactory.createTitledBorder(null, "To:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F2, Color.BLACK));
+
+        jpmain.add(jpsch);
+        jpsch.add(jpstart, BorderLayout.NORTH);
+        jpsch.add(jpto, BorderLayout.SOUTH);
+        jpsch.add(jbsch);
+
+        jpstart.add(jlSM);
+        jpstart.add(jlSD);
+        jpstart.add(jlST);
+        jpstart.add(Month);
+        jpstart.add(Day);
+        jpstart.add(Time);
+        //JList för tiden i Schedule to panelen
+        DefaultListModel<String> listModel2 = new DefaultListModel<String>();
+        listModel2 = listModel;
+
+        listscheduletoT = new JList<String>(listModel2);
+        listscheduletoT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listscheduletoT.setSelectedIndex(0);
+        listscheduletoT.setVisibleRowCount(8);
+
+        JScrollPane Time2 = new JScrollPane(listscheduletoT);
+        //JList för MÃ¥nad i Schedule to panelen
+        DefaultListModel<String> lmmonth2 = new DefaultListModel<String>();
+        lmmonth2 = lmmonth;
+
+        listscheduletoM = new JList<>(lmmonth);
+        listscheduletoM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listscheduletoM.setSelectedIndex(0);
+        listscheduletoM.setVisibleRowCount(9);
+
+        JScrollPane Month2 = new JScrollPane(listscheduletoM);
+        //JList för dagar i schedule to panelen
+        DefaultListModel<String> lmday2 = new DefaultListModel<>();
+        lmday2 = lmday;
+
+        listscheduletoD = new JList<>(lmday2);
+        listscheduletoD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listscheduletoD.setSelectedIndex(0);
+        listscheduletoD.setVisibleRowCount(1);
+
+        JScrollPane Day2 = new JScrollPane(listscheduletoD);
+
+        jpto.add(jlStM, BorderLayout.NORTH);
+        jpto.add(jlStD, BorderLayout.NORTH);
+        jpto.add(jlStT, BorderLayout.NORTH);
+        jpto.add(Month2);
+        jpto.add(Day2);
+        jpto.add(Time2);
+    }
+
+    public void Consumption() {
+        jpcons.setPreferredSize(new Dimension(300, 270));
+        jpcons.setBorder(BorderFactory.createTitledBorder(null, "Consumption", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F1, Color.BLACK));
+        jpmain.add(jpcons);
+        jpcons.add(jpconsfr);
+        jpcons.add(jpconsto);
+        //Jpanel from i consumption
+        Dimension dim1 = new Dimension(280, 70);
+        jpconsfr.setPreferredSize(dim1);
+        jpconsfr.setBorder(BorderFactory.createTitledBorder(null, "From:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F2, Color.BLACK));
+        jpconsfr.setLayout(new GridLayout(2, 3));
+
+        //JPanel to i consumption
+        jpconsto.setPreferredSize(dim1);
+        jpconsto.setBorder(BorderFactory.createTitledBorder(null, "To:", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER,
+                F2, Color.BLACK));
+        jpconsto.setLayout(new GridLayout(2, 3));
+
+        //Button setenable
+        jbon.setEnabled(true);
+        jboff.setEnabled(false);
+
+        //JList i Consumption From Panelen
+        DefaultListModel<String> listModel3 = new DefaultListModel<String>();
+        listModel3 = listModel;
+
+        listconsfromT = new JList<>(listModel3);
+        listconsfromT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listconsfromT.setSelectedIndex(0);
+        listconsfromT.setVisibleRowCount(8);
+
+        JScrollPane Time3 = new JScrollPane(listconsfromT);
+
+        //JList för Month i Consumption from panelen
+        DefaultListModel<String> lmmonth3 = new DefaultListModel<String>();
+        lmmonth3 = lmmonth;
+
+        listconsfromM = new JList<>(lmmonth3);
+        listconsfromM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listconsfromM.setSelectedIndex(0);
+        listconsfromM.setVisibleRowCount(9);
+
+        JScrollPane Month3 = new JScrollPane(listconsfromM);
+
+        //JList för dagar i Consuption from panelen
+        DefaultListModel<String> lmday3 = new DefaultListModel<>();
+        lmday3 = lmday;
+
+        listconsfromD = new JList<String>(lmday3);
+        listconsfromD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listconsfromD.setSelectedIndex(0);
+        listconsfromD.setVisibleRowCount(1);
+
+        JScrollPane Day3 = new JScrollPane(listconsfromD);
+
+        jpconsfr.add(jlcfm);
+        jpconsfr.add(jlcfd);
+        jpconsfr.add(jlcft);
+        jpconsfr.add(Month3);
+        jpconsfr.add(Day3);
+        jpconsfr.add(Time3);
+        //JList för tiden i Consumption To panelen
+        DefaultListModel<String> listModel4 = new DefaultListModel<>();
+        listModel4 = listModel;
+
+        listconstoT = new JList<String>(listModel4);
+        listconstoT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listconstoT.setSelectedIndex(0);
+        listconstoT.setVisibleRowCount(8);
+
+        JScrollPane Time4 = new JScrollPane(listconstoT);
+        //Jlist för månader i consumption to panelen
+        DefaultListModel<String> lmmonth4 = new DefaultListModel<>();
+        lmmonth4 = lmmonth;
+        listconstoM = new JList<String>(lmmonth4);
+        listconstoM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listconstoM.setSelectedIndex(0);
+        listconstoM.setVisibleRowCount(9);
+
+        JScrollPane Month4 = new JScrollPane(listconstoM);
+        //JList för dagar i consumption to panelen
+        DefaultListModel<String> lmday4 = new DefaultListModel<>();
+        lmday4 = lmday;
+        listconstoD = new JList<>(lmday4);
+        listconstoD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listconstoD.setSelectedIndex(0);
+        listconstoD.setVisibleRowCount(1);
+
+        JScrollPane Day4 = new JScrollPane(listconstoD);
+        jpconsto.add(jlctm);
+        jpconsto.add(jlctd);
+        jpconsto.add(jlctt);
+        jpconsto.add(Month4);
+        jpconsto.add(Day4);
+        jpconsto.add(Time4);
+        //JPanel där jlabel finns och jtextfield
+        JPanel jpcon1 = new JPanel();
+        jpcons.add(jpcon1);
+        jpcon1.setPreferredSize(new Dimension(280, 50));
+        jpcon1.setLayout(new GridLayout(2, 2));
+        jpcon1.add(jlkwkr);
+        jpcon1.add(jtkwkr);
+        jpcon1.add(jlkw);
+        jpcon1.add(jtkw);
+        jpcons.add(jbcons);
+
+    }
+
+    public void setSelectedStarttime() {
+        String Month = listschedulestartM.getSelectedValue();
+        String Day = listschedulestartD.getSelectedValue();
+        String Time = listschedulestartT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.strttime = currentDate + Month + "-" + Day + " " + Time + ":00";
+    }
+
+    public String getStarttime() {
+        return strttime;
+    }
+
+    public void setSelectedTotime() {
+        String Month = listscheduletoM.getSelectedValue();
+        String Day = listscheduletoD.getSelectedValue();
+        String Time = listscheduletoT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.totime = currentDate + Month + "-" + Day + " " + Time + ":00";
+    }
+
+    public String getTotime() {
+        return totime;
+    }
+
+    public void setConsumptionFor() {
+        String Month = listconsfromM.getSelectedValue();
+        String Day = listconsfromD.getSelectedValue();
+        String Time = listconsfromT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.consfr = currentDate + Month + "-" + Day + " " + Time + ":00";
+    }
+
+    public void setConsumptionTo() {
+        String Month = listconstoM.getSelectedValue();
+        String Day = listconstoD.getSelectedValue();
+        String Time = listconstoT.getSelectedValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        this.consto = currentDate + Month + "-" + Day + " " + Time + ":00";
+    }
+
+
+    public String getConsfr() {
+        return consfr;
+    }
+
+    public void setConsto(String Month, String Day, String Time) {
+        Month = listconstoM.getSelectedValue();
+        Day = listconstoD.getSelectedValue();
+        Time = listconstoT.getSelectedValue();
+        this.consto = "to: " + Month + ", " + Day + ", " + Time;
+    }
+
+    public String getConsto() {
+        return consto;
+    }
+
+    public String getKwkr() {
+        return jtkwkr.getText();
+    }
+
+    public String getKw() {
+        return jtkw.getText();
+    }
+
+    public void setLampButtonOn() {
+        jbon.setEnabled(true);
+        jboff.setEnabled(false);
+    }
+
+    public void setLampButtonOff() {
+        jbon.setEnabled(false);
+        jboff.setEnabled(true);
     }
 
     class ButtonActionListeners implements ActionListener {
-        @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == lamp1_On) {
+            if (e.getSource() == jbon) {
                 controller.buttonPressed(ButtonType.lamp1_On);
-                lamp1_On.setEnabled(false);
-                lamp1_off.setEnabled(true);
-            }
-            else if (e.getSource() == lamp1_off) {
+            } else if (e.getSource() == jboff) {
                 controller.buttonPressed(ButtonType.lamp1_off);
-                lamp1_On.setEnabled(true);
-                lamp1_off.setEnabled(false);
-            }
-            else if (e.getSource() == startTimer) {
-               // System.out.println("Turn the light on \nfrom: "+list.getSelectedValue()+
-                 //       "\ntill: "+list1.getSelectedValue());
-                controller.buttonPressed(ButtonType.statistic);
-            }
-            else if (e.getSource() == stopTimer) {
-                System.out.println("Turn the light off \nfrom: "+list.getSelectedValue()+
-                        "\ntill: "+list1.getSelectedValue());
+            } else if (e.getSource() == jbsch) {
+                controller.buttonPressed(ButtonType.start_schedule);
+            } else if (e.getSource() == jbcons) {
+                try {
+                    if (jtkw.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Please enter your lamp kW");
+                    } else if (jtkwkr.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Please enter the cost per kW");
+                    } else {
+                        controller.buttonPressed(ButtonType.get_consumption);
+                    }
+                } catch (NumberFormatException ee) {
+                    JOptionPane.showMessageDialog(null, "Please enter just numbers");
+                }
             }
         }
     }
 }
-*/

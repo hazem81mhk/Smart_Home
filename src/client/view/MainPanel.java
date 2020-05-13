@@ -1,15 +1,8 @@
 package client.view;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import client.controller.Controller;
-import javafx.geometry.HorizontalDirection;
-import server.model.MainServer.ArduinoCard;
 
 /**
  * 11/04/2020
@@ -19,11 +12,10 @@ import server.model.MainServer.ArduinoCard;
 
 public class MainPanel extends JPanel {
     private Controller controller;
-    //private LightPanel lightPanel;
-    private GUI gui = new GUI(controller);
-    private CurtainGui cgui = new CurtainGui(controller);
-    private MainListGUI mainListGUI = new MainListGUI(controller);
-    private ArduinoCard arduinoCard = new ArduinoCard(controller);
+    private MainMenuPanel mainMenuPanel;
+    private LightPanel lightPanel;
+    private CurtainPanel curtainPanel;
+
     private JPanel jp = new JPanel();
 
     public MainPanel(Controller controller) {
@@ -32,31 +24,37 @@ public class MainPanel extends JPanel {
     }
 
     private void setupPanel() {
-       add(jp);
-       mainListGUI.setAlignmentX(Component.LEFT_ALIGNMENT);
+        add(jp);
+        mainMenuPanel = new MainMenuPanel(controller);
+        lightPanel = new LightPanel(controller);
+        curtainPanel = new CurtainPanel(controller);
 
-        //lightPanel = new LightPanel(controller);
-        jp.add(mainListGUI);
-        jp.add(gui);
-        jp.add(cgui);
-        //jp.add(arduinoCard);
-        gui.setVisible(false);
-        cgui.setVisible(true);
-        //add(lightPanel, BorderLayout.NORTH);
-        //add(curtainPanel, BorderLayout.CENTER);
-        //add(lockPanel, BorderLayout.SOUTH);
+        jp.add(mainMenuPanel);
+        jp.add(lightPanel);
+        jp.add(curtainPanel);
+        setLightPanel();
     }
 
-    private ArduinoCard getArduinoCard() {
-        return arduinoCard;
+    public void setLightPanel() {
+        this.lightPanel.setVisible(true);
+        this.curtainPanel.setVisible(false);
     }
 
-    public GUI getGui(){
-        return gui;
+    public void setCurtainPanel() {
+        this.lightPanel.setVisible(false);
+        this.curtainPanel.setVisible(true);
     }
 
-    public CurtainGui getCurtainGui(){
-        return cgui;
+    public LightPanel getLightPanel() {
+        return lightPanel;
+    }
+
+    public CurtainPanel getCurtainGui() {
+        return curtainPanel;
+    }
+
+    public MainMenuPanel getMainMenuPanel() {
+        return mainMenuPanel;
     }
 }
 

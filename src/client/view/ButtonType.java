@@ -1,4 +1,5 @@
 package client.view;
+
 /**
  * 11/04/2020
  *
@@ -16,6 +17,9 @@ public enum ButtonType {
     curtain_stop,
     curtain_schedule,
     temp_curtain,
-    main_menu,
-    disable,close, open
+    disable,
+    lightPanel,
+    curtainPanel,
+    openDoor,
+    closeDoor
 }

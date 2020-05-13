@@ -12,9 +12,9 @@ public class Schedule implements Serializable {
     private String startSchedule;
     private String endSchedule;
 
-    public Schedule (String startSchedule,String endSchedule){
-        this.startSchedule=startSchedule;
-        this.endSchedule=endSchedule;
+    public Schedule(String startSchedule, String endSchedule) {
+        this.startSchedule = startSchedule;
+        this.endSchedule = endSchedule;
     }
 
     public String getStartSchedule() {
@@ -25,9 +25,8 @@ public class Schedule implements Serializable {
         return endSchedule;
     }
 
-
     @Override
     public String toString() {
-        return "{" + "startSchedule= " + startSchedule +  ", endSchedule= " + endSchedule + "}";
+        return "{" + "startSchedule= " + startSchedule + ", endSchedule= " + endSchedule + "}";
     }
 }

@@ -14,50 +14,51 @@ import server.model.MainServer.TempSchedule;
 
 public class Controller {
     private MainFrame mainFrame;
-    private ClientLogin clientLogin;
-    private MainListGUI mainListGui;
+    private LoginPanel loginPanel;
     private Client client;
     private Schedule schedule;
     private CurtainSchedule Cschedule;
     private TempSchedule Tschedul;
 
     public Controller() {
-        clientLogin = new ClientLogin(this);
-    }
-
-    public void startClient() {
-        clientLogin.setFramevisiblity(false);
-        client = new Client(clientLogin.getIp(), clientLogin.getPort(), clientLogin.getUserName(), this);   //"81.224.148.215"
-    }
-
-    public void startClientGui() {
+        loginPanel = new LoginPanel(this);
         mainFrame = new MainFrame(this);
     }
 
-    public void startSchedule() {
-        mainFrame.getMainPanel().getGui().setSelectedStarttime();
-        mainFrame.getMainPanel().getGui().setSelectedTotime();
-        schedule = new Schedule(mainFrame.getMainPanel().getGui().getStarttime(),
-                mainFrame.getMainPanel().getGui().getTotime());
-        client.sendSchedule(schedule);
-        
+    public void startClient() {
+        loginPanel.setFramevisiblity(false);
+        client = new Client(loginPanel.getIp(), loginPanel.getPort(), loginPanel.getUserName(), this);
     }
 
-    public void getConsumption (){
-        mainFrame.getMainPanel().getGui().setConsumptionFor();
-        mainFrame.getMainPanel().getGui().setConsumptionTo();
-        ConsumptionCounter cons=new ConsumptionCounter((mainFrame.getMainPanel().getGui().getConsfr()),
-                (mainFrame.getMainPanel().getGui().getConsto()), Integer.parseInt(mainFrame.getMainPanel().getGui().getKw()),
-                Integer.parseInt(mainFrame.getMainPanel().getGui().getKwkr()));
+    public void startClientGui() {
+        mainFrame.setFramevisiblity(true);
+        mainFrame.getMainPanel().getMainMenuPanel().setjButtonLight();
+    }
+
+    public void startSchedule() {
+        mainFrame.getMainPanel().getLightPanel().setSelectedStarttime();
+        mainFrame.getMainPanel().getLightPanel().setSelectedTotime();
+        schedule = new Schedule(mainFrame.getMainPanel().getLightPanel().getStarttime(),
+                mainFrame.getMainPanel().getLightPanel().getTotime());
+        client.sendSchedule(schedule);
+
+    }
+
+    public void getConsumption() {
+        mainFrame.getMainPanel().getLightPanel().setConsumptionFor();
+        mainFrame.getMainPanel().getLightPanel().setConsumptionTo();
+        ConsumptionCounter cons = new ConsumptionCounter((mainFrame.getMainPanel().getLightPanel().getConsfr()),
+                (mainFrame.getMainPanel().getLightPanel().getConsto()), Integer.parseInt(mainFrame.getMainPanel().getLightPanel().getKw()),
+                Integer.parseInt(mainFrame.getMainPanel().getLightPanel().getKwkr()));
         client.sendCons(cons);
     }
 
-    public void setButtonOff(){
-        mainFrame.getMainPanel().getGui().setLampButtonOff();
+    public void setButtonOff() {
+        mainFrame.getMainPanel().getLightPanel().setLampButtonOff();
     }
 
-    public void setButtonOn(){
-        mainFrame.getMainPanel().getGui().setLampButtonOn();
+    public void setButtonOn() {
+        mainFrame.getMainPanel().getLightPanel().setLampButtonOn();
     }
 
     public void buttonPressed(ButtonType button) {
@@ -72,7 +73,7 @@ public class Controller {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                //mainFrame.getMainPanel().getGui().setLampButtonOff();
+                //mainFrame.getMainPanel().getLightPanel().setLampButtonOff();
                 break;
             case lamp1_off:
                 client.sendRequest("off");
@@ -81,7 +82,7 @@ public class Controller {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                //mainFrame.getMainPanel().getGui().setLampButtonOn();
+                //mainFrame.getMainPanel().getLightPanel().setLampButtonOn();
                 break;
             case start_schedule:
                 startSchedule();
@@ -90,20 +91,20 @@ public class Controller {
                 getConsumption();
                 break;
 
-                //AGON
+            //AGON
             case curtain_up:
                 client.sendRequest("up");
-                
+
                 break;
             case curtain_down:
                 client.sendRequest("down");
-               
+
                 break;
             case curtain_stop:
                 client.sendRequest("stop");
                 break;
             case disable:
-                client.sendRequest("cancel_Schedule");  
+                client.sendRequest("cancel_Schedule");
                 break;
             case curtain_schedule:
                 CSchedule();
@@ -111,69 +112,72 @@ public class Controller {
             case temp_curtain:
                 CTempSchedule();
                 break;
-            case open:
-            	 client.sendRequest("open");
+            case lightPanel:
+                mainFrame.getMainPanel().setLightPanel();
+                mainFrame.getMainPanel().getMainMenuPanel().setjButtonLight();
                 break;
-            case close:
-           	 	client.sendRequest("close");
-               break;
-            case main_menu:
-                MainMenu();
+            case curtainPanel:
+                mainFrame.getMainPanel().setCurtainPanel();
+                mainFrame.getMainPanel().getMainMenuPanel().setjButtonCurtain();
+                break;
+            case openDoor:
+                client.sendRequest("open");
+                break;
+            case closeDoor:
+                client.sendRequest("close");
                 break;
         }
     }
 
     public void CButtonup() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonUP();}
+        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonUP();
+    }
 
     public void CButtondown() {
         mainFrame.getMainPanel().getCurtainGui().setCurtainButtonDOWN();
     }
 
     public void CButtonstop() {
-        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonSTOP();}
+        mainFrame.getMainPanel().getCurtainGui().setCurtainButtonSTOP();
+    }
+
     public void CButtonTop() {
-        mainFrame.getMainPanel().getCurtainGui().curtainOnTop();}
+        mainFrame.getMainPanel().getCurtainGui().curtainOnTop();
+    }
+
     public void CButtonBotoom() {
-        mainFrame.getMainPanel().getCurtainGui().curtainBottom();}
+        mainFrame.getMainPanel().getCurtainGui().curtainBottom();
+    }
+
     public void CSchedule() {
         mainFrame.getMainPanel().getCurtainGui().setCurtainschedulefrom();
         mainFrame.getMainPanel().getCurtainGui().setCurtainscheduleto();
         mainFrame.getMainPanel().getCurtainGui().setCheckbox();
         //System.out.println("From: " + mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom() + "\nTo: " +
-          //      mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto() + "\nDirection: " + mainFrame.getMainPanel().getCurtainGui().getCheckbox());
+        //      mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto() + "\nDirection: " + mainFrame.getMainPanel().getCurtainGui().getCheckbox());
         Cschedule = new CurtainSchedule(mainFrame.getMainPanel().getCurtainGui().getCurtainschedulefrom(),
-        mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
+                mainFrame.getMainPanel().getCurtainGui().getCurtainscheduleto(), mainFrame.getMainPanel().getCurtainGui().getCheckbox());
         client.sendCurtainSchedule(Cschedule);
-       
+
     }
 
-    public void CTempSchedule(){
+    public void CTempSchedule() {
         mainFrame.getMainPanel().getCurtainGui().setTempschedule();
         System.out.println(mainFrame.getMainPanel().getCurtainGui().getTempsch());
-        Tschedul = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch1(),mainFrame.getMainPanel().getCurtainGui().getTempsch2());
+        Tschedul = new TempSchedule(mainFrame.getMainPanel().getCurtainGui().getTempsch1(), mainFrame.getMainPanel().getCurtainGui().getTempsch2());
         client.sendTempSchedule(Tschedul);
-        System.out.println("LOOK WHAT WE GOT!"+mainFrame.getMainPanel().getCurtainGui().getTempsch1()+""+mainFrame.getMainPanel().getCurtainGui().getTempsch2());
-    }
-
-
-    public void MainMenu() {
-        MainListGUI mainListGUI = new MainListGUI(null);
+        System.out.println("LOOK WHAT WE GOT!" + mainFrame.getMainPanel().getCurtainGui().getTempsch1() + "" + mainFrame.getMainPanel().getCurtainGui().getTempsch2());
     }
 
     public void sendUpdate(String str) {
-        mainFrame.getMainPanel().getGui().appendLog(str);
+        mainFrame.getMainPanel().getMainMenuPanel().appendLog(str);
     }
 
-	public void setOpenButtonOff() {
-		// TODO Auto-generated method stub
-		System.out.println("TURNING OPEN BUTTON OFF");
-		
-	}
+    public void setOpenButtonOff() {
+        mainFrame.getMainPanel().getMainMenuPanel().setjButtonOpenLock();
+    }
 
-	public void setCloseButtonOff() {
-		// TODO Auto-generated method stub
-		System.out.println("TURNING CLOSE BUTTON OFF");
-		
-	}
+    public void setCloseButtonOff() {
+        mainFrame.getMainPanel().getMainMenuPanel().setjButtonCloseLock();
+    }
 }
