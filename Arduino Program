@@ -1,10 +1,10 @@
 /*
   TCP_WIFI program for Arduino and Arduino WIFI shield.
-  This program is made to connect Smart Home server and does several tasks. 
+  This program is made to connect Smart Home server and does several tasks.
 
   The circuit:
   - LED from pin 9
-  - Magnetic sensor pins 2,3 
+  - Magnetic sensor pins 2,3
 
   created 10-04-2020
   by Mohammed Hazem Kudaimi and Mohammed Amayi
@@ -13,22 +13,41 @@
 
 #include <WiFi.h>
 #include <Servo.h>
+#include <SimpleDHT.h>
 
 Servo servoo;
+SimpleDHT11 temp_sensor;
 WiFiClient client;                                                //Use WiFiClient class to create TCP connection.
 
-int sensor_up = 2;                                                //The Upper magnetic sensor.
-int sensor_down = 3;                                              //The lower magnatic sensor.
-int lamp_1 = 9;                                                   //The lamp 1.
+const int sensor_up = 2;                                          //The Upper magnetic sensor.
+const int sensor_down = 5;                                        //The lower magnatic sensor.
+const int temp_sensor_Pin = 4;
+
+const int SPEED = 3;
+const int Counterclockwise = 6;
+const int Clockwise = 8;
+
+const int sound_sensor = A0;
+const int microswitch_OPEN = A1;
+const int microswitch_CLOSE = A2;
+const int pirPin = A3;
+const int servo_Pin = A4;
+const int lamp_1 = A5;                                            //The lamp 1.
 
 boolean magnetic_Sensor_Up = true;
 boolean magnetic_Sensor_Down = true;
 boolean stoop = false;
 
+boolean openSensor = false;
+boolean closeSensor = false;
+boolean motion_sensor_state = true;
+
+//String str;
+//String strFromServer;
 
 #ifndef localRouterName                                           //Tests if this word is not defined. 
-#define localRouterName "                "                        //Network name.
-#define localRouterPassword  "        "                           //Network key.
+#define localRouterName "TP-Link Extender"                        //Network name.
+#define localRouterPassword  "3gtfhA7T"                           //Network key.
 #endif                                                            //End if statement.
 
 const char* LRNANE     = localRouterName;
@@ -41,11 +60,21 @@ const uint16_t serverPort = 9000;
 
 
 void setup() {
-  pinMode(9, OUTPUT);
-  pinMode(3, INPUT);
-  pinMode(sensor_up, INPUT);
+  pinMode(lamp_1, OUTPUT);
+  pinMode(sound_sensor, INPUT);
 
-  servoo.attach(8);
+  pinMode(sensor_down, INPUT);
+  pinMode(sensor_up, INPUT);
+  servoo.attach(servo_Pin);
+  pinMode(temp_sensor_Pin, INPUT);
+
+  pinMode (Clockwise, OUTPUT);
+  pinMode (Counterclockwise, OUTPUT);
+  pinMode (SPEED, OUTPUT);
+
+  pinMode (microswitch_OPEN, INPUT);
+  pinMode (microswitch_CLOSE, INPUT);
+  pinMode(pirPin, INPUT);
 
   delay(200);
   Serial.begin(115200);                                            //Open serial port and set data rate to 115200 bps.
@@ -102,77 +131,170 @@ void writeConnectionInfo() {
 }
 
 void sendMessage(String str) {                                     // Send Message to the server.
-  Serial.print("Arduino is connected is send to the server.");
+  Serial.println("Arduino is connected is send to the server.");
   client.println(str);
 }
 
 void sendAndReceiveData() {
-  while (client.connected()) {                                        
+  while (client.connected()) {
+    readSoundSensor();
+    motionSensor();
     if (client.available()) {
-      String strFromServer = client.readStringUntil('\r');            //Reading the data received from the Server.
-      Serial.print("Request from the server send: " + strFromServer); //Write the message in the serial monitor.
-      order(strFromServer);                                           //Send the message to sort.
+      String strFromServer = client.readStringUntil('\r');        //Reading the data received from the Server.
+      //Serial.println();
+      Serial.print(strFromServer);                                //Write the message in the serial monitor.
+      order(strFromServer);                                       //Send the message to sort.
       delay(10);
     }
   }
 }
 
-void order(String str) {                                              //Sort the coming message.
+void order(String str) {                                          //Sort the coming message.
   if (str == "lamp1_on") {
     digitalWrite(lamp_1, HIGH);
     client.println(str);
+    Serial.println();
     Serial.print("State is send to the server: " + str);
   }
   else if (str == "lamp1_off") {
     digitalWrite(lamp_1, LOW);
     client.println(str);
+    Serial.println();
     Serial.print("State is send to the server: " + str);
   }
   else if (str == "up") {
     client.println(str);
+    Serial.println();
     Serial.print("State is send to the server: " + str);
     magnetic_Sensor_Up = true;
     stoop = false;
     while (magnetic_Sensor_Up_Detected()) {
-      servoo.write(110);
-      String strFromServer = client.readStringUntil('\r');     
-      Serial.print(strFromServer);                                 
+      servoo.write(100);
+      String strFromServer = client.readStringUntil('\r');
+      //Serial.println();
+      Serial.print(strFromServer);
       order(strFromServer);
       if (stoop) {
         break;
       }
     }
     servoo.write(90);
-    client.println("magnetic_Sensor_Up_Detected");
-    Serial.print("State is send to the server: magnetic_Sensor_Up_Detected");
+    if (!magnetic_Sensor_Up_Detected()) {
+      client.println("top");
+      Serial.println();
+      Serial.print("State is send to the server: top");
+    }
   }
   else if (str == "down") {
     client.println(str);
+    Serial.println();
     Serial.print("State is send to the server: " + str);
     magnetic_Sensor_Down = true;
     stoop = false;
     while (magnetic_Sensor_Down_Detected()) {
-      servoo.write(70);
-      String strFromServer = client.readStringUntil('\r');         
-      Serial.print(strFromServer);                                
+      servoo.write(80);
+      String strFromServer = client.readStringUntil('\r');
+      //Serial.println();
+      Serial.print(strFromServer);
       order(strFromServer);
       if (stoop) {
         break;
       }
       servoo.write(90);
-      client.println("magnetic_Sensor_Down_Detected");
-      Serial.print("State is send to the server: magnetic_Sensor_Down_Detected");
+      if (!magnetic_Sensor_Down_Detected()) {
+        client.println("bottom");
+        Serial.println();
+        Serial.print("State is send to the server: bottom");
+      }
     }
   }
   else if (str == "stop") {
     stoop = true;
     servoo.write(90);
-    client.println(str);
+    client.println("stoop");
+    Serial.println();
     Serial.print("State is send to the server: " + str);
+  }
+  else if (str == "temp") {
+    // client.println(str);
+    Serial.println();
+    Serial.print("State is send to the server: " + str);
+    get_temperature();
+  }
+  else if (str == "initiate") {
+    if (!magnetic_Sensor_Up_Detected()) {
+      client.println("top");
+      Serial.println();
+      Serial.print("State is send to the server: top");
+    }
+    else if (!magnetic_Sensor_Down_Detected()) {
+      client.println("bottom");
+      Serial.println();
+      Serial.print("State is send to the server: bottom");
+    }
+  }
+
+  else if (str == "open") {
+    Serial.println();
+    Serial.print("The door is opening now");
+    while (!open_Senseor_Detected()) {
+      analogWrite(SPEED, 60);
+      digitalWrite(Clockwise, LOW);
+      digitalWrite(Counterclockwise, HIGH);
+      //strFromServer = (String)Serial.readStringUntil('\r');
+      //Serial.print(strFromServer);
+      //order(str);
+    }
+    if (open_Senseor_Detected()) {
+      Serial.println();
+      Serial.print("Open sensor is detected");
+      analogWrite(SPEED, 0);
+      Serial.println();
+      Serial.print("The door is opened!");
+      client.println("open");
+    }
+  }
+  else if (str == "close") {
+    Serial.println();
+    Serial.print("The door closing now");
+    while (!close_Senseor_Detected()) {
+      analogWrite(SPEED, 60);
+      digitalWrite(Clockwise, HIGH);
+      digitalWrite(Counterclockwise, LOW);
+      //strFromServer = (String)Serial.readStringUntil('\r');
+      //Serial.print(strFromServer);
+      //order(str);
+    }
+    if (close_Senseor_Detected()) {
+      Serial.println();
+      Serial.print("Close sensor is detected");
+      analogWrite(SPEED, 0);
+      Serial.println();
+      Serial.print("The door is closed!");
+      client.println("close");
+    }
   }
   delay(10);
 }
 
+void readSoundSensor() {
+  if (analogRead(sound_sensor) >= 210) {
+    if (digitalRead(lamp_1) == LOW) {
+      digitalWrite(lamp_1, HIGH);
+      client.println("lamp1_on");
+      Serial.println();
+      Serial.print("State is send to the server: lamp1_on");
+      delay(20);
+    }
+    else {
+      digitalWrite(lamp_1, LOW);
+      client.println("lamp1_off");
+      Serial.println();
+      Serial.print("State is send to the server: lamp1_off");
+      delay(20);
+    }
+  }
+}
 
 boolean magnetic_Sensor_Up_Detected() {
   if (digitalRead(sensor_up) == LOW) {
@@ -191,4 +313,53 @@ boolean magnetic_Sensor_Down_Detected() {
     magnetic_Sensor_Down = false;
   }
   return magnetic_Sensor_Down;
+}
+
+void get_temperature() {
+  byte temp = 0;
+  byte humidity  = 0;
+  temp_sensor.read(temp_sensor_Pin, &temp, &humidity, NULL);
+  Serial.println();
+  Serial.print("The temperature is ");
+  Serial.print((String)temp);
+  //Serial.print(" *C, and The humidity is ");
+  //Serial.println(humidity);
+  client.println("temp:" + (String)temp);
+}
+
+boolean close_Senseor_Detected() {
+  if (digitalRead(microswitch_CLOSE) == LOW) {
+    closeSensor = true;
+  } else {
+    closeSensor = false;
+  }
+  return closeSensor;
+}
+
+boolean open_Senseor_Detected() {
+  if (digitalRead(microswitch_OPEN) == LOW) {
+    openSensor = true;
+  } else {
+    openSensor = false;
+  }
+  return openSensor;
+}
+
+void motionSensor() {
+  int sensor_value = digitalRead(pirPin);
+  if (sensor_value == HIGH) {
+    if (motion_sensor_state) {
+      motion_sensor_state = false;
+      client.println("guest");
+      Serial.println();
+      Serial.print("Motion sensor detected");
+    }
+  } else {
+    if (!motion_sensor_state) {
+      motion_sensor_state = true;
+      Serial.println();
+      Serial.print("Motion ended");
+    }
+  }
+
 }
